@@ -1,0 +1,190 @@
+// Mixins
+@use "sass:color";
+@use "variables" as *;
+
+// Flexbox Mixins
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Grid Mixins
+@mixin grid($columns, $gap: $spacing-lg) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+// Responsive Mixins
+@mixin mobile {
+  @media (max-width: $breakpoint-mobile) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-desktop) {
+    @content;
+  }
+}
+
+// Button Mixin
+@mixin button($bg-color: $accent, $text-color: white) {
+  display: inline-block;
+  background-color: $bg-color;
+  color: $text-color;
+  padding: $spacing-sm $spacing-lg * 1.25;
+  border-radius: $border-radius-lg;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: $font-size-lg;
+  transition: all $transition-base;
+  border: none;
+  cursor: pointer;
+  box-shadow: $shadow-accent;
+
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow-accent-hover;
+    background-color: color.scale($bg-color, $lightness: -8.76%);
+  }
+}
+
+// Card Mixin
+@mixin card($padding: $spacing-lg) {
+  background-color: white;
+  padding: $padding;
+  border-radius: $border-radius-md;
+  box-shadow: $shadow-md;
+  transition: transform $transition-base;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+// Section Heading Mixin
+@mixin section-heading {
+  text-align: center;
+  margin-bottom: $spacing-2xl * 2;
+
+  h2 {
+    font-size: $font-size-4xl;
+    color: $primary;
+    margin-bottom: $spacing-sm;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 15px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: $accent;
+    }
+  }
+
+  p {
+    color: $gray;
+    max-width: 700px;
+    margin: 0 auto;
+    font-size: $font-size-lg;
+  }
+}
+
+// Container Mixin
+@mixin container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 $container-padding;
+}
+
+// Icon Circle Mixin
+@mixin icon-circle($size: 60px, $bg-color: $accent) {
+  background-color: $bg-color;
+  color: white;
+  width: $size;
+  height: $size;
+  border-radius: $border-radius-circle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-size-2xl;
+  flex-shrink: 0;
+}
+
+// Gradient Background Mixin
+@mixin gradient-overlay($color: $primary, $opacity: 0.8) {
+  background: linear-gradient(rgba($color, $opacity), rgba($color, $opacity));
+}
+
+// Card Flip Mixin
+@mixin card-flip {
+  perspective: 1000px;
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform $transition-slow;
+    transform-style: preserve-3d;
+  }
+
+  &:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: $border-radius-md;
+    box-shadow: $shadow-md;
+    @include flex-column;
+    justify-content: center;
+    align-items: center;
+    padding: $spacing-lg;
+  }
+
+  .card-front {
+    background-color: $light;
+    color: $text;
+  }
+
+  .card-back {
+    background-color: $primary;
+    color: white;
+    transform: rotateY(180deg);
+  }
+}
+
+// Transition Mixin
+@mixin transition($property: all, $duration: $transition-base) {
+  transition: $property $duration ease;
+}

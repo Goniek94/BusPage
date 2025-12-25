@@ -1,0 +1,18 @@
+// Main SCSS File - MARBUS Project
+// Using modern @use syntax instead of deprecated @import
+
+// 1. Variables and Mixins
+@use "variables" as *;
+@use "mixins" as *;
+
+// 2. Base Styles
+@use "base";
+
+// 3. Components
+@use "components/header";
+@use "components/hero";
+@use "components/services";
+@use "components/advantages";
+@use "components/flota";
+@use "components/contact";
+@use "components/footer";

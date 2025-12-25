@@ -1,0 +1,327 @@
+// Advantages Section - Modern & Stylish
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.advantages {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Decorative background elements
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba($primary, 0.05) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+      circle,
+      rgba($accent, 0.03) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Section heading - dopasowany do services
+  .section-heading {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    h2 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: $primary;
+      letter-spacing: -0.02em;
+      margin-bottom: $spacing-md;
+      position: relative;
+      display: inline-block;
+      padding-bottom: $spacing-sm;
+      text-transform: uppercase;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, $secondary 0%, $accent 100%);
+        border-radius: 2px;
+      }
+
+      @include tablet {
+        font-size: 2.5rem;
+      }
+
+      @include mobile {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      color: $gray;
+      font-size: $font-size-lg;
+      max-width: 700px;
+      margin: $spacing-md auto 0;
+      line-height: 1.8;
+    }
+
+    // Company intro - larger, more prominent text
+    .company-intro {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $primary;
+      line-height: 1.6;
+      margin-top: $spacing-lg;
+
+      @include tablet {
+        font-size: 1.3rem;
+      }
+
+      @include mobile {
+        font-size: 1.1rem;
+      }
+    }
+  }
+
+  // Grid container - 2 kolumny
+  &-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-xl;
+    margin-top: $spacing-2xl;
+
+    @include tablet {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+
+    @include mobile {
+      gap: $spacing-md;
+    }
+  }
+}
+
+// Advantage Item - Modern Card Design
+.advantage-item {
+  background: linear-gradient(
+    135deg,
+    rgba($primary, 0.03) 0%,
+    rgba($secondary, 0.05) 50%,
+    rgba($primary, 0.02) 100%
+  );
+  border-radius: $border-radius-lg;
+  padding: $spacing-2xl;
+  box-shadow: 0 8px 20px rgba($primary, 0.15), 0 4px 10px rgba($secondary, 0.1);
+  transition: all $transition-base ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba($primary, 0.1);
+  display: flex;
+  gap: $spacing-lg;
+  align-items: flex-start;
+  min-height: 280px;
+  cursor: pointer;
+
+  // Gradient glow effect
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      $secondary 0%,
+      $accent 50%,
+      $secondary 100%
+    );
+    opacity: 0.6;
+  }
+
+  // Subtle inner glow
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      circle at top left,
+      rgba($secondary, 0.08) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba($primary, 0.25),
+      0 8px 20px rgba($secondary, 0.2);
+    background: linear-gradient(
+      135deg,
+      rgba($primary, 0.06) 0%,
+      rgba($secondary, 0.1) 50%,
+      rgba($primary, 0.04) 100%
+    );
+    border-color: rgba($secondary, 0.25);
+
+    &::before {
+      opacity: 1;
+      box-shadow: 0 0 20px rgba($secondary, 0.5);
+    }
+
+    .advantage-item-icon {
+      transform: scale(1.08);
+      background: linear-gradient(135deg, $secondary 0%, $accent 100%);
+      box-shadow: 0 8px 25px rgba($secondary, 0.4);
+    }
+  }
+
+  // Icon container - circular with gradient
+  &-icon {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all $transition-base ease;
+    box-shadow: 0 4px 12px rgba($primary, 0.2);
+    flex-shrink: 0;
+
+    svg,
+    i {
+      font-size: 1.8rem;
+      color: white;
+      transition: transform $transition-base ease;
+    }
+  }
+
+  // Text content
+  &-text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      font-size: 1.4rem;
+      color: $primary;
+      margin-bottom: $spacing-md;
+      font-weight: 700;
+      line-height: $line-height-tight;
+      transition: color $transition-base ease;
+    }
+
+    p {
+      color: $gray;
+      line-height: 1.8;
+      font-size: 1.05rem;
+      margin: 0;
+    }
+  }
+
+  // Hover effect on title
+  &:hover &-text h3 {
+    color: $secondary;
+  }
+}
+
+// Responsive adjustments
+@include tablet {
+  .advantages {
+    .section-heading h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .advantage-item {
+    padding: $spacing-lg;
+    gap: $spacing-md;
+
+    &-icon {
+      width: 70px;
+      height: 70px;
+      min-width: 70px;
+
+      svg,
+      i {
+        font-size: 1.75rem;
+      }
+    }
+
+    &-text {
+      h3 {
+        font-size: 1.35rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+@include mobile {
+  .advantages {
+    .section-heading h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .advantage-item {
+    padding: $spacing-md;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    &-icon {
+      width: 65px;
+      height: 65px;
+      min-width: 65px;
+
+      svg,
+      i {
+        font-size: 1.5rem;
+      }
+    }
+
+    &-text {
+      h3 {
+        font-size: 1.25rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+      }
+    }
+  }
+}

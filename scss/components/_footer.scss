@@ -1,0 +1,51 @@
+// Footer Component
+@use "../variables" as *;
+@use "../mixins" as *;
+
+footer {
+  background-color: $dark;
+  color: white;
+  text-align: center;
+  padding: $spacing-xl 0;
+
+  .footer-content {
+    @include flex-column;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: $font-size-3xl;
+    font-weight: 700;
+
+    span {
+      color: $accent;
+    }
+  }
+
+  .social-icons {
+    margin: $spacing-md 0;
+    display: flex;
+  }
+
+  .social-icon {
+    color: white;
+    font-size: $font-size-2xl;
+    margin: 0 $spacing-sm;
+    @include transition(color);
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius-circle;
+    background-color: rgba(255, 255, 255, 0.1);
+
+    &:hover {
+      color: $accent;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  .copyright {
+    margin-top: $spacing-md;
+    color: #bbb;
+  }
+}

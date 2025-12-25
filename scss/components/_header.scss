@@ -1,0 +1,158 @@
+// Header Component
+@use "../variables" as *;
+@use "../mixins" as *;
+
+header {
+  background-color: $primary;
+  color: white;
+  padding: 0.5rem 0; // Reduced padding for smaller header height
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: $shadow-sm;
+  overflow: hidden; // Hide any overflow including the star
+
+  .header-container {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 0 2%;
+    max-width: 100%;
+
+    @include mobile {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: $spacing-sm 2%;
+    }
+  }
+
+  // Hamburger Menu Button
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+
+    @include mobile {
+      display: flex;
+    }
+
+    span {
+      width: 28px;
+      height: 3px;
+      background-color: white;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    &.active span:nth-child(1) {
+      transform: rotate(45deg) translate(8px, 8px);
+    }
+
+    &.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    &.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -7px);
+    }
+  }
+
+  .logo {
+    @include flex-center;
+    position: relative;
+    overflow: visible; // Allow logo to extend beyond container
+    max-height: 50px; // Keep container height small
+
+    &-img {
+      height: 65px; // Increased logo size
+      margin-right: 10px;
+      margin-top: -7.5px; // Negative margin to prevent header expansion
+      margin-bottom: -7.5px; // Negative margin to prevent header expansion
+      position: relative;
+      z-index: 2; // Ensure logo is above any background elements
+      object-fit: contain; // Maintain aspect ratio
+      object-position: center top; // Position from top to hide bottom elements
+
+      @include mobile {
+        height: 50px; // Smaller logo on mobile
+        margin-top: -5px;
+        margin-bottom: -5px;
+      }
+    }
+
+    &-text {
+      font-size: $font-size-5xl * 0.63;
+      font-weight: 800;
+      letter-spacing: 1px;
+
+      span {
+        color: $accent;
+      }
+    }
+  }
+
+  nav {
+    grid-column: 2;
+    justify-self: center;
+
+    @include mobile {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 100%;
+      height: 100vh;
+      background-color: $primary;
+      transition: right 0.3s ease;
+      padding-top: 60px;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+
+      &.active {
+        right: 0;
+      }
+    }
+
+    ul {
+      display: flex;
+      list-style: none;
+      gap: $spacing-lg;
+
+      @include mobile {
+        flex-direction: column;
+        gap: 0;
+        padding: $spacing-lg;
+      }
+
+      li {
+        @include mobile {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        a {
+          color: white;
+          text-decoration: none;
+          text-transform: uppercase;
+          @include transition(color);
+          font-weight: 600;
+          font-size: $font-size-lg;
+          letter-spacing: 0.5px;
+
+          @include mobile {
+            display: block;
+            padding: $spacing-md 0;
+            font-size: 1.1rem;
+          }
+
+          &:hover {
+            color: $accent;
+          }
+        }
+      }
+    }
+  }
+}

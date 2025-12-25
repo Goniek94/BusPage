@@ -1,0 +1,364 @@
+// Flota Section - Modern & Premium
+@use "../variables" as *;
+@use "../mixins" as *;
+@use "sass:color";
+
+.flota {
+  background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  // Decorative background elements
+  &::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    right: -15%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+      circle,
+      rgba($secondary, 0.04) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: -15%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba($accent, 0.03) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Section heading - dopasowany do services i advantages
+  .section-heading {
+    text-align: center;
+    margin-bottom: $spacing-2xl;
+
+    h2 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: $primary;
+      letter-spacing: -0.02em;
+      margin-bottom: $spacing-md;
+      position: relative;
+      display: inline-block;
+      padding-bottom: $spacing-sm;
+      text-transform: uppercase;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, $secondary 0%, $accent 100%);
+        border-radius: 2px;
+      }
+
+      @include tablet {
+        font-size: 2.5rem;
+      }
+
+      @include mobile {
+        font-size: 2rem;
+      }
+    }
+
+    p {
+      color: $gray;
+      font-size: $font-size-lg;
+      max-width: 700px;
+      margin: $spacing-md auto 0;
+      line-height: 1.8;
+    }
+  }
+
+  // Grid container - 3 kolumny (jak w sekcji usług)
+  &-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+    margin-top: $spacing-2xl;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-md;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+}
+
+// Flota Item - Premium Card Design
+.flota-item {
+  background: white;
+  border-radius: $border-radius-md;
+  padding: $spacing-2xl $spacing-xl;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all $transition-base ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba($primary, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  min-height: 320px;
+  cursor: pointer;
+
+  // Gradient line at top
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, $secondary 0%, $accent 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform $transition-base ease;
+  }
+
+  // Decorative corner element
+  &::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(
+      135deg,
+      rgba($primary, 0.03),
+      rgba($secondary, 0.05)
+    );
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all $transition-base ease;
+  }
+
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-color: rgba($secondary, 0.25);
+
+    &::before {
+      transform: scaleX(1);
+    }
+
+    &::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    h3 {
+      color: $secondary;
+      transform: translateY(-3px);
+    }
+  }
+
+  // Icon/Image container
+  &-icon {
+    width: 100%;
+    height: 200px;
+    background: #f5f7fa;
+    border-radius: $border-radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-lg;
+    transition: all $transition-base ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+
+    svg,
+    i,
+    img {
+      font-size: 3rem;
+      color: white;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      transition: transform $transition-base ease;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  // Specific styling for Bus30 image - slight crop from bottom
+  &:last-child &-icon img {
+    object-position: center top;
+    transform: scale(1.05) translateY(-5%);
+  }
+
+  // Title - UPPERCASE
+  h3 {
+    font-size: 1.5rem; // Increased from 1.75rem
+    color: $primary;
+    margin-bottom: $spacing-md;
+    font-weight: 700;
+    line-height: $line-height-tight;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all $transition-base ease;
+    width: 100%;
+  }
+
+  // Description
+  p {
+    color: $gray;
+    line-height: 1.8;
+    font-size: 1.1rem; // Increased from 1.05rem
+    margin: 0;
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  // Optional: Badge/Label (np. "DOSTĘPNY", "PREMIUM")
+  &-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(
+      135deg,
+      $accent 0%,
+      color.scale($accent, $lightness: -17.5%) 100%
+    );
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 3px 10px rgba($accent, 0.3);
+    z-index: 2;
+  }
+
+  // Optional: Specs list (np. liczba miejsc, rok produkcji)
+  &-specs {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: $spacing-md;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: $gray;
+      font-size: 0.9rem;
+
+      svg,
+      i {
+        color: $secondary;
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@include tablet {
+  .flota {
+    .section-heading h2 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .flota-item {
+    padding: $spacing-xl $spacing-lg;
+    min-height: 280px;
+
+    &-icon {
+      width: 85px;
+      height: 85px;
+
+      svg,
+      i,
+      img {
+        font-size: 2.5rem;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+  }
+}
+
+@include mobile {
+  .flota {
+    .section-heading h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .flota-item {
+    padding: $spacing-lg $spacing-md;
+    min-height: 260px;
+
+    &-icon {
+      width: 100%;
+      height: 180px;
+
+      svg,
+      i,
+      img {
+        font-size: 2rem;
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    h3 {
+      font-size: 1.35rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+
+    &-specs {
+      gap: $spacing-xs;
+
+      span {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}

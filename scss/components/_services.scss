@@ -1,0 +1,244 @@
+// Services Section - Compact & Aligned
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.services {
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Decorative background elements
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba($secondary, 0.05) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Section heading - custom styling
+  .section-heading {
+    text-align: center;
+    margin-bottom: $spacing-xl; // Reduced spacing
+
+    h2 {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #19095f;
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+      position: relative;
+      display: inline-block;
+      padding-bottom: $spacing-sm;
+      text-transform: uppercase;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(90deg, $secondary 0%, $accent 100%);
+        border-radius: 2px;
+      }
+
+      @include tablet {
+        font-size: 2rem;
+      }
+
+      @include mobile {
+        font-size: 1.75rem;
+      }
+    }
+  }
+
+  // Services Grid - 3 columns
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-lg;
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+      gap: $spacing-md;
+    }
+
+    @include mobile {
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+    }
+  }
+}
+
+// Service Card - Compact Vertical Design with Fixed Heights
+.service-card {
+  background: white;
+  border-radius: $border-radius-md;
+  padding: 2.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease; // Zwiększone opóźnienie z 0.3s do 0.4s
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba($primary, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-height: 450px;
+  cursor: pointer; // Dodany kursor pointer
+
+  // Hover gradient overlay
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, $secondary 0%, $accent 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease 0.1s; // Opóźnienie 0.1s
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border-color: rgba($secondary, 0.2);
+
+    &::before {
+      transform: scaleX(1);
+    }
+
+    .service-card-icon {
+      transform: scale(1.05);
+      background: linear-gradient(135deg, $secondary 0%, $accent 100%);
+    }
+  }
+
+  // Icon container - centered
+  &-icon {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+    border-radius: $border-radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: $spacing-lg;
+    transition: all 0.45s ease 0.05s; // Opóźnienie 0.05s
+    box-shadow: 0 4px 12px rgba($primary, 0.2);
+    flex-shrink: 0;
+
+    svg {
+      width: 50px;
+      height: 50px;
+      color: white;
+      transition: transform 0.4s ease 0.08s; // Opóźnienie 0.08s
+    }
+  }
+
+  // Title - fixed height for alignment
+  h3 {
+    font-size: 1.75rem;
+    color: $primary;
+    margin-bottom: $spacing-md;
+    font-weight: 700;
+    line-height: $line-height-tight;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  // Description - flexible height
+  p {
+    color: $gray;
+    line-height: 1.8;
+    font-size: 1.125rem;
+    margin: 0;
+    text-align: center;
+    flex-grow: 1;
+  }
+}
+
+// Responsive adjustments
+@include tablet {
+  .services {
+    .section-heading h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .service-card {
+    padding: $spacing-lg;
+    min-height: 320px;
+
+    &-icon {
+      width: 70px;
+      height: 70px;
+
+      svg {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    h3 {
+      font-size: 1.35rem;
+      min-height: 60px;
+    }
+
+    p {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+@include mobile {
+  .services {
+    .section-heading h2 {
+      font-size: 1.75rem;
+    }
+  }
+
+  .service-card {
+    padding: $spacing-md;
+    min-height: 280px;
+
+    &-icon {
+      width: 65px;
+      height: 65px;
+
+      svg {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      min-height: 56px;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+}
