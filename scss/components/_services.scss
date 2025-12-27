@@ -1,27 +1,37 @@
-// Services Section - Compact & Aligned
+// _services.scss - Nowoczesny wygląd z efektem szkła i gradientami
 @use "../variables" as *;
 @use "../mixins" as *;
 
 .services {
-  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
   position: relative;
+  background: #0f172a; // Ciemne tło dla lepszego kontrastu "kosmicznego"
+  padding: $spacing-3xl 0;
   overflow: hidden;
 
-  // Decorative background elements
-  &::before {
+  // Dekoracyjne tło (rozmyte koła)
+  &::before,
+  &::after {
     content: "";
     position: absolute;
-    top: -50%;
-    right: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(
-      circle,
-      rgba($secondary, 0.05) 0%,
-      transparent 70%
-    );
     border-radius: 50%;
-    pointer-events: none;
+    filter: blur(80px);
+    z-index: 0;
+  }
+
+  &::before {
+    top: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: rgba($secondary, 0.15); // Używamy Twoich zmiennych kolorów
+  }
+
+  &::after {
+    bottom: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba($accent, 0.15);
   }
 
   .container {
@@ -29,216 +39,142 @@
     z-index: 1;
   }
 
-  // Section heading - custom styling
+  // Nagłówek sekcji
   .section-heading {
     text-align: center;
-    margin-bottom: $spacing-xl; // Reduced spacing
+    margin-bottom: $spacing-2xl;
 
     h2 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: #19095f;
-      letter-spacing: -0.02em;
-      margin-bottom: 0;
-      position: relative;
-      display: inline-block;
-      padding-bottom: $spacing-sm;
-      text-transform: uppercase;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: $spacing-sm;
 
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, $secondary 0%, $accent 100%);
-        border-radius: 2px;
+      // Gradientowy tekst
+      // Gdzie masz .gradient-text (około linii 55)
+      .gradient-text {
+        background: linear-gradient(135deg, #a78bfa 0%, #f9a8d4 100%);
+        -webkit-background-clip: text; // DODAJ TO
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
-
-      @include tablet {
-        font-size: 2rem;
-      }
-
       @include mobile {
-        font-size: 1.75rem;
+        font-size: 2.2rem;
       }
+    }
+
+    p {
+      color: #94a3b8; // Jasny szary
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
   }
 
-  // Services Grid - 3 columns
+  // Grid
   &-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: $spacing-lg;
+    gap: 2rem;
+    padding: 0 $spacing-md;
 
     @include tablet {
       grid-template-columns: repeat(2, 1fr);
-      gap: $spacing-md;
     }
 
     @include mobile {
       grid-template-columns: 1fr;
-      gap: $spacing-md;
     }
   }
 }
 
-// Service Card - Compact Vertical Design with Fixed Heights
+// KARTA USŁUGI
 .service-card {
-  background: white;
-  border-radius: $border-radius-md;
-  padding: 2.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.4s ease; // Zwiększone opóźnienie z 0.3s do 0.4s
   position: relative;
+  background: rgba(255, 255, 255, 0.03); // Przezroczyste tło
+  backdrop-filter: blur(10px); // Rozmycie tła pod spodem
+  border: 1px solid rgba(255, 255, 255, 0.1); // Delikatna ramka
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   overflow: hidden;
-  border: 1px solid rgba($primary, 0.08);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  min-height: 450px;
-  cursor: pointer; // Dodany kursor pointer
+  text-align: left;
 
-  // Hover gradient overlay
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, $secondary 0%, $accent 100%);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.5s ease 0.1s; // Opóźnienie 0.1s
-  }
-
+  // Efekt po najechaniu (hover)
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-    border-color: rgba($secondary, 0.2);
-
-    &::before {
-      transform: scaleX(1);
-    }
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba($secondary, 0.5);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 
     .service-card-icon {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, $secondary 0%, $accent 100%);
+      transform: scale(1.1) rotate(-5deg);
+      background: linear-gradient(135deg, $secondary, $accent);
+      box-shadow: 0 0 20px rgba($secondary, 0.6);
+
+      svg {
+        stroke: #fff; // Ikona staje się biała
+      }
+    }
+
+    h3 {
+      color: $secondary;
     }
   }
 
-  // Icon container - centered
+  // Ikona
   &-icon {
-    width: 100px;
-    height: 100px;
-    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
-    border-radius: $border-radius-md;
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: $spacing-lg;
-    transition: all 0.45s ease 0.05s; // Opóźnienie 0.05s
-    box-shadow: 0 4px 12px rgba($primary, 0.2);
-    flex-shrink: 0;
+    margin-bottom: 2rem;
+    transition: all 0.4s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 
     svg {
-      width: 50px;
-      height: 50px;
-      color: white;
-      transition: transform 0.4s ease 0.08s; // Opóźnienie 0.08s
+      width: 32px;
+      height: 32px;
+      stroke: $secondary; // Kolor ikony z Twoich zmiennych
+      transition: all 0.3s ease;
     }
   }
 
-  // Title - fixed height for alignment
+  // Tytuł
   h3 {
-    font-size: 1.75rem;
-    color: $primary;
-    margin-bottom: $spacing-md;
+    font-size: 1.5rem;
     font-weight: 700;
-    line-height: $line-height-tight;
-    min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    color: #fff;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
   }
 
-  // Description - flexible height
+  // Opis
   p {
-    color: $gray;
-    line-height: 1.8;
-    font-size: 1.125rem;
-    margin: 0;
-    text-align: center;
-    flex-grow: 1;
-  }
-}
-
-// Responsive adjustments
-@include tablet {
-  .services {
-    .section-heading h2 {
-      font-size: 2rem;
-    }
+    font-size: 1rem;
+    color: #94a3b8; // Szary, czytelny na ciemnym
+    line-height: 1.7;
+    margin-bottom: 2rem;
   }
 
-  .service-card {
-    padding: $spacing-lg;
-    min-height: 320px;
-
-    &-icon {
-      width: 70px;
-      height: 70px;
-
-      svg {
-        width: 35px;
-        height: 35px;
-      }
-    }
-
-    h3 {
-      font-size: 1.35rem;
-      min-height: 60px;
-    }
-
-    p {
-      font-size: 0.95rem;
-    }
-  }
-}
-
-@include mobile {
-  .services {
-    .section-heading h2 {
-      font-size: 1.75rem;
-    }
+  // Opcjonalnie: Przycisk lub strzałka "Więcej"
+  &::after {
+    content: "→";
+    font-size: 1.5rem;
+    color: $secondary;
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
   }
 
-  .service-card {
-    padding: $spacing-md;
-    min-height: 280px;
-
-    &-icon {
-      width: 65px;
-      height: 65px;
-
-      svg {
-        width: 32px;
-        height: 32px;
-      }
-    }
-
-    h3 {
-      font-size: 1.25rem;
-      min-height: 56px;
-    }
-
-    p {
-      font-size: 0.9rem;
-    }
+  &:hover::after {
+    opacity: 1;
+    transform: translateX(0);
   }
 }

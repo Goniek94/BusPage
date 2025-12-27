@@ -1,327 +1,223 @@
-// Advantages Section - Modern & Stylish
+// _advantages.scss - Styl "Awwwards Winning" Cosmic Hologram
 @use "../variables" as *;
 @use "../mixins" as *;
 
 .advantages {
-  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
   position: relative;
+  background-color: #0b0f19; // Ultra-głęboka czerń (ciemniejsza niż services)
+  padding: 8rem 0 10rem;
   overflow: hidden;
+  color: #fff;
+  z-index: 1;
 
-  // Decorative background elements
-  &::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -10%;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(
-      circle,
-      rgba($primary, 0.05) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
+  // --- TŁO: AMBIENT LIGHTS ---
+  // Pływające, niewyraźne plamy światła w tle
+  &::before,
   &::after {
     content: "";
     position: absolute;
-    bottom: -50%;
-    right: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(
-      circle,
-      rgba($accent, 0.03) 0%,
-      transparent 70%
-    );
+    width: 800px;
+    height: 800px;
     border-radius: 50%;
-    pointer-events: none;
+    filter: blur(120px);
+    opacity: 0.15;
+    z-index: -1;
+    animation: floatLights 15s ease-in-out infinite alternate;
+  }
+
+  &::before {
+    top: -20%;
+    left: -10%;
+    background: radial-gradient(circle, $secondary, transparent 70%);
+  }
+
+  &::after {
+    bottom: -20%;
+    right: -10%;
+    background: radial-gradient(circle, $primary, transparent 70%);
+    animation-delay: -5s;
   }
 
   .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
-  // Section heading - dopasowany do services
+  // --- NAGŁÓWEK SEKCYJNY ---
   .section-heading {
     text-align: center;
-    margin-bottom: $spacing-2xl;
+    margin-bottom: 6rem;
+    position: relative;
 
-    h2 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      color: $primary;
-      letter-spacing: -0.02em;
-      margin-bottom: $spacing-md;
-      position: relative;
-      display: inline-block;
-      padding-bottom: $spacing-sm;
+    h1 {
+      font-size: clamp(3rem, 6vw, 5rem); // Skalowanie typografii
+      font-weight: 900;
       text-transform: uppercase;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin: 0;
 
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, $secondary 0%, $accent 100%);
-        border-radius: 2px;
+      // Efekt "Metalicznego Gradientu" na tekście
+      .gradient-text {
+        background: linear-gradient(135deg, #a78bfa 0%, #f9a8d4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent; // fallback
       }
-
-      @include tablet {
-        font-size: 2.5rem;
-      }
-
-      @include mobile {
-        font-size: 2rem;
-      }
+      // Subtelny cień tekstu
+      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
     }
 
-    p {
-      color: $gray;
-      font-size: $font-size-lg;
-      max-width: 700px;
-      margin: $spacing-md auto 0;
-      line-height: 1.8;
-    }
-
-    // Company intro - larger, more prominent text
-    .company-intro {
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: $primary;
-      line-height: 1.6;
-      margin-top: $spacing-lg;
-
-      @include tablet {
-        font-size: 1.3rem;
-      }
-
-      @include mobile {
-        font-size: 1.1rem;
-      }
+    // Dekoracyjna linia pod tekstem
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 6px;
+      background: $secondary;
+      margin: 1.5rem auto 0;
+      border-radius: 3px;
+      box-shadow: 0 0 20px $secondary; // Neonowy blask
     }
   }
 
-  // Grid container - 2 kolumny
+  // --- GRID CONTAINER ---
   &-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-xl;
-    margin-top: $spacing-2xl;
-
-    @include tablet {
-      grid-template-columns: 1fr;
-      gap: $spacing-lg;
-    }
+    gap: 3rem;
+    counter-reset: adv-counter; // Inicjalizacja licznika CSS
+    padding: 0 1rem;
 
     @include mobile {
-      gap: $spacing-md;
+      grid-template-columns: 1fr;
+      gap: 2rem;
     }
   }
 }
 
-// Advantage Item - Modern Card Design
+// --- KARTA ZALETY (ITEM) ---
 .advantage-item {
-  background: linear-gradient(
-    135deg,
-    rgba($primary, 0.03) 0%,
-    rgba($secondary, 0.05) 50%,
-    rgba($primary, 0.02) 100%
-  );
-  border-radius: $border-radius-lg;
-  padding: $spacing-2xl;
-  box-shadow: 0 8px 20px rgba($primary, 0.15), 0 4px 10px rgba($secondary, 0.1);
-  transition: all $transition-base ease;
   position: relative;
+  counter-increment: adv-counter; // Zwiększanie licznika
+
+  // Wygląd karty - Szkło
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  padding: 4rem 2.5rem;
+  border-radius: 24px;
   overflow: hidden;
-  border: 1px solid rgba($primary, 0.1);
-  display: flex;
-  gap: $spacing-lg;
-  align-items: flex-start;
-  min-height: 280px;
-  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 
-  // Gradient glow effect
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      $secondary 0%,
-      $accent 50%,
-      $secondary 100%
-    );
-    opacity: 0.6;
+  // Efekt "Masonry" - Przesunięcie co drugiej karty w dół
+  &:nth-child(even) {
+    margin-top: 4rem;
+
+    @include mobile {
+      margin-top: 0;
+    }
   }
 
-  // Subtle inner glow
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(
-      circle at top left,
-      rgba($secondary, 0.08) 0%,
-      transparent 50%
-    );
-    pointer-events: none;
-  }
-
+  // Hover Effect - Unoszenie i podświetlenie
   &:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 40px rgba($primary, 0.25),
-      0 8px 20px rgba($secondary, 0.2);
-    background: linear-gradient(
-      135deg,
-      rgba($primary, 0.06) 0%,
-      rgba($secondary, 0.1) 50%,
-      rgba($primary, 0.04) 100%
-    );
-    border-color: rgba($secondary, 0.25);
+    transform: translateY(-10px);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 
+    // Animacja dużej cyfry w tle
     &::before {
-      opacity: 1;
-      box-shadow: 0 0 20px rgba($secondary, 0.5);
+      transform: translateY(-50%) translateX(10px) scale(1.1);
+      opacity: 0.1;
+      color: $secondary;
     }
 
-    .advantage-item-icon {
-      transform: scale(1.08);
-      background: linear-gradient(135deg, $secondary 0%, $accent 100%);
-      box-shadow: 0 8px 25px rgba($secondary, 0.4);
+    // Animacja ikony
+    .advantage-icon {
+      transform: scale(1.1) rotate(5deg);
+      background: $secondary;
+      color: #fff;
+      box-shadow: 0 0 30px rgba($secondary, 0.5);
+    }
+
+    // Zmiana koloru tytułu
+    .advantage-text h3 {
+      color: #fff;
     }
   }
 
-  // Icon container - circular with gradient
-  &-icon {
+  // --- OGROMNA CYFRA W TLE (01, 02...) ---
+  &::before {
+    content: "0" counter(adv-counter); // Automatyczne numerowanie z CSS
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    font-size: 12rem;
+    font-weight: 900;
+    color: #fff;
+    opacity: 0.03; // Bardzo subtelne
+    line-height: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    font-family: "Montserrat", sans-serif;
+    z-index: 0;
+  }
+
+  // --- IKONA ---
+  .advantage-icon {
+    position: relative;
+    z-index: 1;
     width: 70px;
     height: 70px;
-    min-width: 70px;
-    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
-    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all $transition-base ease;
-    box-shadow: 0 4px 12px rgba($primary, 0.2);
-    flex-shrink: 0;
-
-    svg,
-    i {
-      font-size: 1.8rem;
-      color: white;
-      transition: transform $transition-base ease;
-    }
+    font-size: 1.8rem;
+    color: $secondary;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 1px solid rgba(255, 255, 255, 0.05);
   }
 
-  // Text content
-  &-text {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+  // --- TREŚĆ TEKSTOWA ---
+  .advantage-text {
+    position: relative;
+    z-index: 1;
 
     h3 {
-      font-size: 1.4rem;
-      color: $primary;
-      margin-bottom: $spacing-md;
+      font-size: 1.8rem;
       font-weight: 700;
-      line-height: $line-height-tight;
-      transition: color $transition-base ease;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.2rem;
+      transition: color 0.3s ease;
+      letter-spacing: -0.01em;
     }
 
     p {
-      color: $gray;
-      line-height: 1.8;
+      color: #94a3b8; // Szaro-niebieski, czytelny na ciemnym
       font-size: 1.05rem;
+      line-height: 1.7;
       margin: 0;
     }
   }
-
-  // Hover effect on title
-  &:hover &-text h3 {
-    color: $secondary;
-  }
 }
 
-// Responsive adjustments
-@include tablet {
-  .advantages {
-    .section-heading h2 {
-      font-size: 2.5rem;
-    }
+// --- ANIMACJA TŁA ---
+@keyframes floatLights {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0.15;
   }
-
-  .advantage-item {
-    padding: $spacing-lg;
-    gap: $spacing-md;
-
-    &-icon {
-      width: 70px;
-      height: 70px;
-      min-width: 70px;
-
-      svg,
-      i {
-        font-size: 1.75rem;
-      }
-    }
-
-    &-text {
-      h3 {
-        font-size: 1.35rem;
-      }
-
-      p {
-        font-size: 1rem;
-      }
-    }
+  50% {
+    opacity: 0.25;
   }
-}
-
-@include mobile {
-  .advantages {
-    .section-heading h2 {
-      font-size: 2rem;
-    }
-  }
-
-  .advantage-item {
-    padding: $spacing-md;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-
-    &-icon {
-      width: 65px;
-      height: 65px;
-      min-width: 65px;
-
-      svg,
-      i {
-        font-size: 1.5rem;
-      }
-    }
-
-    &-text {
-      h3 {
-        font-size: 1.25rem;
-      }
-
-      p {
-        font-size: 0.95rem;
-      }
-    }
+  100% {
+    transform: translate(-30px, 30px);
+    opacity: 0.15;
   }
 }

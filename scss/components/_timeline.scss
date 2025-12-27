@@ -1,0 +1,435 @@
+// ============================================
+// TIMELINE - "PODRÓŻ W CZASIE"
+// Interactive horizontal timeline with animated bus
+// ============================================
+
+@use "../variables" as *;
+@use "sass:color";
+
+.timeline-section {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #1a3b5d 0%, #2c5282 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Animated background particles
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(
+      circle,
+      rgba(255, 255, 255, 0.1) 1px,
+      transparent 1px
+    );
+    background-size: 50px 50px;
+    animation: particleMove 20s linear infinite;
+    opacity: 0.3;
+  }
+
+  .section-heading {
+    text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
+
+    h2 {
+      color: white;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      span {
+        color: $accent;
+      }
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+  }
+}
+
+// Timeline Container
+.timeline-container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 2rem;
+  z-index: 2;
+}
+
+// Timeline Wrapper (horizontal scroll)
+.timeline-wrapper {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 4rem 0;
+  scroll-behavior: smooth;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $accent;
+    border-radius: 10px;
+    transition: background 0.3s;
+
+    &:hover {
+      background: color.adjust($accent, $lightness: -10%);
+    }
+  }
+}
+
+// Timeline Track (the line)
+.timeline-track {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: max-content;
+  padding: 0 2rem;
+
+  // The main line
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.2) 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0.2) 100%
+    );
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  // Animated progress line
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 4px;
+    width: 0;
+    background: linear-gradient(90deg, $accent 0%, #ff6b6b 100%);
+    transform: translateY(-50%);
+    z-index: 2;
+    animation: progressLine 3s ease-out forwards;
+    box-shadow: 0 0 20px rgba(231, 76, 60, 0.6);
+  }
+}
+
+// Timeline Items
+.timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 3rem;
+  z-index: 3;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+
+  @for $i from 1 through 10 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.2}s;
+    }
+  }
+
+  // Year marker (dot on line)
+  .timeline-marker {
+    width: 24px;
+    height: 24px;
+    background: white;
+    border: 4px solid $accent;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px rgba(231, 76, 60, 0.6);
+    }
+  }
+
+  // Year label
+  .timeline-year {
+    position: absolute;
+    top: -50px;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    white-space: nowrap;
+  }
+
+  // Content card
+  .timeline-content {
+    position: absolute;
+    top: 60px;
+    width: 280px;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    pointer-events: none;
+
+    // Arrow pointing to marker
+    &::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-bottom: 10px solid white;
+    }
+
+    h3 {
+      color: $primary;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      color: $gray;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .timeline-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  // Show content on hover
+  &:hover .timeline-content,
+  &.active .timeline-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  // Alternate content position (above/below)
+  &:nth-child(even) .timeline-content {
+    top: auto;
+    bottom: 60px;
+
+    &::before {
+      top: auto;
+      bottom: -10px;
+      border-bottom: none;
+      border-top: 10px solid white;
+    }
+  }
+}
+
+// Animated Bus
+.timeline-bus {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 80px;
+  height: 50px;
+  z-index: 10;
+  animation: busMove 8s ease-in-out infinite;
+  filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  // Exhaust smoke
+  &::after {
+    content: "💨";
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: smoke 1s ease-out infinite;
+  }
+}
+
+// Navigation Arrows
+.timeline-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+
+  button {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background: $accent;
+      border-color: $accent;
+      transform: scale(1.1);
+    }
+
+    &:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: scale(1);
+    }
+  }
+
+  &.timeline-nav-left {
+    left: 1rem;
+  }
+
+  &.timeline-nav-right {
+    right: 1rem;
+  }
+}
+
+// ============================================
+// ANIMATIONS
+// ============================================
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+  }
+}
+
+@keyframes progressLine {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes busMove {
+  0%,
+  100% {
+    left: 0;
+  }
+  50% {
+    left: calc(100% - 100px);
+  }
+}
+
+@keyframes smoke {
+  0% {
+    opacity: 0.6;
+    transform: translateY(-50%) translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-50%) translateX(-30px);
+  }
+}
+
+@keyframes particleMove {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(50px) translateY(50px);
+  }
+}
+
+// ============================================
+// RESPONSIVE
+// ============================================
+
+@media (max-width: 768px) {
+  .timeline-section {
+    padding: 4rem 0;
+
+    .section-heading h2 {
+      font-size: 2rem;
+    }
+  }
+
+  .timeline-item {
+    margin: 0 2rem;
+
+    .timeline-year {
+      font-size: 1.4rem;
+      top: -40px;
+    }
+
+    .timeline-content {
+      width: 220px;
+      padding: 1rem;
+
+      h3 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .timeline-bus {
+    width: 60px;
+    height: 40px;
+  }
+
+  .timeline-nav button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}

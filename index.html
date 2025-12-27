@@ -4,16 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MARBUS - Zawsze na czas!</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/css/style.css" />
+
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <!-- Header -->
     <header>
       <div class="header-container">
         <div class="logo">
@@ -40,18 +42,38 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
     <section id="home" class="hero">
-      <h1>MARBUS</h1>
-      <p>
-        Zapewniamy sprawny i bezpieczny transport pracowników na terenie całego
-        kraju. Punktualność, komfort i bezpieczeństwo to nasze priorytety.
-      </p>
-      <a href="#contact" class="cta-button">Zamów bezpłatną wycenę</a>
+      <div class="hero-video-wrapper">
+        <video autoplay muted loop playsinline id="heroVideo">
+          <source src="/IMG/auto.mp4" type="video/mp4" />
+          Twoja przeglądarka nie obsługuje wideo.
+        </video>
+        <div class="video-overlay"></div>
+      </div>
 
-      <!-- Scroll down arrow -->
+      <div class="container">
+        <div class="hero-content">
+          <h1 data-aos="fade-up" data-aos-duration="1000">
+            PODRÓŻUJ W <br />
+            <span class="gradient-text">WYŻSZYM STANDARDZIE</span>
+          </h1>
+          <p data-aos="fade-up" data-aos-delay="200">
+            Bezpieczny i komfortowy transport pracowników na terenie całego
+            kraju. Ponad 30 lat doświadczenia, które procentuje w każdym
+            kilometrze.
+          </p>
+
+          <div class="hero-buttons" data-aos="fade-up" data-aos-delay="400">
+            <a href="#contact" class="cta-button primary-btn">Zamów wycenę</a>
+            <a href="#services" class="cta-button secondary-btn"
+              >Zobacz ofertę</a
+            >
+          </div>
+        </div>
+      </div>
+
       <div class="scroll-arrow">
-        <a href="#services">
+        <a href="#about">
           <div class="arrow-icon">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -62,7 +84,21 @@
         </a>
       </div>
     </section>
-    <!-- About Section -->
+
+    <!-- <div class="wave-separator">
+      <svg
+        data-name="Layer 1"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+      >
+        <path
+          d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+          class="shape-fill"
+        ></path>
+      </svg>
+    </div> -->
+
     <section id="about" class="advantages">
       <div class="container">
         <div class="section-heading">
@@ -76,8 +112,7 @@
               <p>
                 Od 1992 roku specjalizujemy się w przewozie osób, oferując
                 kompleksowe usługi transportowe dostosowane do indywidualnych
-                potrzeb klientów. Wieloletnie doświadczenie wyróżnia nas na tle
-                konkurencji i gwarantuje najwyższą jakość obsługi.
+                potrzeb klientów.
               </p>
             </div>
           </div>
@@ -88,9 +123,7 @@
               <h3>Precyzja i Profesjonalizm</h3>
               <p>
                 Kładziemy duży nacisk na precyzyjne wykonanie zleceń oraz
-                utrzymanie przyjaznej atmosfery podczas podróży. Każdy przewóz
-                realizowany jest z pełnym poszanowaniem wymagań klientów,
-                dostosowany do konkretnej sytuacji.
+                utrzymanie przyjaznej atmosfery podczas podróży.
               </p>
             </div>
           </div>
@@ -101,9 +134,7 @@
               <h3>Szeroki Zakres Usług</h3>
               <p>
                 Oferujemy szeroki wachlarz usług przewozowych - od transportu na
-                różne okazje, po codzienne dojazdy. Działamy na terenie powiatu
-                łowickiego, gwarantując szybki i wygodny dostęp do naszych usług
-                transportowych.
+                różne okazje, po codzienne dojazdy.
               </p>
             </div>
           </div>
@@ -114,9 +145,7 @@
               <h3>Ciągły Rozwój</h3>
               <p>
                 Stawiamy na podnoszenie jakości obsługi oraz zwiększanie
-                wiarygodności poprzez ciągły rozwój kompetencji. To czyni nas
-                rzetelnym partnerem w zakresie przewozu osób, godnym zaufania
-                przez lata współpracy.
+                wiarygodności poprzez ciągły rozwój kompetencji.
               </p>
             </div>
           </div>
@@ -124,182 +153,474 @@
       </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <section id="services" class="services-section">
       <div class="container">
-        <div class="section-heading">
-          <h2>Nasze Usługi</h2>
+        <div class="section-header" data-aos="fade-down">
+          <span class="section-badge">Oferta Premium</span>
+          <h2 class="section-title">
+            Nasze <span class="gradient-text">Usługi</span>
+          </h2>
+          <p class="section-desc">
+            Wybierz standard podróży dopasowany do Twoich potrzeb. Kliknij w
+            kartę, aby zobaczyć szczegóły.
+          </p>
         </div>
 
-        <!-- Main Services Grid -->
         <div class="services-grid">
-          <!-- Service Card 1 -->
-          <div class="service-card">
-            <div class="service-card-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M17 8H3V16H17V8Z"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M17 8L19 10V16H17"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <circle
-                  cx="6.5"
-                  cy="16"
-                  r="1.5"
-                  stroke="currentColor"
-                  stroke-width="2"
-                />
-                <circle
-                  cx="13.5"
-                  cy="16"
-                  r="1.5"
-                  stroke="currentColor"
-                  stroke-width="2"
-                />
-              </svg>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="card-inner">
+              <div class="card-face card-front glow-1">
+                <div class="gradient-bg gradient-1"></div>
+                <div class="glass-layer"></div>
+                <div class="deco-circle-1"></div>
+                <div class="deco-circle-2"></div>
+
+                <div class="card-content">
+                  <div class="card-top">
+                    <div class="icon-box">
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M17 8H3V16H17V8Z" />
+                        <path d="M17 8L19 10V16H17" />
+                        <circle cx="6.5" cy="16" r="1.5" />
+                        <circle cx="13.5" cy="16" r="1.5" />
+                      </svg>
+                    </div>
+                    <span class="card-number">01</span>
+                  </div>
+                  <div class="card-bottom">
+                    <h3>Transport Pracowników</h3>
+                    <p>
+                      Regularne i punktualne przewozy załogi do zakładów pracy.
+                    </p>
+                    <button class="card-cta btn-trigger">
+                      Szczegóły oferty <span>→</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-face card-back">
+                <div class="back-header">
+                  <h3>Szczegóły</h3>
+                  <button class="close-btn" aria-label="Zamknij">✕</button>
+                </div>
+                <div class="details-list">
+                  <div class="detail-item">
+                    <div class="check-icon gradient-1">✓</div>
+                    <span>Codzienne dojazdy</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-1">✓</div>
+                    <span>Punktualność 99%</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-1">✓</div>
+                    <span>Nowoczesna flota</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-1">✓</div>
+                    <span>Faktury zbiorcze</span>
+                  </div>
+                </div>
+                <button
+                  class="cta-button btn-gradient-1"
+                  onclick="window.location.href='#contact'"
+                >
+                  Zamów Wycenę
+                </button>
+              </div>
             </div>
-            <h3>Transport Pracowników</h3>
-            <p>
-              Regularne przewozy pracowników do zakładów pracy. Punktualne,
-              bezpieczne i komfortowe dojazdy.
-            </p>
           </div>
 
-          <!-- Service Card 2 -->
-          <div class="service-card">
-            <div class="service-card-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8 6H21"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M8 12H21"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M8 18H21"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                />
-              </svg>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="card-inner">
+              <div class="card-face card-front glow-2">
+                <div class="gradient-bg gradient-2"></div>
+                <div class="glass-layer"></div>
+                <div class="deco-circle-1"></div>
+                <div class="card-content">
+                  <div class="card-top">
+                    <div class="icon-box">
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M8 6H21" />
+                        <path d="M8 12H21" />
+                        <path d="M8 18H21" />
+                      </svg>
+                    </div>
+                    <span class="card-number">02</span>
+                  </div>
+                  <div class="card-bottom">
+                    <h3>Transport Okazjonalny</h3>
+                    <p>
+                      Wyjazdy firmowe, szkolenia, imprezy integracyjne i
+                      wycieczki.
+                    </p>
+                    <button class="card-cta btn-trigger">
+                      Szczegóły oferty <span>→</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-face card-back">
+                <div class="back-header">
+                  <h3>Szczegóły</h3>
+                  <button class="close-btn" aria-label="Zamknij">✕</button>
+                </div>
+                <div class="details-list">
+                  <div class="detail-item">
+                    <div class="check-icon gradient-2">✓</div>
+                    <span>Wyjazdy firmowe</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-2">✓</div>
+                    <span>Szkolenia i eventy</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-2">✓</div>
+                    <span>Elastyczny grafik</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-2">✓</div>
+                    <span>Kierowcy z językami</span>
+                  </div>
+                </div>
+                <button
+                  class="cta-button btn-gradient-2"
+                  onclick="window.location.href='#contact'"
+                >
+                  Zamów Wycenę
+                </button>
+              </div>
             </div>
-            <h3>Transport Okazjonalny</h3>
-            <p>
-              Elastyczne rozwiązania dla jednorazowych wyjazdów firmowych,
-              szkoleń i konferencji.
-            </p>
           </div>
 
-          <!-- Service Card 6 -->
-          <div class="service-card">
-            <div class="service-card-icon">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M12 2L2 7L12 12L22 7L12 2Z"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M2 17L12 22L22 17"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
+          <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="card-inner">
+              <div class="card-face card-front glow-3">
+                <div class="gradient-bg gradient-3"></div>
+                <div class="glass-layer"></div>
+                <div class="deco-circle-2"></div>
+                <div class="card-content">
+                  <div class="card-top">
+                    <div class="icon-box">
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      >
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                        <path d="M2 17L12 22L22 17" />
+                      </svg>
+                    </div>
+                    <span class="card-number">03</span>
+                  </div>
+                  <div class="card-bottom">
+                    <h3>Dla Niepełnosprawnych</h3>
+                    <p>
+                      Specjalistyczne pojazdy z windami i atestowanym osprzętem.
+                    </p>
+                    <button class="card-cta btn-trigger">
+                      Szczegóły oferty <span>→</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-face card-back">
+                <div class="back-header">
+                  <h3>Szczegóły</h3>
+                  <button class="close-btn" aria-label="Zamknij">✕</button>
+                </div>
+                <div class="details-list">
+                  <div class="detail-item">
+                    <div class="check-icon gradient-3">✓</div>
+                    <span>Windy hydrauliczne</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-3">✓</div>
+                    <span>Atestowane pasy</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-3">✓</div>
+                    <span>Przeszkolona kadra</span>
+                  </div>
+                  <div class="detail-item">
+                    <div class="check-icon gradient-3">✓</div>
+                    <span>Drzwi door-to-door</span>
+                  </div>
+                </div>
+                <button
+                  class="cta-button btn-gradient-3"
+                  onclick="window.location.href='#contact'"
+                >
+                  Zamów Wycenę
+                </button>
+              </div>
             </div>
-            <h3>Transport Specjalistyczny</h3>
-            <p>
-              Pojazdy przystosowane dla osób z niepełnosprawnościami i specjalne
-              wymagania.
-            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Flota Section -->
+    <section id="timeline" class="timeline-section">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
+          <h2>Nasza <span>Podróż w Czasie</span></h2>
+          <p>
+            Ponad 30 lat doświadczenia w transporcie. Zobacz, jak rozwijaliśmy
+            się przez lata.
+          </p>
+        </div>
+
+        <div class="timeline-container">
+          <div class="timeline-nav timeline-nav-left">
+            <button aria-label="Przewiń w lewo">◀</button>
+          </div>
+          <div class="timeline-nav timeline-nav-right">
+            <button aria-label="Przewiń w prawo">▶</button>
+          </div>
+
+          <div class="timeline-wrapper">
+            <div class="timeline-track">
+              <div class="timeline-bus">
+                <svg
+                  viewBox="0 0 100 60"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <rect
+                    x="10"
+                    y="15"
+                    width="80"
+                    height="30"
+                    rx="5"
+                    fill="#e74c3c"
+                  />
+                  <rect
+                    x="15"
+                    y="20"
+                    width="15"
+                    height="12"
+                    rx="2"
+                    fill="#fff"
+                  />
+                  <rect
+                    x="35"
+                    y="20"
+                    width="15"
+                    height="12"
+                    rx="2"
+                    fill="#fff"
+                  />
+                  <rect
+                    x="55"
+                    y="20"
+                    width="15"
+                    height="12"
+                    rx="2"
+                    fill="#fff"
+                  />
+                  <rect
+                    x="75"
+                    y="20"
+                    width="10"
+                    height="12"
+                    rx="2"
+                    fill="#fff"
+                  />
+                  <circle cx="25" cy="45" r="8" fill="#2c3e50" />
+                  <circle cx="25" cy="45" r="4" fill="#95a5a6" />
+                  <circle cx="75" cy="45" r="8" fill="#2c3e50" />
+                  <circle cx="75" cy="45" r="4" fill="#95a5a6" />
+                  <circle cx="88" cy="25" r="3" fill="#f39c12" />
+                  <circle cx="88" cy="35" r="3" fill="#f39c12" />
+                </svg>
+              </div>
+
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-year">1992</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🚀</div>
+                  <h3>Początek Działalności</h3>
+                  <p>
+                    Założenie firmy MARBUS. Pierwszy autobus i pierwsi klienci.
+                  </p>
+                </div>
+              </div>
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-year">1998</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">📈</div>
+                  <h3>Rozwój Floty</h3>
+                  <p>Rozbudowa floty do 10 pojazdów.</p>
+                </div>
+              </div>
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-year">2005</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🏆</div>
+                  <h3>Certyfikaty Jakości</h3>
+                  <p>Otrzymanie certyfikatów bezpieczeństwa.</p>
+                </div>
+              </div>
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-year">2010</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🌍</div>
+                  <h3>Ekspansja Regionalna</h3>
+                  <p>Rozszerzenie działalności na całą Polskę.</p>
+                </div>
+              </div>
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-year">2015</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🚌</div>
+                  <h3>Modernizacja Floty</h3>
+                  <p>Wymiana floty na nowoczesne pojazdy.</p>
+                </div>
+              </div>
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-year">2023</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🌱</div>
+                  <h3>Ekologia</h3>
+                  <p>Inwestycja w pojazdy elektryczne i hybrydowe.</p>
+                </div>
+              </div>
+              <div class="timeline-item" data-aos="fade-up">
+                <div class="timeline-year">2025</div>
+                <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">⭐</div>
+                  <h3>Dziś</h3>
+                  <p>Ponad 30 lat doświadczenia i 500+ klientów.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="flota" class="flota">
       <div class="container">
-        <div class="section-heading">
+        <div class="section-heading" data-aos="fade-up">
           <h2>Nasza Flota</h2>
         </div>
+
         <div class="flota-list">
           <div class="flota-item">
             <div class="flota-item-icon">
               <img src="IMG/Bus9.png" alt="Bus do 9 osób" />
             </div>
-            <h3>Busy (do 9 osób)</h3>
-            <p>
-              Komfortowe pojazdy idealne do przewozu mniejszych grup, wyposażone
-              w klimatyzację i wygodne fotele. Doskonałe rozwiązanie dla kadry
-              managerskiej oraz małych zespołów. Zapewniamy punktualne dojazdy i
-              profesjonalną obsługę na najwyższym poziomie.
-            </p>
+            <div class="flota-text">
+              <h3>Busy (do 9 osób)</h3>
+              <p>
+                Komfortowe pojazdy idealne do przewozu mniejszych grup,
+                wyposażone w klimatyzację.
+              </p>
+            </div>
           </div>
 
           <div class="flota-item">
             <div class="flota-item-icon">
               <img src="IMG/bus22.png" alt="Bus do 22 osób" />
             </div>
-            <h3>Busy (do 22 osób)</h3>
-            <p>
-              Przestronne busy z wygodnymi fotelami, klimatyzacją i dodatkowym
-              miejscem na bagaż. Idealne dla średnich grup pracowników. Nasze
-              pojazdy są regularnie serwisowane i utrzymywane w doskonałym
-              stanie technicznym, gwarantując bezpieczną podróż.
-            </p>
+            <div class="flota-text">
+              <h3>Busy (do 22 osób)</h3>
+              <p>
+                Przestronne busy z wygodnymi fotelami, klimatyzacją i dodatkowym
+                miejscem na bagaż.
+              </p>
+            </div>
           </div>
 
           <div class="flota-item">
             <div class="flota-item-icon">
               <img src="IMG/Bus30.png" alt="Autokar" />
             </div>
-            <h3>Autokary (powyżej 30 osób)</h3>
-            <p>
-              Komfortowe autokary z wygodnymi fotelami i klimatyzacją,
-              przeznaczone do transportu dużych grup pracowników. Oferujemy
-              przestronne wnętrza zapewniające komfort podczas dłuższych tras.
-              Idealne rozwiązanie dla firm z dużą liczbą pracowników.
-            </p>
+            <div class="flota-text">
+              <h3>Autokary (powyżej 30 osób)</h3>
+              <p>
+                Komfortowe autokary przeznaczone do transportu dużych grup
+                pracowników.
+              </p>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section class="stats-section">
       <div class="container">
         <div class="section-heading">
+          <h2>MARBUS w Liczbach</h2>
+          <p>
+            Zaufało nam już setki firm. Dołącz do grona zadowolonych klientów!
+          </p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🚌</div>
+            <span class="stat-number" data-target="50">0</span>
+            <div class="stat-label">Pojazdów</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">👥</div>
+            <span class="stat-number" data-target="500">0</span>
+            <div class="stat-label">Klientów</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">🛣️</div>
+            <span class="stat-number" data-target="2000000">0</span>
+            <div class="stat-label">KM Rocznie</div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">⭐</div>
+            <span class="stat-number" data-target="99">0</span>
+            <div class="stat-label">% Punktualności</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-heading" data-aos="fade-up">
           <h1>Kontakt</h1>
           <div class="contact-note">
             <p>
@@ -315,8 +636,9 @@
             </ul>
           </div>
         </div>
+
         <div class="contact-flex">
-          <div class="contact-info">
+          <div class="contact-info" data-aos="fade-right">
             <h3>Informacje kontaktowe</h3>
             <div class="contact-item">
               <div class="contact-icon">📱</div>
@@ -333,13 +655,9 @@
               <div class="contact-icon">🏢</div>
               <div>Bratkowice 34/21<br />99-400 Łowicz</div>
             </div>
-            <!-- <div class="contact-item">
-              <div class="contact-icon">🕒</div>
-              <div>Pon-Pt: 8:00 - 18:00<br />Sob: 9:00 - 14:00</div>
-            </div> -->
           </div>
 
-          <div class="contact-form">
+          <div class="contact-form" data-aos="fade-left">
             <form action="#" method="POST">
               <div class="form-row">
                 <div class="form-group">
@@ -372,7 +690,6 @@
       </div>
     </section>
 
-    <!-- Footer -->
     <footer>
       <div class="container">
         <div class="footer-content">
@@ -390,7 +707,61 @@
       </div>
     </footer>
 
-    <!-- Smooth Scroll Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="js/smooth-scroll.js"></script>
+    <script src="js/timeline.js"></script>
+    <script src="js/stats-counter.js"></script>
+
+    <script>
+      // Inicjalizacja AOS
+      AOS.init({
+        offset: 120,
+        duration: 800,
+        easing: "ease-out-cubic",
+        once: true,
+      });
+
+      // Menu Hamburger
+      const hamburger = document.getElementById("hamburger");
+      const navMenu = document.getElementById("nav-menu");
+
+      if (hamburger) {
+        hamburger.addEventListener("click", () => {
+          hamburger.classList.toggle("active");
+          navMenu.classList.toggle("active");
+        });
+      }
+
+      document.querySelectorAll("#nav-menu a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (hamburger) hamburger.classList.remove("active");
+          if (navMenu) navMenu.classList.remove("active");
+        });
+      });
+
+      // Logika obracania kart w nowej sekcji usług
+      document.addEventListener("DOMContentLoaded", () => {
+        const cards = document.querySelectorAll(".service-card");
+
+        cards.forEach((card) => {
+          // Przycisk "Szczegóły oferty" -> Obróć
+          const triggerBtn = card.querySelector(".btn-trigger");
+          // Przycisk "X" -> Zamknij
+          const closeBtn = card.querySelector(".close-btn");
+
+          if (triggerBtn && closeBtn) {
+            triggerBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              card.classList.add("flipped");
+            });
+
+            closeBtn.addEventListener("click", (e) => {
+              e.stopPropagation();
+              card.classList.remove("flipped");
+            });
+          }
+        });
+      });
+    </script>
   </body>
 </html>
