@@ -1,4 +1,4 @@
-// _hero.scss - Wersja z CIEMNIEJSZYM overlayem na wideo
+// _hero.scss - Wersja FINALNA (Wideo + Premium Gradienty)
 @use "../variables" as *;
 @use "../mixins" as *;
 
@@ -28,26 +28,22 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      opacity: 0.9; // Nieco mniej przezroczysty sam film
+      opacity: 0.9;
     }
 
-    // --- ZMIANA: MOCNIEJSZY CIEŃ (OVERLAY) ---
     .video-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      // Zwiększyłem wartości alpha (ostatnia liczba w nawiasie) dla mocniejszego cienia
+      // Ciemny overlay dla czytelności
       background: linear-gradient(
         to bottom,
         rgba(11, 15, 25, 0.75) 0%,
-        // Góra: 75% przyciemnienia (było 0.5)
         rgba(11, 15, 25, 0.5) 50%,
-        // Środek: 50% przyciemnienia (było 0.3)
-        #0b0f19 100% // Dół: pełna czerń (płynne przejście)
+        #0b0f19 100%
       );
-      // Opcjonalnie: dodatkowy 'całościowy' cień, jeśli gradient to za mało
       box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.8);
     }
   }
@@ -65,41 +61,64 @@
     margin: 0 auto;
   }
 
+  // --- TYPOGRAFIA (H1 i P) ---
+
   // NAGŁÓWEK H1
   h1 {
-    font-size: clamp(2.5rem, 5vw, 5rem);
-    font-weight: 800;
-    color: #ffffff;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
-    letter-spacing: -0.02em;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(3rem, 7vw, 6.5rem); // Wielkie litery
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 2rem;
+    letter-spacing: -0.03em;
     text-transform: uppercase;
-    // Jeszcze mocniejszy cień pod tekstem dla kontrastu
-    text-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    // Mocny cień, żeby tekst "wyskakiwał" z ekranu
+    text-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
 
     .gradient-text {
-      background: linear-gradient(135deg, $secondary 0%, $accent 100%);
+      // NOWY GRADIENT: Metaliczna Biel przechodząca w Błękit/Granat
+      background: linear-gradient(120deg, #ffffff 20%, $secondary 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       display: inline-block;
-      filter: drop-shadow(0 0 25px rgba($secondary, 0.5));
+      // Świecenie gradientu
+      filter: drop-shadow(0 0 30px rgba($secondary, 0.6));
     }
   }
 
-  // OPIS P
+  // OPIS P (Jako H2)
   p {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: #e2e8f0;
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 500;
     line-height: 1.6;
-    margin-bottom: 3rem;
-    max-width: 700px;
+    margin-bottom: 3.5rem;
+    max-width: 750px;
     margin-left: auto;
     margin-right: auto;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.9);
-    font-weight: 500; // Nieco grubsza czcionka dla czytelności
+
+    // NOWY GRADIENT NA TEKŚCIE (Srebrny Metal)
+    background: linear-gradient(180deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    // Filtr cienia niezbędny przy gradientowym tekście
+    filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.9));
+
+    // Ozdobna linia nad tekstem
+    &::before {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: $accent; // Czerwony/Pomarańczowy akcent
+      margin: 0 auto 1.5rem;
+      border-radius: 2px;
+      box-shadow: 0 0 15px $accent;
+    }
   }
 
-  // PRZYCISKI
+  // --- PRZYCISKI ---
   .hero-buttons {
     display: flex;
     justify-content: center;
@@ -109,12 +128,14 @@
     .cta-button {
       padding: 1rem 2.5rem;
       border-radius: 50px;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 1rem;
       text-decoration: none;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
 
       // Główny przycisk
       &.primary-btn {
@@ -125,20 +146,19 @@
 
         &:hover {
           transform: translateY(-3px);
-          box-shadow: 0 15px 40px rgba($primary, 0.5);
+          box-shadow: 0 20px 40px rgba($primary, 0.5);
         }
       }
 
       // Drugi przycisk
       &.secondary-btn {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.05);
         backdrop-filter: blur(10px);
         color: white;
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.3);
 
         &:hover {
-          background: rgba(255, 255, 255, 0.2);
+          background: rgba(255, 255, 255, 0.15);
           border-color: white;
           transform: translateY(-3px);
         }
@@ -146,7 +166,7 @@
     }
   }
 
-  // STRZAŁKA W DÓŁ
+  // --- STRZAŁKA W DÓŁ ---
   .scroll-arrow {
     position: absolute;
     bottom: 2rem;
@@ -157,20 +177,26 @@
     z-index: 2;
 
     .arrow-icon {
-      width: 40px;
-      height: 40px;
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      width: 50px;
+      height: 50px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.4); // Ciemniejsze tło strzałki
+      background: rgba(0, 0, 0, 0.4);
       backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
 
       svg {
         fill: white;
         width: 24px;
         height: 24px;
+      }
+
+      &:hover {
+        background: rgba($accent, 0.8);
+        border-color: $accent;
       }
     }
   }
@@ -194,9 +220,14 @@
 
 @include mobile {
   .hero {
-    padding-top: 30vh;
+    padding-top: 25vh;
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
     }
     .hero-buttons {
       flex-direction: column;

@@ -1,37 +1,70 @@
-// Header Component
+// _header.scss - Wersja FINALNA (Solid Dark Gradient + Logo Fix)
 @use "../variables" as *;
 @use "../mixins" as *;
 
 header {
-  // ZMIANA: Tło na ciemne szkło (zamiast $primary)
-  background-color: rgba(11, 15, 25, 0.9);
-  backdrop-filter: blur(12px); // Rozmycie
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08); // Delikatna linia
+  // SOLIDNY GRADIENT - Zamiast szkła, które się rozmywało.
+  // Wygląda jak solidna belka kokpitu, czytelna i ostra.
+  background: linear-gradient(90deg, #0b0f19 0%, #162032 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   color: white;
-  padding: 0.5rem 0; // Reduced padding for smaller header height
+  padding: 0.3rem 0; // Mniejszy padding = zgrabniejsza belka
   position: fixed;
   width: 100%;
   z-index: 1000;
-  box-shadow: $shadow-sm;
-  overflow: hidden; // Hide any overflow including the star
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); // Solidny cień
+  overflow: hidden; // TO UCINA GWIAZDKĘ Z LOGA
 
   .header-container {
-    display: grid; // Twój układ GRID zostaje
+    display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 0 2%;
     max-width: 100%;
+    height: 60px; // Sztywna wysokość trzyma rygor
 
     @include mobile {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: $spacing-sm 2%;
+      height: 50px;
     }
   }
 
-  // Hamburger Menu Button
+  // LOGO - Naprawione przycinanie
+  .logo {
+    @include flex-center;
+    position: relative;
+    height: 100%; // Dopasowane do kontenera
+    overflow: hidden; // Ucinamy to co wystaje
+
+    &-img {
+      height: 80px; // Większy obrazek...
+      width: auto;
+      object-fit: cover;
+      object-position: center top; // ...pozycjonowany od góry (gwiazdka na dole znika)
+      transform: translateY(-5px); // Lekka korekta w górę
+
+      @include mobile {
+        height: 60px;
+        transform: translateY(-2px);
+      }
+    }
+
+    &-text {
+      font-size: $font-size-5xl * 0.63;
+      font-weight: 800;
+      letter-spacing: 1px;
+
+      span {
+        color: $accent;
+      }
+    }
+  }
+
+  // Hamburger Menu
   .hamburger {
     display: none;
     flex-direction: column;
@@ -67,40 +100,6 @@ header {
     }
   }
 
-  .logo {
-    @include flex-center;
-    position: relative;
-    overflow: visible; // Allow logo to extend beyond container
-    max-height: 50px; // Keep container height small
-
-    &-img {
-      height: 65px; // Increased logo size
-      margin-right: 10px;
-      margin-top: -7.5px; // Negative margin to prevent header expansion
-      margin-bottom: -7.5px; // Negative margin to prevent header expansion
-      position: relative;
-      z-index: 2; // Ensure logo is above any background elements
-      object-fit: contain; // Maintain aspect ratio
-      object-position: center top; // Position from top to hide bottom elements
-
-      @include mobile {
-        height: 50px; // Smaller logo on mobile
-        margin-top: -5px;
-        margin-bottom: -5px;
-      }
-    }
-
-    &-text {
-      font-size: $font-size-5xl * 0.63;
-      font-weight: 800;
-      letter-spacing: 1px;
-
-      span {
-        color: $accent;
-      }
-    }
-  }
-
   nav {
     grid-column: 2;
     justify-self: center;
@@ -112,13 +111,12 @@ header {
       width: 100%;
       height: 100vh;
 
-      // ZMIANA: Tło mobilne też ciemne, żeby pasowało
-      background-color: rgba(11, 15, 25, 0.95);
-      backdrop-filter: blur(10px);
+      // Tło menu mobilnego - solidne, ciemne
+      background-color: #0b0f19;
 
       transition: right 0.3s ease;
-      padding-top: 60px;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+      padding-top: 80px;
+      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
 
       &.active {
         right: 0;
@@ -142,13 +140,13 @@ header {
         }
 
         a {
-          color: white; // Biały tekst zostaje
+          color: white;
           text-decoration: none;
           text-transform: uppercase;
           @include transition(color);
           font-weight: 600;
-          font-size: $font-size-lg;
-          letter-spacing: 0.5px;
+          font-size: 0.9rem;
+          letter-spacing: 1px;
 
           @include mobile {
             display: block;
