@@ -1,180 +1,361 @@
-// _services.scss - Nowoczesny wygląd z efektem szkła i gradientami
 @use "../variables" as *;
 @use "../mixins" as *;
 
-.services {
+// Modern Services Section - Split Layout
+.services-modern {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 6rem 0;
   position: relative;
-  background: #0f172a; // Ciemne tło dla lepszego kontrastu "kosmicznego"
-  padding: $spacing-3xl 0;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 
-  // Dekoracyjne tło (rozmyte koła)
-  &::before,
+  // Decorative background elements
+  &::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(79, 172, 254, 0.08) 0%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
   &::after {
     content: "";
     position: absolute;
+    bottom: -20%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(
+      circle,
+      rgba(231, 76, 60, 0.06) 0%,
+      transparent 70%
+    );
     border-radius: 50%;
-    filter: blur(80px);
-    z-index: 0;
-  }
-
-  &::before {
-    top: -100px;
-    left: -100px;
-    width: 400px;
-    height: 400px;
-    background: rgba($secondary, 0.15); // Używamy Twoich zmiennych kolorów
-  }
-
-  &::after {
-    bottom: -100px;
-    right: -100px;
-    width: 300px;
-    height: 300px;
-    background: rgba($accent, 0.15);
+    pointer-events: none;
   }
 
   .container {
     position: relative;
     z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  // Nagłówek sekcji
-  .section-heading {
-    text-align: center;
-    margin-bottom: $spacing-2xl;
+  .services-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
 
-    h2 {
-      font-size: 3rem;
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+  }
+
+  // Left side - Text content
+  .services-text {
+    .services-label {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .services-title {
+      font-size: clamp(3rem, 6vw, 5rem);
       font-weight: 800;
       color: #fff;
-      margin-bottom: $spacing-sm;
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      letter-spacing: -0.02em;
+    }
 
-      // Gradientowy tekst
-      // Gdzie masz .gradient-text (około linii 55)
-      .gradient-text {
-        background: linear-gradient(135deg, #a78bfa 0%, #f9a8d4 100%);
-        -webkit-background-clip: text; // DODAJ TO
+    .services-description {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+
+      strong {
+        color: #fff;
+        font-weight: 700;
+        background: linear-gradient(120deg, #4facfe 0%, #f9a8d4 100%);
+        -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      @include mobile {
-        font-size: 2.2rem;
-      }
     }
 
-    p {
-      color: #94a3b8; // Jasny szary
-      font-size: 1.1rem;
-      max-width: 600px;
-      margin: 0 auto;
+    .services-highlight {
+      color: #fff;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 2.5rem 0;
+      padding-left: 1.5rem;
+      border-left: 4px solid #4facfe;
+      font-style: italic;
+    }
+
+    .services-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 2.5rem;
+      background: transparent;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 50px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        border-color: #4facfe;
+        box-shadow: 0 0 30px rgba(79, 172, 254, 0.3);
+        transform: translateY(-2px);
+
+        &::before {
+          left: 100%;
+        }
+
+        svg {
+          transform: translateX(5px);
+        }
+      }
     }
   }
 
-  // Grid
-  &-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  // Right side - Service icons
+  .services-icons {
+    display: flex;
+    flex-direction: column;
     gap: 2rem;
-    padding: 0 $spacing-md;
+    position: relative;
 
-    @include tablet {
-      grid-template-columns: repeat(2, 1fr);
+    .service-icon-item {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.06);
+        border-color: rgba(255, 255, 255, 0.15);
+        transform: translateX(10px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+
+        .icon-wrapper {
+          transform: scale(1.1) rotate(-5deg);
+        }
+      }
+
+      .icon-wrapper {
+        width: 80px;
+        height: 80px;
+        min-width: 80px;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s ease;
+
+        svg {
+          width: 40px;
+          height: 40px;
+          color: white;
+        }
+
+        &.blue {
+          background: linear-gradient(135deg, #4facfe, #00f2fe);
+          box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        &.purple {
+          background: linear-gradient(135deg, #a855f7, #d946ef);
+          box-shadow: 0 8px 25px rgba(168, 85, 247, 0.4);
+        }
+
+        &.orange {
+          background: linear-gradient(135deg, #fb923c, #f97316);
+          box-shadow: 0 8px 25px rgba(251, 146, 60, 0.4);
+        }
+      }
+
+      span {
+        color: #fff;
+        font-size: 1.3rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
     }
 
-    @include mobile {
-      grid-template-columns: 1fr;
+    // Indicator dots
+    .service-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      margin-top: 2rem;
+
+      .indicator {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &.active {
+          background: #4facfe;
+          box-shadow: 0 0 15px rgba(79, 172, 254, 0.6);
+          transform: scale(1.2);
+        }
+
+        &:hover {
+          background: rgba(255, 255, 255, 0.4);
+        }
+      }
     }
   }
 }
 
-// KARTA USŁUGI
-.service-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.03); // Przezroczyste tło
-  backdrop-filter: blur(10px); // Rozmycie tła pod spodem
-  border: 1px solid rgba(255, 255, 255, 0.1); // Delikatna ramka
-  border-radius: 20px;
-  padding: 3rem 2rem;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  overflow: hidden;
-  text-align: left;
+// Responsive
+@media (max-width: 992px) {
+  .services-modern {
+    padding: 4rem 0;
+    min-height: auto;
 
-  // Efekt po najechaniu (hover)
-  &:hover {
-    transform: translateY(-10px);
-    background: rgba(255, 255, 255, 0.07);
-    border-color: rgba($secondary, 0.5);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    .services-text {
+      .services-title {
+        font-size: 2.5rem;
+      }
 
-    .service-card-icon {
-      transform: scale(1.1) rotate(-5deg);
-      background: linear-gradient(135deg, $secondary, $accent);
-      box-shadow: 0 0 20px rgba($secondary, 0.6);
+      .services-description {
+        font-size: 1rem;
+      }
 
-      svg {
-        stroke: #fff; // Ikona staje się biała
+      .services-highlight {
+        font-size: 1.1rem;
       }
     }
 
-    h3 {
-      color: $secondary;
+    .services-icons {
+      .service-icon-item {
+        padding: 1.5rem;
+
+        .icon-wrapper {
+          width: 60px;
+          height: 60px;
+          min-width: 60px;
+
+          svg {
+            width: 30px;
+            height: 30px;
+          }
+        }
+
+        span {
+          font-size: 1.1rem;
+        }
+      }
     }
   }
+}
 
-  // Ikona
-  &-icon {
-    width: 70px;
-    height: 70px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-    transition: all 0.4s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+@media (max-width: 768px) {
+  .services-modern {
+    padding: 3rem 0;
 
-    svg {
-      width: 32px;
-      height: 32px;
-      stroke: $secondary; // Kolor ikony z Twoich zmiennych
-      transition: all 0.3s ease;
+    .container {
+      padding: 0 1.5rem;
     }
-  }
 
-  // Tytuł
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 1rem;
-    transition: color 0.3s ease;
-  }
+    .services-text {
+      .services-title {
+        font-size: 2rem;
+      }
 
-  // Opis
-  p {
-    font-size: 1rem;
-    color: #94a3b8; // Szary, czytelny na ciemnym
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
+      .services-description {
+        font-size: 0.95rem;
+      }
 
-  // Opcjonalnie: Przycisk lub strzałka "Więcej"
-  &::after {
-    content: "→";
-    font-size: 1.5rem;
-    color: $secondary;
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
-    opacity: 0;
-    transform: translateX(-10px);
-    transition: all 0.3s ease;
-  }
+      .services-cta {
+        padding: 1rem 2rem;
+        font-size: 0.9rem;
+      }
+    }
 
-  &:hover::after {
-    opacity: 1;
-    transform: translateX(0);
+    .services-icons {
+      gap: 1.5rem;
+
+      .service-icon-item {
+        padding: 1.2rem;
+        gap: 1.5rem;
+
+        .icon-wrapper {
+          width: 50px;
+          height: 50px;
+          min-width: 50px;
+
+          svg {
+            width: 25px;
+            height: 25px;
+          }
+        }
+
+        span {
+          font-size: 1rem;
+        }
+      }
+    }
   }
 }

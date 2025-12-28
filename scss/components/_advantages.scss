@@ -1,17 +1,16 @@
-// _advantages.scss - Styl "Awwwards Winning" Cosmic Hologram
+// _advantages.scss - Wersja CZYSTA BIEL dla nagłówka
 @use "../variables" as *;
 @use "../mixins" as *;
 
 .advantages {
   position: relative;
-  background-color: #0b0f19; // Ultra-głęboka czerń (ciemniejsza niż services)
+  background-color: #0b0f19; // Ultra-głęboka czerń
   padding: 8rem 0 10rem;
   overflow: hidden;
   color: #fff;
   z-index: 1;
 
-  // --- TŁO: AMBIENT LIGHTS ---
-  // Pływające, niewyraźne plamy światła w tle
+  // --- TŁO: AMBIENT LIGHTS (Pozostawione dla klimatu tła) ---
   &::before,
   &::after {
     content: "";
@@ -50,23 +49,20 @@
     position: relative;
 
     h1 {
-      font-size: clamp(3rem, 6vw, 5rem); // Skalowanie typografii
+      font-size: clamp(3rem, 6vw, 5rem);
       font-weight: 900;
       text-transform: uppercase;
       letter-spacing: -0.02em;
       line-height: 1.1;
       margin: 0;
 
-      // Efekt "Metalicznego Gradientu" na tekście
-      .gradient-text {
-        background: linear-gradient(135deg, #a78bfa 0%, #f9a8d4 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent; // fallback
-      }
-      // Subtelny cień tekstu
-      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+      // --- CZYSTA BIEL ---
+      color: #ffffff !important; // Wymuszenie bieli
+      background: none;
+      -webkit-text-fill-color: #ffffff !important; // Resetuje ewentualne style gradientowe
+
+      // Subtelny cień, żeby biały tekst odcinał się od tła (nie zmienia koloru fontu)
+      filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.15));
     }
 
     // Dekoracyjna linia pod tekstem
@@ -78,7 +74,7 @@
       background: $secondary;
       margin: 1.5rem auto 0;
       border-radius: 3px;
-      box-shadow: 0 0 20px $secondary; // Neonowy blask
+      box-shadow: 0 0 20px $secondary;
     }
   }
 
@@ -87,7 +83,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
-    counter-reset: adv-counter; // Inicjalizacja licznika CSS
+    counter-reset: adv-counter;
     padding: 0 1rem;
 
     @include mobile {
@@ -100,7 +96,7 @@
 // --- KARTA ZALETY (ITEM) ---
 .advantage-item {
   position: relative;
-  counter-increment: adv-counter; // Zwiększanie licznika
+  counter-increment: adv-counter;
 
   // Wygląd karty - Szkło
   background: rgba(255, 255, 255, 0.02);
@@ -111,7 +107,7 @@
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 
-  // Efekt "Masonry" - Przesunięcie co drugiej karty w dół
+  // Efekt "Masonry"
   &:nth-child(even) {
     margin-top: 4rem;
 
@@ -120,14 +116,14 @@
     }
   }
 
-  // Hover Effect - Unoszenie i podświetlenie
+  // Hover Effect
   &:hover {
     transform: translateY(-10px);
     background: rgba(255, 255, 255, 0.05);
     border-color: rgba(255, 255, 255, 0.15);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
 
-    // Animacja dużej cyfry w tle
+    // Animacja dużej cyfry
     &::before {
       transform: translateY(-50%) translateX(10px) scale(1.1);
       opacity: 0.1;
@@ -142,15 +138,15 @@
       box-shadow: 0 0 30px rgba($secondary, 0.5);
     }
 
-    // Zmiana koloru tytułu
+    // Tytuł na hover
     .advantage-text h3 {
       color: #fff;
     }
   }
 
-  // --- OGROMNA CYFRA W TLE (01, 02...) ---
+  // --- OGROMNA CYFRA W TLE ---
   &::before {
-    content: "0" counter(adv-counter); // Automatyczne numerowanie z CSS
+    content: "0" counter(adv-counter);
     position: absolute;
     top: 50%;
     right: 0;
@@ -158,7 +154,7 @@
     font-size: 12rem;
     font-weight: 900;
     color: #fff;
-    opacity: 0.03; // Bardzo subtelne
+    opacity: 0.03;
     line-height: 0;
     pointer-events: none;
     transition: all 0.5s ease;
@@ -199,7 +195,7 @@
     }
 
     p {
-      color: #94a3b8; // Szaro-niebieski, czytelny na ciemnym
+      color: #94a3b8;
       font-size: 1.05rem;
       line-height: 1.7;
       margin: 0;
