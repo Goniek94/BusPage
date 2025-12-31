@@ -1,25 +1,25 @@
 // ============================================
-// STATS SECTION - Liczniki statystyk
+// STATS SECTION - Premium Dark Mode
 // ============================================
 
 @use "../variables" as *;
 @use "sass:color";
 
 .stats-section {
-  padding: 5rem 0;
-  // GRADIENT 5: Jasny niebieski (akcent) - wyróżniający się
+  padding: 8rem 0;
+  // Dark gradient matching the overall theme
   background: linear-gradient(
-    135deg,
-    #3756b0 0%,
-    #3a5ab8 25%,
-    #3d5ec0 50%,
-    #4062c8 75%,
-    #4366d0 100%
+    180deg,
+    $bg-darker 0%,
+    $bg-dark 25%,
+    $bg-lighter 50%,
+    $bg-dark 75%,
+    $bg-darker 100%
   );
   position: relative;
   overflow: hidden;
 
-  // Decorative background z intensywniejszym świeceniem
+  // Decorative background with cyan glow
   &::before {
     content: "";
     position: absolute;
@@ -29,11 +29,39 @@
     height: 800px;
     background: radial-gradient(
       circle,
-      rgba(255, 255, 255, 0.08) 0%,
-      rgba(79, 172, 254, 0.05) 40%,
+      rgba(79, 172, 254, 0.15) 0%,
+      rgba(79, 172, 254, 0.08) 40%,
       transparent 70%
     );
     border-radius: 50%;
+    animation: float 15s ease-in-out infinite;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: -20%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+      circle,
+      rgba(168, 85, 247, 0.12) 0%,
+      rgba(168, 85, 247, 0.06) 40%,
+      transparent 70%
+    );
+    border-radius: 50%;
+    animation: float 18s ease-in-out infinite reverse;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0, 0);
+    }
+    50% {
+      transform: translate(40px, 40px);
+    }
   }
 
   .container {
@@ -43,20 +71,24 @@
 
   .section-heading {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
 
     h2 {
-      color: white;
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
+      color: $text-main;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: -0.02em;
+      text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
     }
 
     p {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 1.1rem;
-      max-width: 600px;
+      color: $text-muted;
+      font-size: 1.2rem;
+      max-width: 700px;
       margin: 0 auto;
+      line-height: 1.8;
     }
   }
 }
@@ -64,10 +96,11 @@
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 2.5rem;
 
   @media (max-width: 992px) {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
   }
 
   @media (max-width: 576px) {
@@ -77,60 +110,102 @@
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 2.5rem 1.5rem;
+  background: $glass-bg;
+  backdrop-filter: blur(20px);
+  border: $glass-border;
+  border-radius: $border-radius-card;
+  padding: 3rem 2rem;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.4s $transition-smooth;
+  position: relative;
+  overflow: hidden;
+
+  // Decorative gradient overlay on hover
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, $primary 0%, $secondary 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+  }
 
   &:hover {
-    transform: translateY(-5px);
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+    background: $glass-bg-hover;
+    border: $glass-border-hover;
+    box-shadow: $shadow-xl, $shadow-glow;
+
+    &::before {
+      opacity: 0.05;
+    }
+
+    .stat-icon {
+      transform: scale(1.1) rotate(5deg);
+      color: $primary;
+    }
+
+    .stat-number {
+      color: $primary;
+      text-shadow: 0 0 20px rgba(79, 172, 254, 0.5);
+    }
   }
 
   .stat-icon {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
     display: inline-block;
+    color: $accent;
+    transition: all 0.4s $transition-smooth;
+    position: relative;
+    z-index: 1;
   }
 
   .stat-number {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: white;
+    font-size: 4rem;
+    font-weight: 900;
+    color: $text-main;
     line-height: 1;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
     display: block;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.02em;
 
     &[data-target] {
-      // Licznik będzie animowany przez JavaScript
+      // Counter will be animated by JavaScript
     }
   }
 
   .stat-label {
-    color: rgba(255, 255, 255, 0.9);
+    color: $text-muted;
     font-size: 1.1rem;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
   }
 
   @media (max-width: 768px) {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1.5rem;
 
     .stat-icon {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
 
     .stat-number {
-      font-size: 2.5rem;
+      font-size: 3rem;
     }
 
     .stat-label {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
     }
   }
 }

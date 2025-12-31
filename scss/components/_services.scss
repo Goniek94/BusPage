@@ -1,57 +1,54 @@
-// Sekcja usług - CZYSTE I PROSTE
-.services-split {
-  // Płynny gradient kontynuujący przejście z sekcji "O Nas"
+// ============================================
+// SERVICES SECTION - FLIP CARDS
+// Cards with 180° flip animation and "Show more" button
+// ============================================
+
+.services-flip {
+  position: relative;
   background: linear-gradient(
     180deg,
     #0d1220 0%,
-    #0f1528 15%,
-    #111830 30%,
-    #131b38 50%,
-    #111830 70%,
-    #0f1528 85%,
+    #0f1528 20%,
+    #111830 50%,
+    #0f1528 80%,
     #0d1220 100%
   );
   padding: 8rem 0;
-  position: relative;
   overflow: hidden;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
 
-  // Dekoracyjne elementy tła z cyan akcentem
+  // Background effects
   &::before {
     content: "";
     position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 700px;
-    height: 700px;
+    top: 15%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
     background: radial-gradient(
       circle,
-      rgba(0, 242, 254, 0.12) 0%,
-      rgba(79, 172, 254, 0.08) 40%,
+      rgba(79, 172, 254, 0.06) 0%,
       transparent 70%
     );
     border-radius: 50%;
     pointer-events: none;
-    animation: float 12s ease-in-out infinite;
+    animation: float 20s ease-in-out infinite;
   }
 
   &::after {
     content: "";
     position: absolute;
-    bottom: -20%;
-    left: -10%;
-    width: 600px;
-    height: 600px;
+    bottom: 15%;
+    right: -5%;
+    width: 450px;
+    height: 450px;
     background: radial-gradient(
       circle,
-      rgba(79, 172, 254, 0.1) 0%,
+      rgba(168, 85, 247, 0.05) 0%,
       transparent 70%
     );
     border-radius: 50%;
     pointer-events: none;
-    animation: float 15s ease-in-out infinite reverse;
+    animation: float 25s ease-in-out infinite reverse;
   }
 
   @keyframes float {
@@ -60,23 +57,22 @@
       transform: translate(0, 0);
     }
     50% {
-      transform: translate(40px, 40px);
+      transform: translate(20px, 20px);
     }
   }
 
   .container {
-    position: relative;
-    z-index: 1;
     max-width: 1400px;
     margin: 0 auto;
     padding: 0 2rem;
+    position: relative;
+    z-index: 2;
   }
 
-  // Nagłówek sekcji (taki sam jak w advantages)
+  // Section heading
   .section-heading {
     text-align: center;
     margin-bottom: 6rem;
-    position: relative;
 
     h1 {
       font-size: clamp(3rem, 6vw, 5rem);
@@ -84,11 +80,17 @@
       text-transform: uppercase;
       letter-spacing: -0.02em;
       line-height: 1.1;
-      margin: 0;
-      color: #ffffff !important;
-      background: none;
-      -webkit-text-fill-color: #ffffff !important;
+      margin: 0 0 1rem 0;
+      color: #ffffff;
       filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.15));
+    }
+
+    .section-subtitle {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      margin: 0;
     }
 
     &::after {
@@ -96,233 +98,233 @@
       display: block;
       width: 60px;
       height: 6px;
-      background: #4facfe;
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
       margin: 1.5rem auto 0;
       border-radius: 3px;
-      box-shadow: 0 0 20px #4facfe;
+      box-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
     }
   }
 
-  .services-grid {
+  // Grid for flip cards
+  .flip-cards-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8rem;
-    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-bottom: 4rem;
 
     @media (max-width: 992px) {
       grid-template-columns: 1fr;
-      gap: 5rem;
+      gap: 2.5rem;
     }
   }
 
-  // LEWA STRONA - Tekst w ramce
-  .services-left {
-    .services-text-box {
-      background: rgba(255, 255, 255, 0.03);
-      border: 2px solid rgba(79, 172, 254, 0.2);
-      border-radius: 30px;
-      padding: 3.5rem;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-      transition: all 0.4s ease;
+  // Flip card wrapper
+  .flip-card-wrapper {
+    perspective: 1000px;
+    height: 500px;
 
-      &:hover {
-        border-color: rgba(79, 172, 254, 0.4);
-        box-shadow: 0 25px 70px rgba(0, 0, 0, 0.5),
-          0 0 40px rgba(79, 172, 254, 0.15);
-        transform: translateY(-5px);
-      }
-    }
-
-    .service-label {
-      display: inline-block;
-      padding: 0.6rem 1.5rem;
-      background: rgba(79, 172, 254, 0.1);
-      border: 1.5px solid rgba(79, 172, 254, 0.3);
-      border-radius: 50px;
-      color: rgba(79, 172, 254, 0.9);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      margin-bottom: 2rem;
-      font-weight: 700;
-    }
-
-    .service-main-title {
-      font-size: clamp(2.5rem, 7vw, 5.5rem);
-      font-weight: 900;
-      color: #fff;
-      line-height: 1.05;
-      margin-bottom: 2.5rem;
-      letter-spacing: -0.03em;
-    }
-
-    .service-text {
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 1.05rem;
-      line-height: 1.9;
-      margin-bottom: 1.8rem;
-
-      strong {
-        color: #fff;
-        font-weight: 700;
-        background: linear-gradient(120deg, #4facfe 0%, #a855f7 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-      }
-    }
-
-    .service-quote {
-      color: #fff;
-      font-size: 1.25rem;
-      font-weight: 600;
-      margin: 3rem 0;
-      padding-left: 2rem;
-      border-left: 4px solid #4facfe;
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    .service-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.3rem 2.8rem;
-      background: rgba(79, 172, 254, 0.05);
-      border: 2px solid rgba(79, 172, 254, 0.3);
-      border-radius: 50px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 1rem;
-      transition: all 0.4s ease;
-
-      svg {
-        width: 22px;
-        height: 22px;
-        transition: transform 0.4s ease;
-      }
-
-      &:hover {
-        background: rgba(79, 172, 254, 0.1);
-        border-color: #4facfe;
-        box-shadow: 0 0 40px rgba(79, 172, 254, 0.4);
-        transform: translateY(-3px);
-
-        svg {
-          transform: translateX(8px);
-        }
-      }
+    @media (max-width: 768px) {
+      height: 450px;
     }
   }
 
-  // PRAWA STRONA - Karty z sliderem
-  .services-right {
+  // Flip card container
+  .flip-card {
     position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
 
-    .service-cards-wrapper {
+    &.flipped {
+      transform: rotateY(180deg);
+    }
+  }
+
+  // Common styles for front and back
+  .flip-card-front,
+  .flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  // FRONT SIDE
+  .flip-card-front {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(79, 172, 254, 0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+
+    .card-image {
       position: relative;
-      height: 550px; // STAŁA WYSOKOŚĆ
       width: 100%;
+      height: 60%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          180deg,
+          transparent 0%,
+          rgba(13, 18, 32, 0.8) 100%
+        );
+      }
     }
 
-    .service-card {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%; // PEŁNA WYSOKOŚĆ
-      padding: 3rem;
-      background: linear-gradient(
-        135deg,
-        rgba(30, 30, 50, 0.8) 0%,
-        rgba(20, 20, 35, 0.9) 100%
-      );
-      backdrop-filter: blur(20px);
-      border: 2px solid rgba(79, 172, 254, 0.2);
-      border-radius: 30px; // ŁADNY BORDER RADIUS
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
-        0 10px 30px rgba(79, 172, 254, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1); // 3D BOX SHADOW
-
-      opacity: 0;
-      transform: translateX(100px);
-      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      pointer-events: none;
-
-      // OVERFLOW HIDDEN - NIC SIĘ NIE WYLEWA
-      overflow: hidden;
+    .card-content {
+      flex: 1;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
 
-      &.active {
-        opacity: 1;
-        transform: translateX(0);
-        pointer-events: auto;
-      }
-
-      .card-image-box {
-        width: 100%;
-        height: 200px;
-        border-radius: 20px;
-        overflow: hidden;
-        margin-bottom: 2rem;
-        flex-shrink: 0;
-        transition: transform 0.4s ease;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          object-position: center;
-          transition: transform 0.4s ease;
-        }
-      }
-
-      &:hover .card-image-box {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(79, 172, 254, 0.3);
-
-        img {
-          transform: scale(1.05);
-        }
-      }
-
-      .card-heading {
-        font-size: 2rem;
+      .card-number {
+        font-size: 1rem;
         font-weight: 800;
-        color: #fff;
-        margin-bottom: 1.5rem;
+        color: #4facfe;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 15px rgba(79, 172, 254, 0.4);
+        margin-bottom: 0.5rem;
+      }
+
+      .card-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 800;
+        color: #ffffff;
+        font-family: "Montserrat", sans-serif;
         letter-spacing: -0.02em;
         line-height: 1.2;
-        flex-shrink: 0; // NIE KURCZY SIĘ
+        margin: 0 0 0.8rem 0;
       }
 
-      .card-desc {
-        color: rgba(255, 255, 255, 0.75);
+      .card-intro {
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.7);
+        line-height: 1.6;
+        margin: 0 0 1.5rem 0;
+        flex: 1;
+      }
+
+      .flip-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.8rem;
+        background: rgba(79, 172, 254, 0.1);
+        border: 1px solid rgba(79, 172, 254, 0.3);
+        border-radius: 50px;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover {
+          background: rgba(79, 172, 254, 0.2);
+          border-color: #4facfe;
+          box-shadow: 0 0 20px rgba(79, 172, 254, 0.3);
+
+          svg {
+            transform: translateY(3px);
+          }
+        }
+      }
+    }
+
+    &:hover {
+      .card-image img {
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  // BACK SIDE
+  .flip-card-back {
+    background: linear-gradient(
+      135deg,
+      rgba(30, 30, 50, 0.95) 0%,
+      rgba(20, 20, 35, 0.98) 100%
+    );
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(79, 172, 254, 0.2);
+    transform: rotateY(180deg);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+
+    .back-content {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+      .back-number {
         font-size: 1rem;
-        line-height: 1.7;
-        margin-bottom: 2rem;
-        flex-shrink: 0; // NIE KURCZY SIĘ
+        font-weight: 800;
+        color: #4facfe;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 0.1em;
+        text-shadow: 0 0 15px rgba(79, 172, 254, 0.4);
+        margin-bottom: 0.8rem;
       }
 
-      .card-list {
+      .back-title {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        font-weight: 800;
+        color: #ffffff;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        margin: 0 0 1.2rem 0;
+      }
+
+      .back-description {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        margin: 0 0 1.5rem 0;
+      }
+
+      .back-features {
         list-style: none;
         padding: 0;
-        margin: 0;
+        margin: 0 0 auto 0;
         display: flex;
         flex-direction: column;
         gap: 0.8rem;
 
         li {
-          color: rgba(255, 255, 255, 0.85);
-          padding: 0.8rem 0;
-          padding-left: 2rem;
           position: relative;
+          padding-left: 2rem;
+          color: rgba(255, 255, 255, 0.85);
           font-size: 0.95rem;
+          line-height: 1.5;
           transition: all 0.3s ease;
 
           &::before {
@@ -331,119 +333,136 @@
             left: 0;
             color: #4facfe;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
           }
 
           &:hover {
+            color: #ffffff;
             padding-left: 2.3rem;
-            color: #fff;
+          }
+        }
+      }
+
+      .flip-button-back {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.9rem 1.8rem;
+        background: rgba(79, 172, 254, 0.15);
+        border: 1px solid rgba(79, 172, 254, 0.4);
+        border-radius: 50px;
+        color: #ffffff;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+        margin-top: 1.5rem;
+
+        svg {
+          width: 16px;
+          height: 16px;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover {
+          background: rgba(79, 172, 254, 0.25);
+          border-color: #4facfe;
+          box-shadow: 0 0 25px rgba(79, 172, 254, 0.4);
+
+          svg {
+            transform: translateY(-3px);
           }
         }
       }
     }
+  }
 
-    // Wskaźniki (kropki)
-    .service-dots {
-      display: flex;
-      justify-content: center;
+  // CTA Section
+  .services-cta {
+    text-align: center;
+    margin-top: 4rem;
+
+    .cta-button {
+      display: inline-flex;
+      align-items: center;
       gap: 1rem;
-      margin-top: 2.5rem;
-      position: absolute;
-      bottom: -4rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
+      padding: 1.5rem 3.5rem;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      border: none;
+      border-radius: 50px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 10px 30px rgba(79, 172, 254, 0.3);
+      position: relative;
+      overflow: hidden;
 
-      .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.2);
-        border: none;
-        padding: 0;
-        cursor: pointer;
-        transition: all 0.3s ease;
+      @media (max-width: 768px) {
+        padding: 1.2rem 2.5rem;
+        font-size: 1rem;
+      }
 
-        &.active {
-          background: #4facfe;
-          box-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
-          transform: scale(1.3);
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(79, 172, 254, 0.5);
+
+        &::before {
+          left: 100%;
         }
 
-        &:hover:not(.active) {
-          background: rgba(255, 255, 255, 0.4);
-          transform: scale(1.1);
+        svg {
+          transform: translateX(5px);
         }
+      }
+
+      &:active {
+        transform: translateY(-1px);
       }
     }
   }
 
   // Responsive
-  @media (max-width: 992px) {
-    padding: 6rem 0;
-
-    .services-left {
-      .service-main-title {
-        font-size: 3rem;
-      }
-
-      .service-text {
-        font-size: 1rem;
-      }
-    }
-
-    .services-right {
-      .service-cards-wrapper {
-        height: 600px; // WIĘKSZA WYSOKOŚĆ NA MOBILE
-      }
-
-      .service-card {
-        padding: 2.5rem;
-      }
-    }
-  }
-
   @media (max-width: 768px) {
     padding: 5rem 0;
 
-    .container {
-      padding: 0 1.5rem;
+    .section-heading {
+      margin-bottom: 4rem;
     }
 
-    .services-left {
-      .service-main-title {
-        font-size: 2.2rem;
-      }
-
-      .service-btn {
-        padding: 1.1rem 2.2rem;
-      }
+    .flip-card-wrapper {
+      height: 420px;
     }
 
-    .services-right {
-      .service-cards-wrapper {
-        height: 650px;
-      }
-
-      .service-card {
-        padding: 2rem;
-
-        .card-image-box {
-          height: 150px;
-        }
-
-        .card-heading {
-          font-size: 1.7rem;
-        }
-
-        .card-desc {
-          font-size: 0.95rem;
-        }
-
-        .card-list li {
-          font-size: 0.9rem;
-        }
-      }
+    .flip-card-front .card-content,
+    .flip-card-back {
+      padding: 1.8rem;
     }
   }
 }

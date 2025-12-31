@@ -19,7 +19,7 @@
     <header>
       <div class="header-container">
         <div class="logo">
-          <img src="IMG/Logobus.svg" alt="MarBus Logo" class="logo-img" />
+          <img src="IMG/logobus1.png" alt="MarBus Logo" class="logo-img" />
         </div>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span>
@@ -31,7 +31,7 @@
             <li><a href="#home">Strona Główna</a></li>
             <li><a href="#about">O Firmie</a></li>
             <li><a href="#services">Usługi</a></li>
-            <li><a href="#flota">Flota</a></li>
+            <!-- <li><a href="#flota">Flota</a></li> -->
             <li><a href="#contact">Kontakt</a></li>
           </ul>
         </nav>
@@ -174,12 +174,35 @@
         </div>
 
         <div class="timeline-container">
-          <div class="timeline-nav timeline-nav-left">
-            <button aria-label="Przewiń w lewo">◀</button>
-          </div>
-          <div class="timeline-nav timeline-nav-right">
-            <button aria-label="Przewiń w prawo">▶</button>
-          </div>
+          <!-- Navigation Arrows -->
+          <button
+            class="timeline-arrow timeline-arrow-left"
+            id="timeline-prev"
+            aria-label="Poprzedni rok"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button
+            class="timeline-arrow timeline-arrow-right"
+            id="timeline-next"
+            aria-label="Następny rok"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
 
           <div class="timeline-wrapper">
             <div class="timeline-track">
@@ -278,10 +301,12 @@
                 <div class="timeline-content">
                   <div class="timeline-icon">📈</div>
                   <h3>Rozwój Floty</h3>
-                  <p>Rozbudowa floty do 10 pojazdów.</p>
+                  <p>
+                    Rozbudowa floty do 10 pojazdów. Pierwsze duże kontrakty.
+                  </p>
                 </div>
               </div>
-              <!-- 1999-2004 -->
+              <!-- 1999-2001 -->
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">1999</div>
                 <div class="timeline-marker"></div>
@@ -294,9 +319,18 @@
                 <div class="timeline-year">2001</div>
                 <div class="timeline-marker"></div>
               </div>
+              <!-- 2002 - Przejazdy Turystyczne -->
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2002</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🏖️</div>
+                  <h3>Przejazdy Turystyczne</h3>
+                  <p>
+                    Rozpoczęcie organizacji wycieczek turystycznych po Polsce i
+                    Europie.
+                  </p>
+                </div>
               </div>
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2003</div>
@@ -305,6 +339,13 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2004</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🇪🇺</div>
+                  <h3>Wejście do UE</h3>
+                  <p>
+                    Rozszerzenie tras międzynarodowych po wejściu Polski do UE.
+                  </p>
+                </div>
               </div>
               <!-- 2005 -->
               <div class="timeline-item" data-aos="fade-up">
@@ -313,10 +354,10 @@
                 <div class="timeline-content">
                   <div class="timeline-icon">🏆</div>
                   <h3>Certyfikaty Jakości</h3>
-                  <p>Otrzymanie certyfikatów bezpieczeństwa.</p>
+                  <p>Otrzymanie certyfikatów bezpieczeństwa i jakości ISO.</p>
                 </div>
               </div>
-              <!-- 2006-2009 -->
+              <!-- 2006-2007 -->
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2006</div>
                 <div class="timeline-marker"></div>
@@ -324,6 +365,11 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2007</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🚌</div>
+                  <h3>Nowe Autobusy</h3>
+                  <p>Zakup pierwszych klimatyzowanych autobusów premium.</p>
+                </div>
               </div>
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2008</div>
@@ -332,6 +378,13 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2009</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">💼</div>
+                  <h3>Transport Korporacyjny</h3>
+                  <p>
+                    Specjalizacja w transporcie pracowniczym dla dużych firm.
+                  </p>
+                </div>
               </div>
               <!-- 2010 -->
               <div class="timeline-item" data-aos="fade-up">
@@ -339,11 +392,13 @@
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
                   <div class="timeline-icon">🌍</div>
-                  <h3>Ekspansja Regionalna</h3>
-                  <p>Rozszerzenie działalności na całą Polskę.</p>
+                  <h3>Ekspansja Ogólnopolska</h3>
+                  <p>
+                    Rozszerzenie działalności na całą Polskę. Nowe oddziały.
+                  </p>
                 </div>
               </div>
-              <!-- 2011-2014 -->
+              <!-- 2011-2012 -->
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2011</div>
                 <div class="timeline-marker"></div>
@@ -351,6 +406,13 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2012</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">📱</div>
+                  <h3>System Rezerwacji Online</h3>
+                  <p>
+                    Wdrożenie nowoczesnego systemu rezerwacji przez internet.
+                  </p>
+                </div>
               </div>
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2013</div>
@@ -359,6 +421,11 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2014</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">⭐</div>
+                  <h3>Nagroda Jakości</h3>
+                  <p>Wyróżnienie "Najlepsza Firma Transportowa Roku".</p>
+                </div>
               </div>
               <!-- 2015 -->
               <div class="timeline-item" data-aos="fade-up">
@@ -367,10 +434,12 @@
                 <div class="timeline-content">
                   <div class="timeline-icon">🚌</div>
                   <h3>Modernizacja Floty</h3>
-                  <p>Wymiana floty na nowoczesne pojazdy.</p>
+                  <p>
+                    Wymiana całej floty na nowoczesne pojazdy z Wi-Fi i GPS.
+                  </p>
                 </div>
               </div>
-              <!-- 2016-2022 -->
+              <!-- 2016-2017 -->
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2016</div>
                 <div class="timeline-marker"></div>
@@ -378,6 +447,14 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2017</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">♿</div>
+                  <h3>Transport Dostępny</h3>
+                  <p>
+                    Wprowadzenie pojazdów przystosowanych dla osób
+                    niepełnosprawnych.
+                  </p>
+                </div>
               </div>
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2018</div>
@@ -386,10 +463,22 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2019</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🎯</div>
+                  <h3>500 Klientów</h3>
+                  <p>Przekroczenie progu 500 stałych klientów biznesowych.</p>
+                </div>
               </div>
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2020</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🛡️</div>
+                  <h3>Bezpieczeństwo COVID</h3>
+                  <p>
+                    Wdrożenie najwyższych standardów bezpieczeństwa sanitarnego.
+                  </p>
+                </div>
               </div>
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2021</div>
@@ -398,6 +487,13 @@
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2022</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🎊</div>
+                  <h3>30 Lat na Rynku</h3>
+                  <p>
+                    Jubileusz 30-lecia działalności. Ponad 2 miliony km rocznie!
+                  </p>
+                </div>
               </div>
               <!-- 2023 -->
               <div class="timeline-item" data-aos="fade-up">
@@ -405,24 +501,59 @@
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
                   <div class="timeline-icon">🌱</div>
-                  <h3>Ekologia</h3>
-                  <p>Inwestycja w pojazdy elektryczne i hybrydowe.</p>
+                  <h3>Zielona Przyszłość</h3>
+                  <p>
+                    Inwestycja w pojazdy elektryczne i hybrydowe. Ekologia
+                    priorytetem.
+                  </p>
                 </div>
               </div>
               <!-- 2024 -->
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2024</div>
                 <div class="timeline-marker"></div>
+                <div class="timeline-content">
+                  <div class="timeline-icon">🚀</div>
+                  <h3>Nowe Technologie</h3>
+                  <p>
+                    Aplikacja mobilna i system monitoringu floty w czasie
+                    rzeczywistym.
+                  </p>
+                </div>
               </div>
               <!-- 2025 -->
               <div class="timeline-item" data-aos="fade-up">
                 <div class="timeline-year">2025</div>
                 <div class="timeline-marker"></div>
                 <div class="timeline-content">
-                  <div class="timeline-icon">⭐</div>
-                  <h3>Dziś</h3>
-                  <p>Ponad 30 lat doświadczenia i 500+ klientów.</p>
+                  <div class="timeline-icon">🏅</div>
+                  <h3>Dziś - Lider Branży</h3>
+                  <p>
+                    33 lata doświadczenia, 500+ klientów, 99% punktualności!
+                  </p>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STORY DISPLAY PANEL -->
+          <div id="story-display" class="glass-panel story-display">
+            <div class="story-content">
+              <div class="story-year-bg">1992</div>
+              <h3 class="story-title">Początek Działalności</h3>
+              <p class="story-description">
+                Początki bywają trudne, ale pełne pasji. Nasza pierwsza trasa
+                prowadziła tylko do sąsiedniej gminy, ale już wtedy
+                wiedzieliśmy, że transport to nasza przyszłość. Z jednym
+                autobusem i garścią klientów rozpoczęliśmy przygodę, która trwa
+                do dziś.
+              </p>
+              <div class="story-fact">
+                <span class="fact-icon">💡</span>
+                <span class="fact-text"
+                  >Ciekawostka: Nasz pierwszy autobus miał tylko 20
+                  miejsc!</span
+                >
               </div>
             </div>
           </div>
@@ -430,123 +561,286 @@
       </div>
     </section>
 
-    <!-- SEKCJA USŁUG -->
-    <section id="services" class="services-split">
+    <!-- SEKCJA USŁUG - FLIP CARDS -->
+    <section id="services" class="services-flip">
       <div class="container">
-        <!-- Nagłówek sekcji wyśrodkowany -->
-        <div class="section-heading">
+        <!-- Nagłówek sekcji -->
+        <div class="section-heading" data-aos="fade-up">
           <h1>NASZE USŁUGI</h1>
+          <p class="section-subtitle">Kompleksowe rozwiązania transportowe</p>
         </div>
 
-        <div class="services-grid">
-          <!-- Lewa strona - Tekst -->
-          <div class="services-left" data-aos="fade-right">
-            <div class="services-text-box">
-              <p class="service-text">
-                Z ponad 30-letnim doświadczeniem w branży transportowej, MARBUS
-                oferuje kompleksowe rozwiązania przewozowe dostosowane do Twoich
-                potrzeb. Specjalizujemy się w tworzeniu
-                <strong>bezpiecznych i komfortowych</strong> rozwiązań
-                transportowych, łącząc precyzję techniczną, profesjonalną
-                obsługę i najwyższą jakość usług.
-              </p>
-              <p class="service-text">
-                Nasz zespół specjalizuje się w transporcie pracowniczym,
-                wyjazdach okazjonalnych oraz przewozach specjalistycznych.
-                Naszym celem jest dostarczanie
-                <strong>niezawodnych rozwiązań transportowych</strong>, które
-                zwiększają Twoją mobilność i komfort podróży.
-              </p>
-              <p class="service-quote">
-                Jedna rozmowa wystarczy, aby Twoja podróż stała się
-                rzeczywistością.
-              </p>
-              <a href="#contact" class="service-btn">
-                <span>Zamów wycenę</span>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Prawa strona - Karty z sliderem -->
-          <div class="services-right" data-aos="fade-left">
-            <div class="service-cards-wrapper">
-              <!-- Karta 1: Transport Pracowniczy -->
-              <div class="service-card active" data-index="0">
-                <div class="card-image-box">
+        <!-- Grid kart -->
+        <div class="flip-cards-grid">
+          <!-- Karta 1: Transport Pracowniczy - Z LEWEJ -->
+          <div
+            class="flip-card-wrapper"
+            data-aos="fade-right"
+            data-aos-duration="800"
+          >
+            <div class="flip-card">
+              <!-- FRONT -->
+              <div class="flip-card-front">
+                <div class="card-image">
                   <img src="IMG/Bus30.png" alt="Transport Pracowniczy" />
+                  <div class="card-overlay"></div>
                 </div>
-                <h3 class="card-heading">Transport Pracowniczy</h3>
-                <p class="card-desc">
-                  Specjalizujemy się w codziennym przewozie pracowników do
-                  zakładów pracy. Oferujemy regularne kursy dostosowane do
-                  grafiku pracy Twojej firmy.
-                </p>
-                <ul class="card-list">
-                  <li>Regularne kursy o stałych godzinach</li>
-                  <li>Nowoczesna i komfortowa flota</li>
-                  <li>Doświadczeni kierowcy</li>
-                  <li>99% punktualności</li>
-                </ul>
-              </div>
-
-              <!-- Karta 2: Wyjazdy Okazjonalne -->
-              <div class="service-card" data-index="1">
-                <div class="card-image-box">
-                  <img src="IMG/bus22.png" alt="Wyjazdy Okazjonalne" />
+                <div class="card-content">
+                  <span class="card-number">01</span>
+                  <h3 class="card-title">Transport Pracowniczy</h3>
+                  <p class="card-intro">
+                    Codzienne przewozy pracowników do zakładów pracy
+                  </p>
+                  <button class="flip-button">
+                    <span>Pokaż więcej</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
                 </div>
-                <h3 class="card-heading">Wyjazdy Okazjonalne</h3>
-                <p class="card-desc">
-                  Organizujemy wyjazdy integracyjne, wycieczki firmowe, przewóz
-                  gości na wesela i inne uroczystości. Każda podróż to wyjątkowe
-                  doświadczenie.
-                </p>
-                <ul class="card-list">
-                  <li>Elastyczne terminy i trasy</li>
-                  <li>Wsparcie w planowaniu wyjazdu</li>
-                  <li>Profesjonalna obsługa</li>
-                  <li>Indywidualne podejście do klienta</li>
-                </ul>
               </div>
-
-              <!-- Karta 3: Transport Przystosowany -->
-              <div class="service-card" data-index="2">
-                <div class="card-image-box">
-                  <img src="IMG/Minibus.png" alt="Transport Przystosowany" />
+              <!-- BACK -->
+              <div class="flip-card-back">
+                <div class="back-content">
+                  <span class="back-number">01</span>
+                  <h3 class="back-title">Transport Pracowniczy</h3>
+                  <p class="back-description">
+                    Specjalizujemy się w codziennym przewozie pracowników.
+                    Oferujemy regularne kursy dostosowane do grafiku pracy
+                    Twojej firmy z gwarancją punktualności.
+                  </p>
+                  <ul class="back-features">
+                    <li>Regularne kursy o stałych godzinach</li>
+                    <li>Nowoczesna i komfortowa flota</li>
+                    <li>Doświadczeni kierowcy</li>
+                    <li>99% punktualności</li>
+                  </ul>
+                  <button class="flip-button-back">
+                    <span>Powrót</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 15l-7-7-7 7" />
+                    </svg>
+                  </button>
                 </div>
-                <h3 class="card-heading">Transport Przystosowany</h3>
-                <p class="card-desc">
-                  Oferujemy specjalistyczny transport dla osób z
-                  niepełnosprawnościami. Nasze pojazdy są wyposażone w
-                  odpowiednie udogodnienia.
-                </p>
-                <ul class="card-list">
-                  <li>Pojazdy z windami i rampami</li>
-                  <li>Przeszkoleni kierowcy</li>
-                  <li>Bezpieczne mocowania dla wózków</li>
-                  <li>Komfort i godność w podróży</li>
-                </ul>
               </div>
-            </div>
-
-            <!-- Wskaźniki (kropki) -->
-            <div class="service-dots">
-              <button
-                class="dot active"
-                data-slide="0"
-                aria-label="Slajd 1"
-              ></button>
-              <button class="dot" data-slide="1" aria-label="Slajd 2"></button>
-              <button class="dot" data-slide="2" aria-label="Slajd 3"></button>
             </div>
           </div>
+
+          <!-- Karta 2: Wyjazdy Okazjonalne - Z PRAWEJ -->
+          <div
+            class="flip-card-wrapper"
+            data-aos="fade-left"
+            data-aos-duration="800"
+            data-aos-delay="100"
+          >
+            <div class="flip-card">
+              <!-- FRONT -->
+              <div class="flip-card-front">
+                <div class="card-image">
+                  <img src="IMG/bus22.png" alt="Wyjazdy Okazjonalne" />
+                  <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                  <span class="card-number">02</span>
+                  <h3 class="card-title">Wyjazdy Okazjonalne</h3>
+                  <p class="card-intro">
+                    Wycieczki, wesela i wydarzenia specjalne
+                  </p>
+                  <button class="flip-button">
+                    <span>Pokaż więcej</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="flip-card-back">
+                <div class="back-content">
+                  <span class="back-number">02</span>
+                  <h3 class="back-title">Wyjazdy Okazjonalne</h3>
+                  <p class="back-description">
+                    Organizujemy wyjazdy integracyjne, wycieczki firmowe i
+                    przewóz gości na wesela. Każda podróż to wyjątkowe
+                    doświadczenie.
+                  </p>
+                  <ul class="back-features">
+                    <li>Elastyczne terminy i trasy</li>
+                    <li>Wsparcie w planowaniu wyjazdu</li>
+                    <li>Profesjonalna obsługa</li>
+                    <li>Indywidualne podejście</li>
+                  </ul>
+                  <button class="flip-button-back">
+                    <span>Powrót</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 15l-7-7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Karta 3: Transport VIP - Z LEWEJ -->
+          <div
+            class="flip-card-wrapper"
+            data-aos="fade-right"
+            data-aos-duration="800"
+            data-aos-delay="200"
+          >
+            <div class="flip-card">
+              <!-- FRONT -->
+              <div class="flip-card-front">
+                <div class="card-image">
+                  <img src="IMG/Bus9.png" alt="Transport VIP & Business" />
+                  <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                  <span class="card-number">03</span>
+                  <h3 class="card-title">Transport VIP & Business</h3>
+                  <p class="card-intro">
+                    Ekskluzywny transport dla wymagających
+                  </p>
+                  <button class="flip-button">
+                    <span>Pokaż więcej</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="flip-card-back">
+                <div class="back-content">
+                  <span class="back-number">03</span>
+                  <h3 class="back-title">Transport VIP & Business</h3>
+                  <p class="back-description">
+                    Ekskluzywny transport dla wymagających klientów. Luksusowe
+                    pojazdy z pełnym wyposażeniem dla maksymalnego komfortu.
+                  </p>
+                  <ul class="back-features">
+                    <li>Pojazdy premium klasy</li>
+                    <li>Dyskrecja i profesjonalizm</li>
+                    <li>Indywidualna obsługa</li>
+                    <li>Najwyższe standardy</li>
+                  </ul>
+                  <button class="flip-button-back">
+                    <span>Powrót</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 15l-7-7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Karta 4: Transport Przystosowany - Z PRAWEJ -->
+          <div
+            class="flip-card-wrapper"
+            data-aos="fade-left"
+            data-aos-duration="800"
+            data-aos-delay="300"
+          >
+            <div class="flip-card">
+              <!-- FRONT -->
+              <div class="flip-card-front">
+                <div class="card-image">
+                  <img src="IMG/Minibus.png" alt="Transport Przystosowany" />
+                  <div class="card-overlay"></div>
+                </div>
+                <div class="card-content">
+                  <span class="card-number">04</span>
+                  <h3 class="card-title">Transport Przystosowany</h3>
+                  <p class="card-intro">Dla osób z niepełnosprawnościami</p>
+                  <button class="flip-button">
+                    <span>Pokaż więcej</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="flip-card-back">
+                <div class="back-content">
+                  <span class="back-number">04</span>
+                  <h3 class="back-title">Transport Przystosowany</h3>
+                  <p class="back-description">
+                    Specjalistyczny transport dla osób z niepełnosprawnościami.
+                    Pojazdy wyposażone w windy, rampy i bezpieczne mocowania.
+                  </p>
+                  <ul class="back-features">
+                    <li>Pojazdy z windami i rampami</li>
+                    <li>Przeszkoleni kierowcy</li>
+                    <li>Bezpieczne mocowania</li>
+                    <li>Komfort i godność</li>
+                  </ul>
+                  <button class="flip-button-back">
+                    <span>Powrót</span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path d="M19 15l-7-7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="services-cta" data-aos="fade-up" data-aos-delay="400">
+          <a href="#contact" class="cta-button primary-btn">
+            <span>Zamów bezpłatną wycenę</span>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
         </div>
       </div>
     </section>
@@ -589,19 +883,18 @@
     </section>
 
     <section id="contact" class="contact-premium">
-      <div class="glow-bg glow-1"></div>
-      <div class="glow-bg glow-2"></div>
-
       <div class="container">
-        <div class="section-header" data-aos="fade-up">
-          <h2 class="title">Jesteśmy do <br />Twojej dyspozycji</h2>
-          <p class="desc">
-            Skontaktuj się z nami bezpośrednio lub zamów wycenę online.
+        <!-- Section Header -->
+        <div class="section-header">
+          <h2 class="section-title">Skontaktuj się z nami</h2>
+          <p class="section-subtitle">
+            Jesteśmy dostępni 7 dni w tygodniu. Zadzwoń lub napisz!
           </p>
         </div>
 
         <div class="contact-equal-grid">
-          <div class="glass-panel info-panel" data-aos="fade-right">
+          <!-- Left Panel - Contact Info -->
+          <div class="glass-panel info-panel">
             <div class="panel-header">
               <h3 class="panel-title">Dane kontaktowe</h3>
               <p class="panel-subtitle">Dostępni 7 dni w tygodniu</p>
@@ -669,14 +962,21 @@
 
             <div class="panel-footer">
               <div class="status-indicator">
-                <span class="dot"></span> Dla bezpłatnej wyceny transportu
-                pracowniczego prosimy o podanie: Liczba kilometrów dziennie
-                Liczba kursów Liczba osób do przewozu
+                <strong
+                  >💡 Dla bezpłatnej wyceny transportu pracowniczego prosimy o
+                  podanie:</strong
+                >
+                <ul>
+                  <li>Liczba kilometrów dziennie</li>
+                  <li>Liczba kursów</li>
+                  <li>Liczba osób do przewozu</li>
+                </ul>
               </div>
             </div>
           </div>
 
-          <div class="glass-panel form-panel" data-aos="fade-left">
+          <!-- Right Panel - Form -->
+          <div class="glass-panel form-panel">
             <div class="panel-header">
               <h3 class="panel-title">Darmowa wycena</h3>
               <p class="panel-subtitle">Wypełnij formularz, oddzwonimy.</p>
@@ -743,6 +1043,25 @@
                 </svg>
               </button>
             </form>
+          </div>
+        </div>
+
+        <!-- MAPA GOOGLE MAPS -->
+        <div class="map-section">
+          <div class="map-heading">
+            <h2 class="map-title">Znajdź nas na mapie</h2>
+            <p class="map-subtitle">Bratkowice 34/21, 99-400 Łowicz</p>
+          </div>
+          <div class="map-container glass-panel">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2461.8!2d19.9447!3d52.1089!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471bcb5e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2sBratkowice%2034%2C%2099-400%20%C5%81owicz!5e0!3m2!1spl!2spl!4v1234567890123!5m2!1spl!2spl"
+              width="100%"
+              height="450"
+              style="border: 0; border-radius: 16px"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>
@@ -908,6 +1227,7 @@
     <script src="js/smooth-scroll.js"></script>
     <script src="js/timeline.js"></script>
     <script src="js/stats-counter.js"></script>
-    <script src="js/services-slider.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/contact.js"></script>
   </body>
 </html>

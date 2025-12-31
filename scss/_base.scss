@@ -1,4 +1,4 @@
-// Base Styles
+// Base Styles - Dark Mode Premium
 @use "variables" as *;
 @use "mixins" as *;
 
@@ -11,9 +11,9 @@
 
 body {
   line-height: $line-height-base;
-  color: $text;
+  color: $text-main;
   overflow-x: hidden;
-  background-color: $light;
+  background-color: $bg-dark;
 }
 
 .container {
@@ -21,7 +21,7 @@ body {
 }
 
 section {
-  padding: $spacing-xl 0; // Reduced from $spacing-3xl to $spacing-xl
+  padding: 4rem 0;
 }
 
 .section-heading {
@@ -32,14 +32,14 @@ section {
   @include button;
 }
 
-// Enhanced Typography
+// Enhanced Typography - Dark Mode
 h1 {
   font-size: $font-size-5xl;
   font-weight: 800;
   line-height: $line-height-tight;
-  color: $primary;
+  color: $text-main;
   letter-spacing: -0.02em;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
 
   @include tablet {
     font-size: $font-size-4xl;
@@ -54,7 +54,7 @@ h2 {
   font-size: $font-size-3xl;
   font-weight: 700;
   line-height: $line-height-tight;
-  color: $primary;
+  color: $text-main;
   letter-spacing: -0.01em;
   position: relative;
   display: inline-block;
@@ -68,8 +68,9 @@ h2 {
     transform: translateX(-50%);
     width: 60px;
     height: 4px;
-    background: linear-gradient(90deg, $secondary 0%, $accent 100%);
+    background: linear-gradient(90deg, $primary 0%, $secondary 100%);
     border-radius: 2px;
+    box-shadow: $shadow-glow;
   }
 
   @include tablet {
@@ -85,9 +86,65 @@ h3 {
   font-size: $font-size-xl;
   font-weight: 600;
   line-height: $line-height-tight;
-  color: $primary;
+  color: $text-main;
 
   @include mobile {
     font-size: $font-size-lg;
+  }
+}
+
+h4,
+h5,
+h6 {
+  color: $text-main;
+  font-weight: 600;
+}
+
+p {
+  color: $text-muted;
+  line-height: $line-height-base;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+  transition: color $transition-base ease;
+  cursor: pointer;
+
+  &:hover {
+    color: $primary-dark;
+  }
+}
+
+// Cursor pointer for interactive elements
+button,
+.btn,
+[type="button"],
+[type="submit"],
+[role="button"],
+.clickable {
+  cursor: pointer;
+}
+
+// Utility classes for dark mode
+.text-gradient {
+  background: $primary-gradient;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-card {
+  background: $glass-bg;
+  backdrop-filter: blur(20px);
+  border: $glass-border;
+  border-radius: $border-radius-card;
+  box-shadow: $shadow-lg;
+  transition: all $transition-base ease;
+
+  &:hover {
+    background: $glass-bg-hover;
+    border: $glass-border-hover;
+    box-shadow: $shadow-xl;
   }
 }

@@ -1,55 +1,58 @@
-// _header.scss - Wersja FINALNA (Solid Dark Gradient + Logo Fix)
+// _header.scss - Premium Dark Mode
 @use "../variables" as *;
 @use "../mixins" as *;
 
 header {
-  // GRANATOWY GRADIENT
-  background: linear-gradient(90deg, #0a1628 0%, #1a2f4d 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  // Dark gradient matching the theme
+  background: linear-gradient(90deg, $bg-darker 0%, $bg-lighter 100%);
+  border-bottom: $glass-border;
 
-  color: white;
+  color: $text-main;
   padding: 0.5rem 0;
   position: fixed;
   width: 100%;
-  width: 100%;
   z-index: 1000;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); // Solidny cień
-  overflow: hidden; // TO UCINA GWIAZDKĘ Z LOGA
+  box-shadow: $shadow-lg;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
 
   .header-container {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 0 2%;
     max-width: 100%;
-    height: 60px; // Sztywna wysokość trzyma rygor
+    height: 60px;
 
     @include mobile {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: $spacing-sm 2%;
-      height: 50px;
+      height: 55px;
     }
   }
 
-  // LOGO - Naprawione przycinanie
+  // LOGO
   .logo {
-    @include flex-center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: relative;
-    height: 100%; // Dopasowane do kontenera
-    overflow: hidden; // Ucinamy to co wystaje
+    height: 100%;
+    overflow: visible;
 
     &-img {
-      height: 80px; // Większy obrazek...
+      height: 250px;
       width: auto;
-      object-fit: cover;
-      object-position: center top; // ...pozycjonowany od góry (gwiazdka na dole znika)
-      transform: translateY(-5px); // Lekka korekta w górę
+      object-fit: contain;
+      object-position: center center;
+      filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+      transform: translateY(2px);
 
       @include mobile {
-        height: 60px;
-        transform: translateY(-2px);
+        height: 80px;
+        transform: translateY(1px);
       }
     }
 
@@ -82,7 +85,7 @@ header {
     span {
       width: 28px;
       height: 3px;
-      background-color: white;
+      background-color: $text-main;
       transition: all 0.3s ease;
       border-radius: 2px;
     }
@@ -101,8 +104,10 @@ header {
   }
 
   nav {
-    grid-column: 2;
-    justify-self: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     @include mobile {
       position: fixed;
@@ -111,8 +116,8 @@ header {
       width: 100%;
       height: 100vh;
 
-      // Tło menu mobilnego - solidne, ciemne
-      background-color: #0b0f19;
+      // Mobile menu background
+      background-color: $bg-hero;
 
       transition: right 0.3s ease;
       padding-top: 80px;
@@ -127,6 +132,7 @@ header {
       display: flex;
       list-style: none;
       gap: $spacing-lg;
+      align-items: center;
 
       @include mobile {
         flex-direction: column;
@@ -136,17 +142,18 @@ header {
 
       li {
         @include mobile {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          border-bottom: $glass-border;
         }
 
         a {
-          color: white;
+          color: $text-main;
           text-decoration: none;
           text-transform: uppercase;
           @include transition(color);
           font-weight: 600;
-          font-size: 0.9rem;
+          font-size: 1.05rem;
           letter-spacing: 1px;
+          position: relative;
 
           @include mobile {
             display: block;
@@ -155,7 +162,27 @@ header {
           }
 
           &:hover {
-            color: $accent;
+            color: $primary;
+          }
+
+          // Underline effect on hover
+          &::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: $primary-gradient;
+            transition: width 0.3s ease;
+
+            @include mobile {
+              display: none;
+            }
+          }
+
+          &:hover::after {
+            width: 100%;
           }
         }
       }
