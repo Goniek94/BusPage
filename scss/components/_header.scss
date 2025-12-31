@@ -3,14 +3,14 @@
 @use "../mixins" as *;
 
 header {
-  // SOLIDNY GRADIENT - Zamiast szkła, które się rozmywało.
-  // Wygląda jak solidna belka kokpitu, czytelna i ostra.
-  background: linear-gradient(90deg, #0b0f19 0%, #162032 100%);
+  // GRANATOWY GRADIENT
+  background: linear-gradient(90deg, #0a1628 0%, #1a2f4d 100%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   color: white;
-  padding: 0.3rem 0; // Mniejszy padding = zgrabniejsza belka
+  padding: 0.5rem 0;
   position: fixed;
+  width: 100%;
   width: 100%;
   z-index: 1000;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); // Solidny cień

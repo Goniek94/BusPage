@@ -1,6 +1,6 @@
 // ============================================
-// TIMELINE - "PODRÓŻ W CZASIE"
-// Interactive timeline with animated bus
+// TIMELINE - "PODRÓŻ W CZASIE" - Z AUTOMATYCZNYM PRZEWIJANIEM
+// Interactive timeline with animated bus and auto-scroll
 // ============================================
 
 class Timeline {
@@ -13,6 +13,13 @@ class Timeline {
     this.navRight = document.querySelector(".timeline-nav-right button");
 
     if (!this.wrapper || !this.track) return;
+
+    // Auto-scroll settings
+    this.autoScrollEnabled = true;
+    this.autoScrollSpeed = 0.5; // pixels per frame
+    this.autoScrollInterval = null;
+    this.userInteracted = false;
+    this.pauseDuration = 3000; // pause for 3 seconds after user interaction
 
     this.init();
   }
@@ -27,8 +34,13 @@ class Timeline {
     // Setup item interactions
     this.setupItemInteractions();
 
-    // Auto-scroll on load
-    this.autoScrollToCenter();
+    // Setup user interaction detection
+    this.setupUserInteractionDetection();
+
+    // Start auto-scroll after a short delay
+    setTimeout(() => {
+      this.startAutoScroll();
+    }, 1000);
 
     // Update nav buttons on scroll
     this.wrapper.addEventListener("scroll", () => this.updateNavButtons());
@@ -37,11 +49,17 @@ class Timeline {
 
   setupNavigation() {
     if (this.navLeft) {
-      this.navLeft.addEventListener("click", () => this.scrollLeft());
+      this.navLeft.addEventListener("click", () => {
+        this.pauseAutoScroll();
+        this.scrollLeft();
+      });
     }
 
     if (this.navRight) {
-      this.navRight.addEventListener("click", () => this.scrollRight());
+      this.navRight.addEventListener("click", () => {
+        this.pauseAutoScroll();
+        this.scrollRight();
+      });
     }
   }
 
@@ -87,12 +105,6 @@ class Timeline {
       const busPosition = scrollPercentage * maxBusPosition;
 
       this.bus.style.left = `${busPosition}px`;
-
-      // Add bounce effect when scrolling
-      this.bus.style.animation = "none";
-      setTimeout(() => {
-        this.bus.style.animation = "";
-      }, 10);
     });
   }
 
@@ -103,16 +115,103 @@ class Timeline {
       if (marker) {
         // Click to activate
         marker.addEventListener("click", () => {
+          this.pauseAutoScroll();
           this.activateItem(item, index);
         });
 
         // Touch support for mobile
         marker.addEventListener("touchstart", (e) => {
           e.preventDefault();
+          this.pauseAutoScroll();
           this.activateItem(item, index);
         });
       }
     });
+  }
+
+  setupUserInteractionDetection() {
+    // Pause auto-scroll when user manually scrolls
+    let scrollTimeout;
+    this.wrapper.addEventListener("scroll", () => {
+      if (!this.autoScrollEnabled) return;
+
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        // Resume auto-scroll after user stops scrolling
+        if (this.userInteracted) {
+          this.resumeAutoScroll();
+        }
+      }, 2000);
+    });
+
+    // Detect manual scroll
+    this.wrapper.addEventListener("wheel", () => {
+      this.pauseAutoScroll();
+    });
+
+    this.wrapper.addEventListener("touchstart", () => {
+      this.pauseAutoScroll();
+    });
+  }
+
+  startAutoScroll() {
+    if (this.autoScrollInterval) return;
+
+    this.autoScrollInterval = requestAnimationFrame(() =>
+      this.autoScrollStep()
+    );
+  }
+
+  autoScrollStep() {
+    if (!this.autoScrollEnabled) return;
+
+    const maxScroll = this.wrapper.scrollWidth - this.wrapper.clientWidth;
+    const currentScroll = this.wrapper.scrollLeft;
+
+    // Check if we reached the end
+    if (currentScroll >= maxScroll - 1) {
+      // Reset to beginning
+      this.wrapper.scrollTo({
+        left: 0,
+        behavior: "smooth",
+      });
+
+      // Wait a bit before continuing
+      setTimeout(() => {
+        if (this.autoScrollEnabled) {
+          this.autoScrollInterval = requestAnimationFrame(() =>
+            this.autoScrollStep()
+          );
+        }
+      }, 2000);
+    } else {
+      // Continue scrolling
+      this.wrapper.scrollLeft += this.autoScrollSpeed;
+      this.autoScrollInterval = requestAnimationFrame(() =>
+        this.autoScrollStep()
+      );
+    }
+  }
+
+  pauseAutoScroll() {
+    this.autoScrollEnabled = false;
+    this.userInteracted = true;
+
+    if (this.autoScrollInterval) {
+      cancelAnimationFrame(this.autoScrollInterval);
+      this.autoScrollInterval = null;
+    }
+
+    // Resume after pause duration
+    setTimeout(() => {
+      this.resumeAutoScroll();
+    }, this.pauseDuration);
+  }
+
+  resumeAutoScroll() {
+    this.autoScrollEnabled = true;
+    this.userInteracted = false;
+    this.startAutoScroll();
   }
 
   activateItem(item, index) {
@@ -136,29 +235,6 @@ class Timeline {
       left: scrollLeft,
       behavior: "smooth",
     });
-
-    // Move bus to item
-    if (this.bus) {
-      const itemPosition = item.offsetLeft;
-      this.bus.style.transition = "left 1s ease-in-out";
-      this.bus.style.left = `${itemPosition}px`;
-
-      setTimeout(() => {
-        this.bus.style.transition = "";
-      }, 1000);
-    }
-  }
-
-  autoScrollToCenter() {
-    // Auto-scroll to show middle items on load
-    setTimeout(() => {
-      const centerScroll =
-        (this.wrapper.scrollWidth - this.wrapper.clientWidth) / 2;
-      this.wrapper.scrollTo({
-        left: centerScroll,
-        behavior: "smooth",
-      });
-    }, 500);
   }
 }
 

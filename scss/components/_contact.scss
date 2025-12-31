@@ -1,558 +1,365 @@
-// Contact Section - Modern & Premium
 @use "../variables" as *;
 @use "../mixins" as *;
 
-.contact {
-  background: linear-gradient(135deg, #ffffff 0%, #f5f7fa 100%);
+.contact-premium {
   position: relative;
+  // GRADIENT 6: Powrót do ciemnego granatu z subtelnym fioletowym akcentem
+  background: linear-gradient(
+    180deg,
+    #4366d0 0%,
+    #3a5ab8 15%,
+    #314a98 30%,
+    #283a78 45%,
+    #202b58 60%,
+    #1a2240 75%,
+    #151b35 90%,
+    #12182b 100%
+  );
+  padding: clamp(4rem, 8vh, 8rem) 0;
   overflow: hidden;
+  color: #fff;
 
-  // Decorative background elements
-  &::before {
-    content: "";
+  // Dekoracyjne tło z mieszanymi kolorami
+  .glow-bg {
     position: absolute;
-    top: -40%;
-    left: -10%;
-    width: 650px;
-    height: 650px;
-    background: radial-gradient(
-      circle,
-      rgba($primary, 0.04) 0%,
-      transparent 70%
-    );
+    width: 600px;
+    height: 600px;
     border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.1;
     pointer-events: none;
-  }
+    z-index: 0;
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -40%;
-    right: -10%;
-    width: 550px;
-    height: 550px;
-    background: radial-gradient(
-      circle,
-      rgba($accent, 0.03) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    pointer-events: none;
+    &.glow-1 {
+      top: -10%;
+      left: -10%;
+      background: rgba(79, 172, 254, 0.4);
+    }
+    &.glow-2 {
+      bottom: -10%;
+      right: -10%;
+      background: rgba(138, 85, 247, 0.3);
+    }
   }
 
   .container {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
   }
 
-  // Section heading - consistent with other sections
-  .section-heading {
-    text-align: center;
-    margin-bottom: $spacing-3xl;
+  // --- GRID: IDEALNIE RÓWNE KOLUMNY ---
+  .contact-equal-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: stretch; // Równa wysokość
 
-    h1,
-    h2 {
-      font-size: 3.5rem;
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+
+  // WSPÓLNY STYL PANELI (GLASS)
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 3.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    transition: border-color 0.3s ease;
+
+    &:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .panel-header {
+      margin-bottom: 2rem;
+    }
+
+    .panel-title {
+      font-size: 1.8rem;
       font-weight: 700;
-      color: $primary;
-      letter-spacing: -0.02em;
-      margin-bottom: $spacing-md;
-      position: relative;
-      display: inline-block;
-      padding-bottom: $spacing-xs;
-      text-transform: uppercase;
-
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 4px;
-        background: linear-gradient(90deg, $secondary 0%, $accent 100%);
-        border-radius: 2px;
-      }
-
-      @include tablet {
-        font-size: 2.5rem;
-      }
-
-      @include mobile {
-        font-size: 2rem;
-      }
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .panel-subtitle {
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 1rem;
     }
 
-    p {
-      color: $gray;
-      font-size: $font-size-lg;
-      max-width: 700px;
-      margin: $spacing-lg auto 0;
-      line-height: 1.8;
+    @media (max-width: 576px) {
+      padding: 2rem;
     }
   }
 
-  // Contact Note - Info box for quote requirements
-  &-note {
-    background: linear-gradient(
-      135deg,
-      rgba($secondary, 0.05) 0%,
-      rgba($accent, 0.05) 100%
-    );
-    border-left: 4px solid $secondary;
-    border-radius: $border-radius-sm;
-    padding: $spacing-lg;
-    margin: $spacing-lg 0 0 0;
-    max-width: 100%;
-    text-align: center;
+  // --- LEWY PANEL ---
+  .info-panel {
+    // Nagłówek zintegrowany w lewym panelu
+    .panel-header-integrated {
+      margin-bottom: 3rem;
 
-    p {
-      margin: 0 0 $spacing-sm 0;
-      color: $primary;
-      font-size: 1rem;
-
-      strong {
-        color: $primary;
-        font-weight: 600;
+      .main-title {
+        font-size: clamp(2.2rem, 4vw, 3rem);
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+        background: linear-gradient(to right, #fff, #94a3b8);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .panel-desc {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.1rem;
       }
     }
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: $spacing-sm auto 0 auto;
-      display: inline-block;
-      text-align: left;
+    // --- POPRAWIONE: BARDZO WIDOCZNY NAPIS ---
+    .wazna-informacja {
+      font-weight: 900 !important; // Maksymalna grubość
+      color: #ff4444 !important; // Jasny, ostry czerwony (bez przezroczystości)
+      opacity: 1 !important; // Pełna widoczność
+      text-shadow: none !important; // Wyłączenie wszelkich cieni
+      letter-spacing: 0.5px; // Lekki odstęp dla czytelności grubego fontu
+    }
+    // ------------------------------------------
 
-      li {
-        padding: $spacing-xs 0;
-        color: $gray;
-        font-size: 0.95rem;
-        position: relative;
-        padding-left: $spacing-lg;
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
 
-        &::before {
-          content: "✓";
-          position: absolute;
-          left: 0;
-          color: $secondary;
-          font-weight: bold;
-          font-size: 1.1rem;
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      padding: 1rem;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      margin: 0 -1rem;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.03);
+        .icon-box {
+          transform: scale(1.1) rotate(-5deg);
+        }
+      }
+
+      .icon-box {
+        width: 52px;
+        height: 52px;
+        flex-shrink: 0;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        svg {
+          width: 24px;
+          height: 24px;
+          color: white;
+        }
+        &.blue {
+          background: linear-gradient(135deg, #4facfe, #00f2fe);
+          box-shadow: 0 8px 20px rgba(79, 172, 254, 0.25);
+        }
+        &.purple {
+          background: linear-gradient(135deg, #a855f7, #d946ef);
+          box-shadow: 0 8px 20px rgba(168, 85, 247, 0.25);
+        }
+        &.orange {
+          background: linear-gradient(135deg, #fb923c, #f97316);
+          box-shadow: 0 8px 20px rgba(251, 146, 60, 0.25);
+        }
+      }
+
+      .row-content {
+        .label {
+          display: block;
+          font-size: 0.8rem;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: rgba(255, 255, 255, 0.4);
+          margin-bottom: 4px;
+          font-weight: 600;
+        }
+        .value {
+          display: block;
+          font-size: 1.15rem;
+          color: white;
+          font-weight: 600;
+          line-height: 1.4;
+          &.highlight {
+            color: #4facfe;
+          }
+          &.sub {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 400;
+            margin-top: 2px;
+          }
         }
       }
     }
 
-    @include mobile {
-      padding: $spacing-md;
+    // --- NOWA SEKCJA: WYMOGI ---
+    .quote-requirements {
+      margin-top: auto; // Dopycha do dołu
+      background: rgba(79, 172, 254, 0.05);
+      border: 1px solid rgba(79, 172, 254, 0.2);
+      border-radius: 16px;
+      padding: 1.5rem;
 
-      p {
-        font-size: 0.9rem;
+      .req-title {
+        display: flex;
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+        color: #4facfe;
+        font-weight: 700;
+        font-size: 1rem;
+        line-height: 1.4;
+
+        .icon {
+          font-size: 1.2rem;
+        }
       }
 
-      ul li {
-        font-size: 0.85rem;
+      .req-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          position: relative;
+          padding-left: 1.5rem;
+          margin-bottom: 0.5rem;
+          color: rgba(255, 255, 255, 0.8);
+          font-size: 0.95rem;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          &::before {
+            content: "•";
+            color: #4facfe;
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1rem;
+            top: 0.2rem;
+          }
+        }
       }
     }
   }
 
-  // Main flex container - 2 columns
-  &-flex {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: $spacing-xl;
-    margin-top: $spacing-2xl;
-
-    @include tablet {
-      grid-template-columns: 1fr;
-      gap: $spacing-lg;
-    }
-  }
-}
-
-// Contact Info Card
-.contact-info {
-  background: white;
-  border-radius: $border-radius-md;
-  padding: $spacing-2xl;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba($primary, 0.08);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-lg;
-
-  // Top gradient line
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, $secondary 0%, $accent 100%);
-  }
-
-  h3 {
-    font-size: 2rem;
-    color: $primary;
-    font-weight: 700;
-    margin-bottom: $spacing-md;
-    padding-top: $spacing-sm;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-  }
-}
-
-// Contact Item
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: $spacing-sm;
-  padding: $spacing-sm 0;
-  border-radius: $border-radius-sm;
-  transition: all $transition-base ease;
-  position: relative;
-
-  &:hover {
-    .contact-icon {
-      transform: scale(1.05);
-      background: linear-gradient(135deg, $secondary 0%, $accent 100%);
-      box-shadow: 0 6px 15px rgba($secondary, 0.3);
-    }
-  }
-
-  &-text {
-    strong {
-      display: block;
-      color: $primary;
-      font-size: 1.1rem;
-      margin-bottom: 4px;
-      font-weight: 600;
+  // --- PRAWY PANEL (FORMULARZ) ---
+  .form-panel {
+    .equal-form {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
     }
 
-    span {
-      color: $gray;
+    .input-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+
+    .input-group {
+      position: relative;
+
+      input,
+      textarea {
+        width: 100%;
+        background: rgba(15, 23, 42, 0.6);
+        border: 2px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 1rem 1.2rem;
+        font-size: 1rem;
+        color: white;
+        outline: none;
+        transition: all 0.3s ease;
+        font-family: inherit;
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          border-color: #4facfe;
+          background: rgba(15, 23, 42, 0.9);
+          + label {
+            transform: translateY(-24px) scale(0.85);
+            background: #0f172a;
+            color: #4facfe;
+            padding: 0 6px;
+          }
+        }
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      label {
+        position: absolute;
+        left: 1rem;
+        top: 1rem;
+        color: rgba(255, 255, 255, 0.5);
+        pointer-events: none;
+        transform-origin: left top;
+        transition: all 0.3s ease;
+      }
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 1.2rem;
+      background: linear-gradient(90deg, #4facfe, #2980b9);
+      border: none;
+      border-radius: 12px;
+      color: white;
       font-size: 1rem;
-      line-height: 1.6;
-    }
-  }
-}
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 25px rgba(79, 172, 254, 0.3);
 
-// Contact Icon
-.contact-icon {
-  width: 50px;
-  height: 50px;
-  min-width: 50px;
-  background: linear-gradient(135deg, $primary 0%, $secondary 100%);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all $transition-base ease;
-  box-shadow: 0 4px 12px rgba($primary, 0.2);
-  flex-shrink: 0;
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
 
-  svg,
-  i {
-    font-size: 1.5rem;
-    color: white;
-  }
-}
-
-// Contact Form Card
-.contact-form {
-  background: white;
-  border-radius: $border-radius-md;
-  padding: $spacing-2xl;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba($primary, 0.08);
-  position: relative;
-  overflow: hidden;
-
-  // Top gradient line
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, $secondary 0%, $accent 100%);
-  }
-
-  h3 {
-    font-size: 2rem;
-    color: $primary;
-    font-weight: 700;
-    margin-bottom: $spacing-xl;
-    padding-top: $spacing-sm;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-  }
-}
-
-// Form Group - Floating Label Style
-.form-group {
-  margin-bottom: $spacing-lg;
-  position: relative;
-
-  label {
-    position: absolute;
-    left: $spacing-md;
-    top: 50%;
-    transform: translateY(-50%);
-    color: $gray;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: all $transition-base ease;
-    pointer-events: none;
-    background: white;
-    padding: 0 6px;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    padding: 1rem 1rem; // Fixed padding for consistent height
-    border: 2px solid rgba($primary, 0.15);
-    border-radius: $border-radius-sm;
-    font-size: 1rem;
-    background: white;
-    transition: all $transition-base ease;
-    font-family: inherit;
-    height: 56px; // Fixed height for all inputs
-    line-height: 1.5;
-
-    &::placeholder {
-      opacity: 0;
-    }
-
-    &:focus {
-      outline: none;
-      border-color: $secondary;
-      box-shadow: 0 4px 12px rgba($secondary, 0.15);
-      transform: translateY(-2px);
-
-      + label {
-        top: 0;
-        font-size: 0.85rem;
-        color: $secondary;
-        font-weight: 600;
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(79, 172, 254, 0.5);
+        svg {
+          transform: translateX(5px) rotate(-10deg);
+        }
+      }
+      &:active {
+        transform: translateY(0);
       }
     }
-
-    &:not(:placeholder-shown) + label {
-      top: 0;
-      font-size: 0.85rem;
-      color: $primary;
-      font-weight: 600;
-    }
-  }
-
-  textarea {
-    min-height: 150px;
-    height: auto; // Override fixed height for textarea
-    resize: vertical;
-    padding: 1rem 1rem;
-
-    + label {
-      top: 1rem;
-      transform: translateY(0);
-    }
-
-    &:focus + label,
-    &:not(:placeholder-shown) + label {
-      top: -10px;
-      transform: translateY(0);
-    }
-  }
-
-  // Error state
-  &.error {
-    input,
-    textarea {
-      border-color: #e74c3c;
-    }
-
-    label {
-      color: #e74c3c;
-    }
-  }
-}
-
-// Form Row - 2 columns
-.form-row {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: $spacing-md;
-
-  @include mobile {
-    grid-template-columns: 1fr;
-  }
-}
-
-// Submit Button
-.submit-btn {
-  width: auto;
-  min-width: 200px;
-  padding: $spacing-md $spacing-xl;
-  background: linear-gradient(135deg, $secondary 0%, $accent 100%);
-  color: white;
-  border: none;
-  border-radius: $border-radius-sm;
-  font-size: 1.1rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  cursor: pointer;
-  transition: all $transition-base ease;
-  position: relative;
-  overflow: hidden;
-  margin-top: 0;
-  margin-left: auto;
-  display: block;
-  box-shadow: 0 4px 15px rgba($secondary, 0.3);
-
-  // Shine effect
-  &::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s ease, height 0.6s ease;
-  }
-
-  &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba($secondary, 0.4);
-
-    &::before {
-      width: 400px;
-      height: 400px;
-    }
-  }
-
-  &:active {
-    transform: translateY(-1px);
-  }
-
-  span {
-    position: relative;
-    z-index: 1;
-  }
-}
-
-// Success Message
-.success-message {
-  display: none;
-  padding: $spacing-md;
-  background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
-  color: white;
-  border-radius: $border-radius-sm;
-  margin-bottom: $spacing-md;
-  font-weight: 600;
-  text-align: center;
-  box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
-  animation: slideDown 0.5s ease;
-
-  &.show {
-    display: block;
-  }
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Responsive adjustments
-@include tablet {
-  .contact {
-    .section-heading h2 {
-      font-size: 2.5rem;
-    }
-  }
-
-  .contact-info,
-  .contact-form {
-    padding: $spacing-xl;
-
-    h3 {
-      font-size: 1.75rem;
-    }
-  }
-
-  .contact-icon {
-    width: 45px;
-    height: 45px;
-    min-width: 45px;
-
-    svg,
-    i {
-      font-size: 1.3rem;
-    }
-  }
-}
-
-@include mobile {
-  .contact {
-    .section-heading h2 {
-      font-size: 2rem;
-    }
-  }
-
-  .contact-info,
-  .contact-form {
-    padding: $spacing-lg;
-
-    h3 {
-      font-size: 1.5rem;
-    }
-  }
-
-  .contact-item {
-    padding: $spacing-sm;
-  }
-
-  .contact-icon {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-
-    svg,
-    i {
-      font-size: 1.2rem;
-    }
-  }
-
-  .form-group {
-    margin-bottom: $spacing-md;
-
-    input,
-    textarea {
-      padding: $spacing-sm;
-      font-size: 0.95rem;
-    }
-
-    label {
-      font-size: 0.9rem;
-    }
-  }
-
-  .submit-btn {
-    font-size: 1rem;
-    padding: $spacing-sm $spacing-lg;
   }
 }
