@@ -227,7 +227,7 @@ header .logo {
   position: relative;
   height: 100%;
   overflow: visible;
-  z-index: 1002;
+  z-index: 1001;
 }
 header .logo-img {
   height: 250px;
@@ -259,8 +259,9 @@ header .hamburger {
   border: none;
   cursor: pointer;
   padding: 8px;
-  z-index: 1002;
+  z-index: 1003;
   position: relative;
+  pointer-events: auto;
 }
 @media (max-width: 768px) {
   header .hamburger {

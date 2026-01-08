@@ -43,7 +43,7 @@ header {
     position: relative;
     height: 100%;
     overflow: visible;
-    z-index: 1002;
+    z-index: 1001; // Lower than hamburger to prevent blocking clicks
 
     &-img {
       height: 250px;
@@ -79,8 +79,9 @@ header {
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 1002;
+    z-index: 1003; // Higher than logo to ensure clickability
     position: relative;
+    pointer-events: auto; // Ensure it's always clickable
 
     @include mobile {
       display: flex;
