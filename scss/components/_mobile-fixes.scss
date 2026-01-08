@@ -1,0 +1,368 @@
+// ============================================
+// MOBILE FIXES - Comprehensive responsive improvements
+// ============================================
+
+// Fix 1: Larger logo on mobile
+@media (max-width: 768px) {
+  header .logo-img {
+    height: 120px !important; // Increased from 80px
+    transform: translateY(2px);
+  }
+}
+
+// Fix 2: Scroll arrow positioning (avoid button overlap)
+@media (max-width: 768px) {
+  .hero .scroll-arrow {
+    bottom: 1rem; // Moved up from 2rem
+    opacity: 0.6;
+
+    .arrow-icon {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  // Add more padding to hero buttons to avoid overlap
+  .hero .hero-buttons {
+    margin-bottom: 4rem;
+  }
+}
+
+// Fix 3: Service cards - prevent text cutoff
+@media (max-width: 768px) {
+  .services-flip {
+    .flip-card-wrapper {
+      height: auto !important; // Allow dynamic height
+      min-height: 500px;
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      height: auto !important;
+      min-height: 500px;
+    }
+
+    .flip-card-front {
+      .card-image {
+        height: 200px; // Fixed height for image
+        flex-shrink: 0;
+      }
+
+      .card-content {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .card-title {
+          font-size: 1.5rem;
+          min-height: auto;
+          margin-bottom: 0.8rem;
+          line-height: 1.3;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+
+        .card-intro {
+          font-size: 0.9rem;
+          line-height: 1.5;
+          margin-bottom: 1.2rem;
+          flex: 1;
+        }
+
+        .flip-button {
+          margin-top: auto;
+          padding: 0.8rem 1.5rem;
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    .flip-card-back {
+      padding: 2rem 1.5rem;
+
+      .back-content {
+        .back-title {
+          font-size: 1.5rem;
+          min-height: auto;
+          margin-bottom: 1rem;
+          line-height: 1.3;
+          word-wrap: break-word;
+          overflow-wrap: break-word;
+        }
+
+        .back-description {
+          font-size: 0.9rem;
+          line-height: 1.6;
+          margin-bottom: 1.2rem;
+        }
+
+        .back-features {
+          gap: 0.6rem;
+          margin-bottom: 1.5rem;
+
+          li {
+            font-size: 0.85rem;
+            line-height: 1.4;
+            padding-left: 1.8rem;
+
+            &::before {
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .flip-button-back {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.85rem;
+          margin-top: auto;
+        }
+      }
+    }
+  }
+}
+
+// Fix 4: Even smaller devices (iPhone SE, small Androids)
+@media (max-width: 390px) {
+  header .logo-img {
+    height: 100px !important;
+  }
+
+  .services-flip {
+    .flip-card-wrapper {
+      min-height: 480px;
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      min-height: 480px;
+    }
+
+    .flip-card-front .card-content {
+      padding: 1.2rem;
+
+      .card-title {
+        font-size: 1.3rem;
+      }
+
+      .card-intro {
+        font-size: 0.85rem;
+      }
+    }
+
+    .flip-card-back {
+      padding: 1.5rem 1.2rem;
+
+      .back-content {
+        .back-title {
+          font-size: 1.3rem;
+        }
+
+        .back-description {
+          font-size: 0.85rem;
+        }
+
+        .back-features li {
+          font-size: 0.8rem;
+        }
+      }
+    }
+  }
+}
+
+// Fix 5: Large phones (iPhone Pro Max, etc.)
+@media (min-width: 391px) and (max-width: 480px) {
+  header .logo-img {
+    height: 130px !important;
+  }
+
+  .services-flip {
+    .flip-card-wrapper {
+      min-height: 520px;
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      min-height: 520px;
+    }
+  }
+}
+
+// Fix 6: Smooth video performance on mobile
+@media (max-width: 768px) {
+  .hero-video-wrapper video {
+    transform: translateZ(0); // Hardware acceleration
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+}
+
+// Fix 7: Timeline improvements for mobile
+@media (max-width: 768px) {
+  .timeline-container {
+    padding: 0 1rem;
+
+    .timeline-track {
+      gap: 2rem; // More space between items
+    }
+
+    .timeline-item {
+      .timeline-year {
+        font-size: 1rem;
+      }
+
+      .timeline-content {
+        padding: 1.2rem;
+
+        h3 {
+          font-size: 1.1rem;
+          line-height: 1.3;
+        }
+
+        p {
+          font-size: 0.85rem;
+          line-height: 1.5;
+        }
+      }
+    }
+  }
+}
+
+// Fix 8: Contact section mobile improvements
+@media (max-width: 768px) {
+  .contact-premium {
+    .contact-grid,
+    .contact-equal-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .glass-panel {
+      padding: 2rem 1.5rem;
+    }
+
+    .info-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+
+      .icon-box {
+        width: 40px;
+        height: 40px;
+
+        svg {
+          width: 18px;
+          height: 18px;
+        }
+      }
+
+      .row-content {
+        .value {
+          font-size: 1rem;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}
+
+// Fix 9: Stats section mobile
+@media (max-width: 768px) {
+  .stats-section {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      padding: 2rem 1.5rem;
+
+      .stat-icon {
+        font-size: 2rem;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+      }
+
+      .stat-label {
+        font-size: 0.85rem;
+      }
+    }
+  }
+}
+
+// Fix 10: Footer mobile improvements
+@media (max-width: 768px) {
+  .footer-modern {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .footer-col {
+      text-align: center;
+
+      .footer-title {
+        &::after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+
+      .footer-links,
+      .footer-contact {
+        li {
+          text-align: center;
+          justify-content: center;
+        }
+      }
+
+      .footer-social {
+        justify-content: center;
+      }
+    }
+  }
+}
+
+// Fix 11: Smooth animations on all devices
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@media (max-width: 768px) {
+  // Reduce animation complexity on mobile for better performance
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+
+  // Disable parallax effects on mobile
+  [data-aos] {
+    transition-duration: 0.4s !important;
+  }
+}
+
+// Fix 12: Prevent horizontal scroll on mobile
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    max-width: 100%;
+  }
+
+  section {
+    overflow-x: hidden;
+  }
+}

@@ -20,3 +20,15 @@
 @use "components/contact";
 @use "components/contact-effects";
 @use "components/footer";
+
+// 4. Mobile Fixes - Must be last to override other styles
+@use "components/mobile-fixes";
+
+// 5. Spacing Fixes - Reduce excessive spacing
+@use "components/spacing-fixes";
+
+// 6. UI Improvements - Better animations and menu
+@use "components/ui-improvements";
+
+// 7. Performance Fixes - Critical optimizations (MUST BE LAST)
+@use "components/performance-fixes";

@@ -5,14 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MARBUS - Zawsze na czas!</title>
 
+    <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://unpkg.com" />
+
+    <!-- Preload critical assets -->
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="preload" href="IMG/logobus1.png" as="image" />
+
+    <!-- Fonts with display=swap for better performance -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <!-- Defer non-critical CSS -->
+    <link
+      href="https://unpkg.com/aos@2.3.1/dist/aos.css"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
@@ -582,7 +598,11 @@
               <!-- FRONT -->
               <div class="flip-card-front">
                 <div class="card-image">
-                  <img src="IMG/Bus30.png" alt="Transport Pracowniczy" />
+                  <img
+                    src="IMG/Bus30.png"
+                    alt="Transport Pracowniczy"
+                    loading="lazy"
+                  />
                   <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -647,7 +667,7 @@
               <!-- FRONT -->
               <div class="flip-card-front">
                 <div class="card-image">
-                  <img src="IMG/bus22.png" alt="Wyjazdy Okazjonalne" />
+                  <img src="IMG/bus22.png" alt="Wyjazdy Okazjonalne" / loading="lazy">
                   <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -712,7 +732,7 @@
               <!-- FRONT -->
               <div class="flip-card-front">
                 <div class="card-image">
-                  <img src="IMG/Bus9.png" alt="Transport VIP & Business" />
+                  <img src="IMG/Bus9.png" alt="Transport VIP & Business" / loading="lazy">
                   <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -776,7 +796,7 @@
               <!-- FRONT -->
               <div class="flip-card-front">
                 <div class="card-image">
-                  <img src="IMG/Minibus.png" alt="Transport Przystosowany" />
+                  <img src="IMG/Minibus.png" alt="Transport Przystosowany" / loading="lazy">
                   <div class="card-overlay"></div>
                 </div>
                 <div class="card-content">
@@ -1069,15 +1089,9 @@
     <footer class="footer-modern">
       <div class="container">
         <div class="footer-grid">
-          <!-- Column 1: Logo & Description -->
+          <!-- Column 1: Description -->
           <div class="footer-col footer-brand">
-            <div class="footer-logo">
-              <img
-                src="IMG/Logobus.svg"
-                alt="MarBus Logo"
-                class="footer-logo-img"
-              />
-            </div>
+            <h4 class="footer-title">MARBUS</h4>
             <p class="footer-desc">
               Ponad 30 lat doświadczenia w transporcie pracowniczym i przewozach
               okazjonalnych. Bezpieczeństwo, komfort i punktualność to nasze
@@ -1226,8 +1240,9 @@
     <script src="js/menu.js"></script>
     <script src="js/smooth-scroll.js"></script>
     <script src="js/timeline.js"></script>
-    <script src="js/stats-counter.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/contact.js"></script>
+    <script src="js/stats-counter.js" defer></script>
+    <script src="js/services.js" defer></script>
+    <script src="js/contact.js" defer></script>
   </body>
 </html>
+<script src="js/stats-counter.js" defer></script>

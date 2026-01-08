@@ -133,6 +133,9 @@ class Timeline {
 
     this.currentIndex = 0; // Start at first key year
     this.isAnimating = false;
+    this.autoPlayInterval = null;
+    this.autoPlayEnabled = true;
+    this.autoPlayDelay = 4000; // 4 seconds between transitions
 
     if (!this.wrapper || !this.track) return;
 
@@ -145,6 +148,53 @@ class Timeline {
 
     // Initial position
     this.goToYear(keyYears[0], false);
+
+    // Start automatic animation after a short delay
+    setTimeout(() => {
+      this.startAutoPlay();
+    }, 2000);
+
+    // Pause autoplay on hover
+    if (this.wrapper) {
+      this.wrapper.addEventListener("mouseenter", () => this.pauseAutoPlay());
+      this.wrapper.addEventListener("mouseleave", () => this.resumeAutoPlay());
+    }
+  }
+
+  startAutoPlay() {
+    if (!this.autoPlayEnabled) return;
+
+    this.autoPlayInterval = setInterval(() => {
+      if (!this.isAnimating) {
+        // Move to next year
+        if (this.currentIndex < keyYears.length - 1) {
+          this.currentIndex++;
+        } else {
+          // Loop back to start
+          this.currentIndex = 0;
+        }
+        this.goToYear(keyYears[this.currentIndex], true);
+        this.updateButtonStates();
+      }
+    }, this.autoPlayDelay);
+  }
+
+  pauseAutoPlay() {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+      this.autoPlayInterval = null;
+    }
+  }
+
+  resumeAutoPlay() {
+    if (this.autoPlayEnabled && !this.autoPlayInterval) {
+      this.startAutoPlay();
+    }
+  }
+
+  stopAutoPlay() {
+    this.autoPlayEnabled = false;
+    this.pauseAutoPlay();
   }
 
   setupArrowNavigation() {
@@ -172,6 +222,9 @@ class Timeline {
   navigatePrev() {
     if (this.isAnimating || this.currentIndex <= 0) return;
 
+    // Stop autoplay when user manually navigates
+    this.stopAutoPlay();
+
     this.currentIndex--;
     this.goToYear(keyYears[this.currentIndex], true);
     this.updateButtonStates();
@@ -179,6 +232,9 @@ class Timeline {
 
   navigateNext() {
     if (this.isAnimating || this.currentIndex >= keyYears.length - 1) return;
+
+    // Stop autoplay when user manually navigates
+    this.stopAutoPlay();
 
     this.currentIndex++;
     this.goToYear(keyYears[this.currentIndex], true);
@@ -228,7 +284,7 @@ class Timeline {
       behavior: animate ? "smooth" : "auto",
     });
 
-    // Move bus to this position
+    // Move bus to this position using TRANSFORM (GPU-accelerated)
     const itemOffsetLeft = targetItem.offsetLeft;
     const busPosition = itemOffsetLeft - 40; // Center bus on marker
 
@@ -236,7 +292,6 @@ class Timeline {
     console.log("🚌 Moving bus to year:", year);
     console.log("📍 Target item offsetLeft:", itemOffsetLeft);
     console.log("🎯 Bus position:", busPosition);
-    console.log("🚍 Bus element:", this.bus);
 
     if (animate) {
       // Add driving animation class
@@ -246,29 +301,29 @@ class Timeline {
       this.bus.classList.add("accelerating");
       setTimeout(() => {
         this.bus.classList.remove("accelerating");
-      }, 300);
+      }, 400);
 
-      // Animate bus movement with smooth easing
+      // GPU-accelerated animation using TRANSFORM
       this.bus.style.transition =
-        "left 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
-      this.bus.style.left = `${busPosition}px`;
+        "transform 1.8s cubic-bezier(0.42, 0, 0.58, 1)";
+      this.bus.style.transform = `translateX(${busPosition}px) translateY(-50%) translateZ(0)`;
 
-      console.log("✅ Bus left set to:", this.bus.style.left);
+      console.log("✅ Bus transform set to:", this.bus.style.transform);
 
       // Add deceleration effect near end
       setTimeout(() => {
         this.bus.classList.add("decelerating");
-      }, 900);
+      }, 1400);
 
       // Remove driving class after animation
       setTimeout(() => {
         this.bus.classList.remove("driving");
         this.bus.classList.remove("decelerating");
         this.isAnimating = false;
-      }, 1200);
+      }, 1800);
     } else {
       this.bus.style.transition = "none";
-      this.bus.style.left = `${busPosition}px`;
+      this.bus.style.transform = `translateX(${busPosition}px) translateY(-50%) translateZ(0)`;
     }
 
     // Update story display with delay for better sync

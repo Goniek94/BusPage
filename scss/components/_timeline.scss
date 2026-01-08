@@ -281,14 +281,17 @@
 .timeline-bus {
   position: absolute;
   top: 50%;
-  left: 0; // Pozycja kontrolowana przez JS
-  transform: translateY(-50%);
+  left: 0; // Initial position only
+  transform: translateX(0) translateY(-50%) translateZ(0); // GPU-accelerated
   width: 100px;
   height: 60px;
   z-index: 10;
   filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.3));
-  will-change: left, transform;
+  will-change: transform; // Only transform, not left
   transition: filter 0.3s ease;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
 
   svg {
     width: 100%;

@@ -1,4 +1,4 @@
-// _header.scss - Premium Dark Mode
+// _header.scss - Premium Dark Mode with Fullscreen Mobile Menu
 @use "../variables" as *;
 @use "../mixins" as *;
 
@@ -30,6 +30,8 @@ header {
       align-items: center;
       padding: $spacing-sm 2%;
       height: 55px;
+      position: relative;
+      z-index: 1002;
     }
   }
 
@@ -41,6 +43,7 @@ header {
     position: relative;
     height: 100%;
     overflow: visible;
+    z-index: 1002;
 
     &-img {
       height: 250px;
@@ -67,7 +70,7 @@ header {
     }
   }
 
-  // Hamburger Menu
+  // Hamburger Menu Button
   .hamburger {
     display: none;
     flex-direction: column;
@@ -76,7 +79,8 @@ header {
     border: none;
     cursor: pointer;
     padding: 8px;
-    z-index: 1001;
+    z-index: 1002;
+    position: relative;
 
     @include mobile {
       display: flex;
@@ -92,6 +96,7 @@ header {
 
     &.active span:nth-child(1) {
       transform: rotate(45deg) translate(8px, 8px);
+      background-color: $text-main;
     }
 
     &.active span:nth-child(2) {
@@ -100,9 +105,11 @@ header {
 
     &.active span:nth-child(3) {
       transform: rotate(-45deg) translate(7px, -7px);
+      background-color: $text-main;
     }
   }
 
+  // Navigation - Fullscreen Overlay on Mobile
   nav {
     flex: 1;
     display: flex;
@@ -112,19 +119,40 @@ header {
     @include mobile {
       position: fixed;
       top: 0;
-      right: -100%;
+      left: 0;
       width: 100%;
       height: 100vh;
+      height: 100dvh; // Dynamic viewport height for mobile browsers
 
-      // Mobile menu background
-      background-color: $bg-hero;
+      // Fullscreen overlay background with gradient
+      background: linear-gradient(
+        135deg,
+        rgba(26, 35, 46, 0.98) 0%,
+        rgba(31, 41, 55, 0.98) 50%,
+        rgba(17, 24, 39, 0.98) 100%
+      );
+      backdrop-filter: blur(20px);
 
-      transition: right 0.3s ease;
-      padding-top: 80px;
-      box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
+      // Hidden by default
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(0.95);
 
+      transition: opacity 0.4s ease, visibility 0.4s ease,
+        transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+      padding: 0;
+      z-index: 1001;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      // Active state - show fullscreen menu
       &.active {
-        right: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
       }
     }
 
@@ -137,12 +165,23 @@ header {
       @include mobile {
         flex-direction: column;
         gap: 0;
-        padding: $spacing-lg;
+        padding: 0;
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
       }
 
       li {
         @include mobile {
-          border-bottom: $glass-border;
+          width: 100%;
+          opacity: 0;
+          transform: translateY(20px);
+          animation: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+          &:last-child {
+            border-bottom: none;
+          }
         }
 
         a {
@@ -157,15 +196,29 @@ header {
 
           @include mobile {
             display: block;
-            padding: $spacing-md 0;
-            font-size: 1.1rem;
+            padding: 1.5rem 2rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+
+            &:active {
+              background: rgba(79, 172, 254, 0.1);
+              transform: scale(0.98);
+            }
           }
 
           &:hover {
             color: $primary;
+
+            @include mobile {
+              background: rgba(79, 172, 254, 0.05);
+              letter-spacing: 3px;
+            }
           }
 
-          // Underline effect on hover
+          // Underline effect on hover (desktop only)
           &::after {
             content: "";
             position: absolute;
@@ -187,5 +240,39 @@ header {
         }
       }
     }
+  }
+}
+
+// Animation for menu items when menu opens
+@include mobile {
+  nav.active ul li {
+    animation: slideInFromTop 0.5s ease forwards;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.1 + ($i * 0.08)}s;
+      }
+    }
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Prevent body scroll when menu is open
+body.menu-open {
+  @include mobile {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
 }

@@ -1,0 +1,265 @@
+// ============================================
+// UI IMPROVEMENTS - Better animations and hamburger menu
+// ============================================
+
+// Fix 1: Smooth scroll arrow animation (no jank)
+.hero .scroll-arrow {
+  animation: smoothBounce 2.5s ease-in-out infinite;
+
+  .arrow-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@keyframes smoothBounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-12px);
+  }
+}
+
+// Fix 2: Beautiful hamburger menu
+header {
+  .hamburger {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001;
+    transition: transform 0.3s ease;
+
+    @media (max-width: 768px) {
+      display: flex;
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    span {
+      width: 28px;
+      height: 3px;
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+      border-radius: 3px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      position: absolute;
+      box-shadow: 0 2px 8px rgba(79, 172, 254, 0.3);
+
+      &:nth-child(1) {
+        top: 6px;
+      }
+
+      &:nth-child(2) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &:nth-child(3) {
+        bottom: 6px;
+      }
+    }
+
+    // Active state - X animation
+    &.active {
+      span {
+        &:nth-child(1) {
+          top: 50%;
+          transform: translateY(-50%) rotate(45deg);
+        }
+
+        &:nth-child(2) {
+          opacity: 0;
+          transform: translateY(-50%) scale(0);
+        }
+
+        &:nth-child(3) {
+          bottom: 50%;
+          transform: translateY(50%) rotate(-45deg);
+        }
+      }
+    }
+  }
+
+  // Improved mobile menu
+  nav {
+    @media (max-width: 768px) {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: linear-gradient(
+        180deg,
+        rgba(11, 15, 25, 0.98) 0%,
+        rgba(15, 21, 40, 0.98) 100%
+      );
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding-top: 80px;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+      border-left: 1px solid rgba(79, 172, 254, 0.2);
+      overflow-y: auto;
+
+      &.active {
+        right: 0;
+      }
+
+      // Overlay
+      &::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 280px;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+      }
+
+      &.active::before {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 1rem;
+        align-items: stretch;
+
+        li {
+          border-bottom: 1px solid rgba(79, 172, 254, 0.1);
+          opacity: 0;
+          transform: translateX(30px);
+          animation: slideInMenu 0.4s ease-out forwards;
+
+          @for $i from 1 through 10 {
+            &:nth-child(#{$i}) {
+              animation-delay: #{0.1 + ($i * 0.05)}s;
+            }
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          a {
+            display: block;
+            padding: 1rem 1.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+              content: "";
+              position: absolute;
+              left: 0;
+              top: 0;
+              bottom: 0;
+              width: 4px;
+              background: linear-gradient(180deg, #4facfe 0%, #00f2fe 100%);
+              transform: scaleY(0);
+              transition: transform 0.3s ease;
+            }
+
+            &::after {
+              content: "→";
+              position: absolute;
+              right: 1.2rem;
+              opacity: 0;
+              transform: translateX(-10px);
+              transition: all 0.3s ease;
+              color: #4facfe;
+            }
+
+            &:hover {
+              background: rgba(79, 172, 254, 0.1);
+              color: #4facfe;
+              padding-left: 1.8rem;
+
+              &::before {
+                transform: scaleY(1);
+              }
+
+              &::after {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+
+            &:active {
+              background: rgba(79, 172, 254, 0.2);
+              transform: scale(0.98);
+            }
+          }
+        }
+      }
+
+      // Close menu when clicking outside
+      &.active {
+        ~ .menu-overlay {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+// Menu slide-in animation
+@keyframes slideInMenu {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Prevent body scroll when menu is open
+body.menu-open {
+  @media (max-width: 768px) {
+    overflow: hidden;
+  }
+}
+
+// Additional improvements for header
+header {
+  @media (max-width: 768px) {
+    .header-container {
+      padding: 0.8rem 1.5rem;
+      height: 70px;
+    }
+
+    .logo-img {
+      height: 120px !important;
+      transition: height 0.3s ease;
+    }
+  }
+}

@@ -1,0 +1,255 @@
+// ============================================
+// SPACING FIXES - Reduce excessive spacing between sections
+// ============================================
+
+// Reduce section padding globally
+section {
+  padding: 4rem 0 !important; // Reduced from 6-8rem
+
+  @media (max-width: 768px) {
+    padding: 3rem 0 !important;
+  }
+}
+
+// Specific section adjustments
+.advantages {
+  padding: 4rem 0 !important;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0 !important;
+  }
+}
+
+.services-flip {
+  padding: 5rem 0 !important; // Reduced from 8rem
+
+  @media (max-width: 768px) {
+    padding: 3rem 0 !important;
+  }
+}
+
+.timeline-section {
+  padding: 4rem 0 !important; // Reduced from 6rem
+
+  @media (max-width: 768px) {
+    padding: 3rem 0 !important;
+  }
+}
+
+.stats-section {
+  padding: 4rem 0 !important;
+
+  @media (max-width: 768px) {
+    padding: 3rem 0 !important;
+  }
+}
+
+.contact-premium {
+  padding: 4rem 0 !important; // Reduced from clamp(4rem, 8vh, 8rem)
+
+  @media (max-width: 768px) {
+    padding: 3rem 0 !important;
+  }
+}
+
+// Reduce section heading margins
+.section-heading {
+  margin-bottom: 3rem !important; // Reduced from 4-6rem
+
+  @media (max-width: 768px) {
+    margin-bottom: 2rem !important;
+  }
+
+  h1,
+  h2 {
+    margin-bottom: 0.8rem !important; // Reduced from 1-1.5rem
+  }
+
+  p,
+  .section-subtitle {
+    margin-bottom: 0 !important;
+  }
+
+  &::after {
+    margin-top: 1rem !important; // Reduced from 1.5rem
+  }
+}
+
+// Advantages section - reduce spacing
+.advantages-container {
+  gap: 2rem !important; // Reduced from default
+
+  @media (max-width: 768px) {
+    gap: 1.5rem !important;
+  }
+}
+
+.advantage-item {
+  padding: 1.5rem !important; // Reduced padding
+
+  @media (max-width: 768px) {
+    padding: 1.2rem !important;
+  }
+}
+
+// Services section - reduce card grid gap
+.flip-cards-grid {
+  gap: 2rem !important; // Reduced from 3rem
+  margin-bottom: 3rem !important; // Reduced from 4rem
+
+  @media (max-width: 992px) {
+    gap: 2rem !important;
+  }
+
+  @media (max-width: 768px) {
+    gap: 1.5rem !important;
+  }
+}
+
+.services-cta {
+  margin-top: 2rem !important; // Reduced from 4rem
+}
+
+// Timeline - reduce spacing
+.timeline-container {
+  padding: 0 2rem !important;
+
+  @media (max-width: 768px) {
+    padding: 0 1rem !important;
+  }
+}
+
+.timeline-wrapper {
+  padding: 3rem 0 !important; // Reduced from 4rem
+
+  @media (max-width: 768px) {
+    padding: 2rem 0 !important;
+  }
+}
+
+.story-display {
+  margin-top: 3rem !important; // Reduced from 4rem
+  padding: 2.5rem !important; // Reduced from 3rem
+
+  @media (max-width: 768px) {
+    margin-top: 2rem !important;
+    padding: 1.5rem !important;
+  }
+}
+
+// Stats section - reduce grid gap
+.stats-grid {
+  gap: 2rem !important; // Reduced from default
+
+  @media (max-width: 768px) {
+    gap: 1.5rem !important;
+  }
+}
+
+.stat-card {
+  padding: 2rem !important; // Reduced padding
+
+  @media (max-width: 768px) {
+    padding: 1.5rem !important;
+  }
+}
+
+// Contact section - reduce spacing
+.contact-equal-grid {
+  gap: 2rem !important; // Reduced from 3rem
+
+  @media (max-width: 768px) {
+    gap: 1.5rem !important;
+  }
+}
+
+.glass-panel {
+  padding: 2.5rem !important; // Reduced from 3rem
+
+  @media (max-width: 768px) {
+    padding: 1.5rem !important;
+  }
+}
+
+.panel-header {
+  margin-bottom: 2rem !important; // Reduced spacing
+}
+
+.info-list {
+  gap: 1.5rem !important; // Reduced from 2rem
+}
+
+.input-stack {
+  gap: 1rem !important; // Reduced from 1.2rem
+}
+
+// Map section
+.map-section {
+  margin-top: 3rem !important; // Reduced from default
+
+  @media (max-width: 768px) {
+    margin-top: 2rem !important;
+  }
+}
+
+.map-heading {
+  margin-bottom: 1.5rem !important; // Reduced spacing
+
+  @media (max-width: 768px) {
+    margin-bottom: 1rem !important;
+  }
+}
+
+// Footer - reduce padding
+.footer-modern {
+  padding-top: 3rem !important; // Reduced from 4rem
+
+  @media (max-width: 768px) {
+    padding-top: 2rem !important;
+  }
+}
+
+.footer-grid {
+  padding-bottom: 2rem !important; // Reduced from 3rem
+  gap: 2rem !important; // Reduced from 3rem
+
+  @media (max-width: 768px) {
+    gap: 1.5rem !important;
+  }
+}
+
+.footer-bottom {
+  padding: 1.5rem 0 !important; // Reduced from 2rem
+}
+
+// Hero section - adjust for better flow
+.hero {
+  min-height: 90vh !important; // Slightly reduced from 100vh
+
+  @media (max-width: 768px) {
+    min-height: 85vh !important;
+  }
+}
+
+.hero-content {
+  h1 {
+    margin-bottom: 1.5rem !important; // Reduced from 2rem
+  }
+
+  p {
+    margin-bottom: 2.5rem !important; // Reduced from 3.5rem
+  }
+}
+
+// About section timeline heading
+.advantages {
+  .section-heading {
+    &:not(:first-child) {
+      margin-top: 5rem !important; // Reduced from 8rem
+
+      @media (max-width: 768px) {
+        margin-top: 3rem !important;
+      }
+    }
+  }
+}
