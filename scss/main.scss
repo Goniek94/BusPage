@@ -1,37 +1,36 @@
-// Main SCSS File - MARBUS Project
-// Using modern @use syntax instead of deprecated @import
+// ============================================
+// MARBUS - Main SCSS File
+// CLEAN Architecture - Senior Developer Level
+// ============================================
+//
+// ZASADY:
+// 1. Każdy komponent ma JEDEN plik SCSS
+// 2. Style mobile są WEWNĄTRZ komponentu (nie w osobnych plikach)
+// 3. ŻADNYCH plików *-fixes.scss
+// 4. Kolejność importów ma znaczenie (kaskada CSS)
+//
+// ============================================
 
-// 1. Variables and Mixins
+// 1. Variables and Mixins (must be first)
 @use "variables" as *;
 @use "mixins" as *;
 
-// 2. Base Styles
+// 2. Base Styles (reset, typography, global)
 @use "base";
 
-// 3. Components
-@use "components/header";
-@use "components/hero";
-@use "components/services";
-// @use "components/services-carousel";
+// 3. Components (alphabetical order for clarity)
 @use "components/advantages";
-@use "components/timeline";
-@use "components/flota";
-@use "components/stats";
 @use "components/contact";
 @use "components/contact-effects";
+@use "components/flota";
 @use "components/footer";
+@use "components/header"; // Contains hamburger menu styles
+@use "components/hero"; // Contains scroll-arrow animation
+@use "components/services";
+@use "components/stats";
+@use "components/timeline";
 
-// 4. Mobile Fixes - Must be last to override other styles
-@use "components/mobile-fixes";
-
-// 5. Spacing Fixes - Reduce excessive spacing
-@use "components/spacing-fixes";
-
-// 6. UI Improvements - Better animations and menu
-@use "components/ui-improvements";
-
-// 7. Performance Fixes - Critical optimizations
-@use "components/performance-fixes";
-
-// 8. Mobile Performance - Disable heavy animations on mobile (MUST BE LAST)
-@use "components/mobile-performance";
+// ============================================
+// NO MORE *-fixes.scss files!
+// All responsive styles are in their respective component files.
+// ============================================

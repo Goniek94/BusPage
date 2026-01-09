@@ -1,11 +1,9 @@
 // ============================================
-// TIMELINE - "PODRÓŻ W CZASIE" - Z NAWIGACJĄ STRZAŁKAMI
-// Interactive timeline with arrow navigation
-// Bus moves smoothly between years with animations
-// OPTIMIZED: No autoplay, manual navigation only
+// TIMELINE - "PODRÓŻ W CZASIE" - NATYCHMIASTOWE PRZEMIESZCZANIE
+// Bus moves instantly to next point, arrows at story card
 // ============================================
 
-// Extended history data with all key years
+// History data with all key years from 1992 to 2002
 const historyData = {
   1992: {
     title: "Początek Działalności",
@@ -13,302 +11,244 @@ const historyData = {
       "Początki bywają trudne, ale pełne pasji. Nasza pierwsza trasa prowadziła tylko do sąsiedniej gminy, ale już wtedy wiedzieliśmy, że transport to nasza przyszłość. Z jednym autobusem i garścią klientów rozpoczęliśmy przygodę, która trwa do dziś.",
     fact: "Ciekawostka: Nasz pierwszy autobus miał tylko 20 miejsc!",
   },
-  1998: {
+  1993: {
+    title: "Pierwsze Sukcesy",
+    description:
+      "Po roku działalności zdobyliśmy zaufanie lokalnych firm. Regularnie obsługiwaliśmy już kilka tras, a nasza reputacja rosła z każdym miesiącem. To był czas intensywnej nauki i budowania relacji z klientami.",
+    fact: "Ciekawostka: W 1993 roku mieliśmy już 2 autobusy w flocie!",
+  },
+  1994: {
+    title: "Rozbudowa Tras",
+    description:
+      "Rozszerzyliśmy nasze trasy o kolejne gminy. Coraz więcej osób korzystało z naszych usług, co pozwoliło nam na dalszy rozwój i inwestycje w nowe pojazdy.",
+    fact: "Ciekawostka: Obsługiwaliśmy już 5 różnych tras regularnych!",
+  },
+  1995: {
     title: "Rozwój Floty",
     description:
-      "Po sześciu latach ciężkiej pracy osiągnęliśmy pierwszy wielki kamień milowy - rozbudowę floty do 10 pojazdów. To był moment, kiedy z małej lokalnej firmy staliśmy się poważnym graczem na rynku transportu regionalnego. Każdy nowy autobus to nowe możliwości i nowi zadowoleni klienci.",
-    fact: "Ciekawostka: W 1998 roku przewieźliśmy już ponad 50 000 pasażerów!",
+      "Po trzech latach ciężkiej pracy osiągnęliśmy pierwszy wielki kamień milowy - rozbudowę floty do 5 pojazdów. To był moment, kiedy z małej lokalnej firmy staliśmy się poważnym graczem na rynku transportu regionalnego.",
+    fact: "Ciekawostka: W 1995 roku przewieźliśmy już ponad 30 000 pasażerów!",
+  },
+  1996: {
+    title: "Nowe Kierunki",
+    description:
+      "Rozpoczęliśmy obsługę nowych kierunków, w tym tras do większych miast. Nasi klienci doceniali punktualność i komfort podróży.",
+    fact: "Ciekawostka: Pierwsza trasa międzymiastowa liczyła 120 km!",
+  },
+  1997: {
+    title: "Modernizacja",
+    description:
+      "Zainwestowaliśmy w modernizację floty. Nowe autobusy z klimatyzacją i wygodnymi fotelami podniosły standard naszych usług.",
+    fact: "Ciekawostka: Byliśmy jedną z pierwszych firm w regionie z klimatyzowanymi autobusami!",
+  },
+  1998: {
+    title: "10 Pojazdów w Flocie",
+    description:
+      "Po sześciu latach działalności nasza flota liczyła już 10 pojazdów. Obsługiwaliśmy dziesiątki tras i tysiące zadowolonych pasażerów.",
+    fact: "Ciekawostka: W 1998 roku przewieźliśmy ponad 50 000 pasażerów!",
+  },
+  1999: {
+    title: "Przygotowania do Nowego Tysiąclecia",
+    description:
+      "Rok przygotowań do nowego tysiąclecia. Planowaliśmy dalszą ekspansję i rozwój usług turystycznych.",
+    fact: "Ciekawostka: Planowaliśmy pierwszą wycieczkę zagraniczną na rok 2000!",
+  },
+  2000: {
+    title: "Nowe Tysiąclecie",
+    description:
+      "Wkroczyliśmy w nowe tysiąclecie z ambitnymi planami. Rozpoczęliśmy organizację wycieczek turystycznych po Polsce.",
+    fact: "Ciekawostka: Pierwsza wycieczka turystyczna prowadziła nad morze - 60 szczęśliwych turystów!",
+  },
+  2001: {
+    title: "Wycieczki Krajowe",
+    description:
+      "Rozwinęliśmy ofertę wycieczek krajowych. Od Mazur po Tatry, od Bałtyku po Karkonosze - nasze autobusy woziły turystów w najpiękniejsze zakątki kraju.",
+    fact: "Ciekawostka: Najpopularniejszym kierunkiem były Mazury!",
   },
   2002: {
     title: "Przejazdy Turystyczne",
     description:
-      "Rozpoczęliśmy organizację wycieczek turystycznych po Polsce i Europie. Od Mazur po Tatry, od Bałtyku po Karkonosze - nasze autobusy woziły turystów w najpiękniejsze zakątki kraju. To był początek nowej ery w naszej działalności, która otworzyła nam drzwi do międzynarodowego rynku turystycznego.",
+      "Rozpoczęliśmy organizację wycieczek turystycznych po Polsce i Europie. Nasza oferta turystyczna cieszyła się coraz większym zainteresowaniem.",
     fact: "Ciekawostka: Pierwsza wycieczka zagraniczna prowadziła do Pragi - 45 szczęśliwych turystów!",
-  },
-  2004: {
-    title: "Wejście do UE",
-    description:
-      "Wejście Polski do Unii Europejskiej otworzyło przed nami nowe możliwości. Rozszerzyliśmy nasze trasy międzynarodowe, oferując przewozy do Niemiec, Czech, Słowacji i Austrii. Nowe rynki, nowe wyzwania, ale przede wszystkim - nowe możliwości rozwoju dla naszej firmy.",
-    fact: "Ciekawostka: W pierwszym roku po wejściu do UE nasze autobusy przejechały ponad 500 000 km tras międzynarodowych!",
-  },
-  2005: {
-    title: "Certyfikaty Jakości",
-    description:
-      "Rok 2005 przyniósł nam oficjalne uznanie za wysoką jakość usług. Otrzymaliśmy certyfikaty bezpieczeństwa i jakości ISO, które potwierdziły nasz profesjonalizm. To był dowód na to, że nasze standardy obsługi i dbałość o bezpieczeństwo pasażerów są na najwyższym poziomie.",
-    fact: "Ciekawostka: Byliśmy jedną z pierwszych firm transportowych w regionie z pełną certyfikacją ISO!",
-  },
-  2007: {
-    title: "Nowe Autobusy Premium",
-    description:
-      "Zakup pierwszych klimatyzowanych autobusów premium był przełomem w naszej ofercie. Komfort podróży na najwyższym poziomie - klimatyzacja, wygodne fotele, system audio-video. Nasi pasażerowie docenili te udogodnienia, a my zyskaliśmy przewagę konkurencyjną na rynku.",
-    fact: "Ciekawostka: Nasze nowe autobusy miały nawet małe lodówki na napoje!",
-  },
-  2009: {
-    title: "Transport Korporacyjny",
-    description:
-      "Specjalizacja w transporcie pracowniczym dla dużych firm otworzyła nam drzwi do stabilnych, długoterminowych kontraktów. Codziennie wozimy setki pracowników do zakładów produkcyjnych, biur i centrów logistycznych. Punktualność i niezawodność to nasze drugie imię.",
-    fact: "Ciekawostka: Codziennie przewozimy pracowników dla ponad 50 firm!",
-  },
-  2010: {
-    title: "Ekspansja Ogólnopolska",
-    description:
-      "Dekada działalności za nami i wielki krok naprzód - rozszerzenie działalności na całą Polskę. Nasze autobusy zaczęły jeździć nie tylko po regionie, ale po całym kraju. Nowe trasy, nowe wyzwania, ale przede wszystkim - nowe możliwości dla naszych klientów. Otworzyliśmy oddziały w kilku miastach Polski.",
-    fact: "Ciekawostka: W 2010 roku nasze autobusy przejechały łącznie ponad 1 milion kilometrów!",
-  },
-  2012: {
-    title: "System Rezerwacji Online",
-    description:
-      "Wdrożenie nowoczesnego systemu rezerwacji przez internet było krokiem w przyszłość. Klienci mogą teraz zarezerwować przejazd z domu, sprawdzić dostępność miejsc i opłacić bilet online. Technologia w służbie wygody pasażerów.",
-    fact: "Ciekawostka: W pierwszym miesiącu działania systemu online zarezerwowano ponad 1000 biletów!",
-  },
-  2014: {
-    title: "Nagroda Jakości",
-    description:
-      "Wyróżnienie 'Najlepsza Firma Transportowa Roku' było dla nas ogromnym zaszczytem i potwierdzeniem, że idziemy w dobrym kierunku. Nagroda przyznana przez Izbę Gospodarczą za najwyższą jakość usług, profesjonalizm i innowacyjność.",
-    fact: "Ciekawostka: Nagrodę odebraliśmy podczas uroczystej gali w Warszawie!",
-  },
-  2015: {
-    title: "Modernizacja Floty",
-    description:
-      "Czas na wielką zmianę! Wymieniliśmy całą flotę na nowoczesne, ekologiczne pojazdy wyposażone w najnowsze technologie. Klimatyzacja, Wi-Fi, GPS, wygodne fotele, gniazdka USB - komfort pasażerów stał się naszym priorytetem. To była inwestycja w przyszłość, która zaowocowała jeszcze większym zaufaniem klientów.",
-    fact: "Ciekawostka: Nasze nowe autobusy zużywają o 30% mniej paliwa niż poprzednie modele!",
-  },
-  2017: {
-    title: "Transport Dostępny",
-    description:
-      "Wprowadzenie pojazdów przystosowanych dla osób niepełnosprawnych było dla nas ważnym krokiem w kierunku inkluzywności. Windy, rampy, specjalne mocowania dla wózków - każdy pasażer zasługuje na komfortową podróż. Dostępność to nie przywilej, to prawo.",
-    fact: "Ciekawostka: Nasi kierowcy przeszli specjalne szkolenia z obsługi osób niepełnosprawnych!",
-  },
-  2019: {
-    title: "500 Klientów",
-    description:
-      "Przekroczenie progu 500 stałych klientów biznesowych było dla nas ogromnym sukcesem. Od małych firm lokalnych po duże korporacje międzynarodowe - wszyscy zaufali MARBUS. To dowód na to, że jakość i profesjonalizm się opłacają.",
-    fact: "Ciekawostka: Nasz najstarszy klient współpracuje z nami od 1995 roku!",
-  },
-  2020: {
-    title: "Bezpieczeństwo COVID",
-    description:
-      "Pandemia była wyzwaniem dla całej branży transportowej. Wdrożyliśmy najwyższe standardy bezpieczeństwa sanitarnego - dezynfekcja pojazdów po każdym kursie, maseczki, płyny dezynfekujące, ograniczenie liczby pasażerów. Bezpieczeństwo naszych pasażerów było i jest naszym priorytetem.",
-    fact: "Ciekawostka: Zainwestowaliśmy w profesjonalne lampy UV do dezynfekcji wnętrz autobusów!",
-  },
-  2022: {
-    title: "30 Lat na Rynku",
-    description:
-      "Jubileusz 30-lecia działalności! Trzy dekady na rynku, miliony przejechanych kilometrów, setki tysięcy przewiezionych pasażerów. To był czas pełen wyzwań, sukcesów i nieustannego rozwoju. Dziękujemy wszystkim naszym klientom za zaufanie i wsparcie przez te wszystkie lata!",
-    fact: "Ciekawostka: Rocznie przejeżdżamy ponad 2 miliony kilometrów - to jak 50 razy dookoła Ziemi!",
-  },
-  2023: {
-    title: "Zielona Przyszłość",
-    description:
-      "Przyszłość to ekologia! Rozpoczęliśmy inwestycję w pojazdy elektryczne i hybrydowe. Dbamy nie tylko o komfort pasażerów, ale także o środowisko naturalne. Nasze autobusy elektryczne to cicha, czysta i nowoczesna alternatywa dla tradycyjnych pojazdów. Ekologia to nie moda, to odpowiedzialność.",
-    fact: "Ciekawostka: Nasze pojazdy elektryczne emitują zero emisji spalin w centrach miast!",
-  },
-  2024: {
-    title: "Nowe Technologie",
-    description:
-      "Aplikacja mobilna MARBUS i system monitoringu floty w czasie rzeczywistym to kolejny krok w cyfryzacji naszych usług. Pasażerowie mogą śledzić lokalizację autobusu na żywo, otrzymywać powiadomienia o opóźnieniach i zarządzać swoimi rezerwacjami z poziomu smartfona. Przyszłość jest cyfrowa!",
-    fact: "Ciekawostka: Nasza aplikacja została pobrana ponad 10 000 razy w pierwszym miesiącu!",
-  },
-  2025: {
-    title: "Dziś - Lider Branży",
-    description:
-      "Ponad 33 lata na rynku, 500+ zadowolonych klientów, miliony przejechanych kilometrów. Dziś jesteśmy liderem w branży transportu pracowniczego i przewozów okazjonalnych. Nasza historia to historia pasji, zaangażowania i nieustannego dążenia do doskonałości. A to dopiero początek kolejnego rozdziału!",
-    fact: "Ciekawostka: Co roku przewozimy ponad 100 000 pasażerów, utrzymując 99% punktualności!",
   },
 };
 
-// Get all years with stories (key milestones)
+// Get all years sorted
 const keyYears = Object.keys(historyData)
   .map(Number)
   .sort((a, b) => a - b);
 
 class Timeline {
   constructor() {
-    this.wrapper = document.querySelector(".timeline-wrapper");
     this.track = document.querySelector(".timeline-track");
+    this.wrapper = document.querySelector(".timeline-wrapper");
     this.items = document.querySelectorAll(".timeline-item");
     this.bus = document.querySelector(".timeline-bus");
     this.storyDisplay = document.getElementById("story-display");
     this.prevBtn = document.getElementById("timeline-prev");
     this.nextBtn = document.getElementById("timeline-next");
+    this.progressBar = document.querySelector(".timeline-progress-bar");
 
-    this.currentIndex = 0; // Start at first key year
+    this.currentIndex = 0;
     this.isAnimating = false;
 
-    if (!this.wrapper || !this.track) return;
+    if (!this.track || !this.wrapper || !this.bus) return;
 
     this.init();
   }
 
   init() {
-    // Setup arrow navigation
-    this.setupArrowNavigation();
+    // Setup navigation
+    this.setupNavigation();
 
-    // Initial position - show first year without animation
-    this.goToYear(keyYears[0], false);
-
-    // NO AUTOPLAY - user must click arrows to navigate
-  }
-
-  setupArrowNavigation() {
-    if (this.prevBtn) {
-      this.prevBtn.addEventListener("click", () => this.navigatePrev());
-    }
-
-    if (this.nextBtn) {
-      this.nextBtn.addEventListener("click", () => this.navigateNext());
-    }
-
-    // Keyboard navigation
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowLeft") {
-        this.navigatePrev();
-      } else if (e.key === "ArrowRight") {
-        this.navigateNext();
-      }
-    });
+    // Set initial position (first year - bus at the beginning)
+    this.goToIndex(0, false);
 
     // Update button states
     this.updateButtonStates();
   }
 
-  navigatePrev() {
-    if (this.isAnimating || this.currentIndex <= 0) return;
-
-    this.currentIndex--;
-    this.goToYear(keyYears[this.currentIndex], true);
-    this.updateButtonStates();
-  }
-
-  navigateNext() {
-    if (this.isAnimating || this.currentIndex >= keyYears.length - 1) return;
-
-    this.currentIndex++;
-    this.goToYear(keyYears[this.currentIndex], true);
-    this.updateButtonStates();
-  }
-
-  updateButtonStates() {
+  setupNavigation() {
+    // Arrow buttons - at the story card
     if (this.prevBtn) {
-      this.prevBtn.disabled = this.currentIndex <= 0;
-      this.prevBtn.style.opacity = this.currentIndex <= 0 ? "0.3" : "1";
+      this.prevBtn.addEventListener("click", () => this.prev());
     }
-
     if (this.nextBtn) {
-      this.nextBtn.disabled = this.currentIndex >= keyYears.length - 1;
-      this.nextBtn.style.opacity =
-        this.currentIndex >= keyYears.length - 1 ? "0.3" : "1";
+      this.nextBtn.addEventListener("click", () => this.next());
     }
-  }
 
-  goToYear(year, animate = true) {
-    if (this.isAnimating) return;
-
-    // Find the item for this year
-    const targetItem = Array.from(this.items).find((item) => {
-      const yearElement = item.querySelector(".timeline-year");
-      return yearElement && parseInt(yearElement.textContent) === year;
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") this.prev();
+      if (e.key === "ArrowRight") this.next();
     });
 
-    if (!targetItem) return;
+    // Click on timeline items
+    this.items.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        this.goToIndex(index, true);
+      });
+      item.style.cursor = "pointer";
+    });
+  }
+
+  prev() {
+    if (this.isAnimating || this.currentIndex <= 0) return;
+    this.goToIndex(this.currentIndex - 1, true);
+  }
+
+  next() {
+    if (this.isAnimating || this.currentIndex >= keyYears.length - 1) return;
+    this.goToIndex(this.currentIndex + 1, true);
+  }
+
+  goToIndex(index, animate = true) {
+    if (index < 0 || index >= keyYears.length) return;
+    if (this.isAnimating && animate) return;
+
+    this.currentIndex = index;
+    const year = keyYears[index];
 
     if (animate) {
       this.isAnimating = true;
     }
 
-    // Scroll to item
-    const itemRect = targetItem.getBoundingClientRect();
-    const wrapperRect = this.wrapper.getBoundingClientRect();
-    const scrollLeft =
-      this.wrapper.scrollLeft +
-      itemRect.left -
-      wrapperRect.left -
-      wrapperRect.width / 2 +
-      itemRect.width / 2;
+    // Get target item position
+    const targetItem = this.items[index];
+    if (!targetItem) return;
 
-    this.wrapper.scrollTo({
-      left: scrollLeft,
-      behavior: animate ? "smooth" : "auto",
+    const marker = targetItem.querySelector(".timeline-marker");
+    if (!marker) return;
+
+    // Calculate bus position - move bus to the marker position
+    const trackRect = this.track.getBoundingClientRect();
+    const markerRect = marker.getBoundingClientRect();
+
+    // Position relative to track - center bus on marker
+    const busWidth = 80; // Bus width from CSS
+    const busX =
+      markerRect.left - trackRect.left + markerRect.width / 2 - busWidth / 2;
+
+    // Move bus instantly (no transition)
+    this.bus.style.transition = "none";
+    this.bus.style.left = `${busX}px`;
+
+    // Update active state on items
+    this.items.forEach((item, i) => {
+      item.classList.toggle("active", i === index);
     });
 
-    // Move bus to this position using TRANSFORM (GPU-accelerated)
-    const itemOffsetLeft = targetItem.offsetLeft;
-    const busPosition = itemOffsetLeft - 40; // Center bus on marker
-
-    if (animate) {
-      // Add driving animation class
-      this.bus.classList.add("driving");
-
-      // GPU-accelerated animation using TRANSFORM
-      this.bus.style.transition =
-        "transform 1.5s cubic-bezier(0.42, 0, 0.58, 1)";
-      this.bus.style.transform = `translateX(${busPosition}px) translateY(-50%) translateZ(0)`;
-
-      // Remove driving class after animation
-      setTimeout(() => {
-        this.bus.classList.remove("driving");
-        this.isAnimating = false;
-      }, 1500);
-    } else {
-      this.bus.style.transition = "none";
-      this.bus.style.transform = `translateX(${busPosition}px) translateY(-50%) translateZ(0)`;
-    }
+    // Update progress bar
+    this.updateProgressBar();
 
     // Update story display
-    if (historyData[year]) {
-      this.updateStoryDisplay(year);
-    }
+    this.updateStory(year);
 
-    // Highlight active item with pulse effect
-    this.items.forEach((item) => item.classList.remove("active"));
-    targetItem.classList.add("active");
+    // Update button states
+    this.updateButtonStates();
 
-    // Add pulse animation to marker
-    const marker = targetItem.querySelector(".timeline-marker");
-    if (marker && animate) {
-      marker.classList.add("pulse");
+    // Reset animation flag
+    if (animate) {
       setTimeout(() => {
-        marker.classList.remove("pulse");
-      }, 600);
+        this.isAnimating = false;
+      }, 100);
     }
   }
 
-  updateStoryDisplay(year) {
+  updateProgressBar() {
+    if (!this.progressBar) return;
+
+    const progress = (this.currentIndex / (keyYears.length - 1)) * 100;
+    this.progressBar.style.width = `${progress}%`;
+  }
+
+  updateStory(year) {
     if (!this.storyDisplay || !historyData[year]) return;
 
     const data = historyData[year];
 
-    // Add fade-out class
-    this.storyDisplay.classList.add("fade-out");
+    // Update content immediately
+    const yearBg = this.storyDisplay.querySelector(".story-year-bg");
+    const title = this.storyDisplay.querySelector(".story-title");
+    const description = this.storyDisplay.querySelector(".story-description");
+    const factText = this.storyDisplay.querySelector(".fact-text");
 
-    // Wait for fade-out animation
+    if (yearBg) yearBg.textContent = year;
+    if (title) title.textContent = data.title;
+    if (description) description.textContent = data.description;
+    if (factText) factText.textContent = data.fact;
+
+    // Quick fade effect
+    this.storyDisplay.style.transition = "opacity 0.2s ease";
+    this.storyDisplay.style.opacity = "0.8";
     setTimeout(() => {
-      // Update content
-      const yearBg = this.storyDisplay.querySelector(".story-year-bg");
-      const title = this.storyDisplay.querySelector(".story-title");
-      const description = this.storyDisplay.querySelector(".story-description");
-      const factText = this.storyDisplay.querySelector(".fact-text");
+      this.storyDisplay.style.opacity = "1";
+    }, 100);
+  }
 
-      if (yearBg) yearBg.textContent = year;
-      if (title) title.textContent = data.title;
-      if (description) description.textContent = data.description;
-      if (factText) factText.textContent = data.fact;
+  updateButtonStates() {
+    if (this.prevBtn) {
+      const disabled = this.currentIndex <= 0;
+      this.prevBtn.disabled = disabled;
+      this.prevBtn.style.opacity = disabled ? "0.3" : "1";
+      this.prevBtn.style.pointerEvents = disabled ? "none" : "auto";
+    }
 
-      // Remove fade-out and add fade-in
-      this.storyDisplay.classList.remove("fade-out");
-      this.storyDisplay.classList.add("fade-in");
-
-      // Remove fade-in class after animation
-      setTimeout(() => {
-        this.storyDisplay.classList.remove("fade-in");
-      }, 400);
-    }, 200);
+    if (this.nextBtn) {
+      const disabled = this.currentIndex >= keyYears.length - 1;
+      this.nextBtn.disabled = disabled;
+      this.nextBtn.style.opacity = disabled ? "0.3" : "1";
+      this.nextBtn.style.pointerEvents = disabled ? "none" : "auto";
+    }
   }
 }
 
-// Initialize timeline when DOM is ready
+// Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
-  new Timeline();
+  // Small delay to ensure components are loaded
+  setTimeout(() => {
+    new Timeline();
+  }, 100);
 });
 
 // Reinitialize on window resize (debounced)

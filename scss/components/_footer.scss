@@ -1,12 +1,13 @@
+// ============================================
+// FOOTER - Modern footer with grid layout
+// Mobile-First Refactored Version
+// Senior Developer Standards: No !important, proper specificity
+// ============================================
+
 @use "../variables" as *;
 @use "../mixins" as *;
 
-// ============================================
-// FOOTER - Modern footer with grid layout
-// ============================================
-
 .footer-modern {
-  // GRADIENT 7: Ciemny granat z subtelnym fioletowym akcentem (zamknięcie)
   background: linear-gradient(
     135deg,
     #12182b 0%,
@@ -34,12 +35,20 @@
       rgba(138, 85, 247, 0.3) 70%,
       transparent 100%
     );
+
+    @media (max-width: 768px) {
+      display: none; // Remove gradient line on mobile for performance
+    }
   }
 
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
+
+    @media (max-width: 768px) {
+      padding: 0 1.25rem; // Standardized mobile padding
+    }
   }
 
   .footer-grid {
@@ -54,6 +63,11 @@
       gap: 2.5rem;
     }
 
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
     @media (max-width: 576px) {
       grid-template-columns: 1fr;
       gap: 2rem;
@@ -61,12 +75,21 @@
   }
 
   .footer-col {
+    @media (max-width: 768px) {
+      text-align: center;
+    }
+
     &.footer-brand {
       .footer-logo {
         margin-bottom: 1.5rem;
 
+        @media (max-width: 768px) {
+          display: flex;
+          justify-content: center;
+        }
+
         .footer-logo-img {
-          height: 60px; // Dopasowany rozmiar logo
+          height: 60px;
           width: auto;
           filter: brightness(1.1);
         }
@@ -77,15 +100,23 @@
         line-height: 1.8;
         margin-bottom: 1.5rem;
         font-size: 0.95rem;
+
+        @media (max-width: 768px) {
+          font-size: 1rem; // Minimum 16px for readability
+        }
       }
 
       .footer-social {
         display: flex;
         gap: 0.8rem;
 
+        @media (max-width: 768px) {
+          justify-content: center;
+        }
+
         .social-link {
-          width: 40px;
-          height: 40px;
+          width: 44px; // Touch target: minimum 44x44px
+          height: 44px;
           border-radius: 50%;
           background: rgba(255, 255, 255, 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
@@ -130,6 +161,11 @@
         width: 40px;
         height: 2px;
         background: linear-gradient(90deg, #4facfe 0%, transparent 100%);
+
+        @media (max-width: 768px) {
+          left: 50%;
+          transform: translateX(-50%);
+        }
       }
     }
 
@@ -141,16 +177,35 @@
       li {
         margin-bottom: 0.8rem;
 
+        @media (max-width: 768px) {
+          text-align: center;
+          justify-content: center;
+        }
+
         a {
           color: rgba(255, 255, 255, 0.7);
           text-decoration: none;
           font-size: 0.95rem;
           transition: all 0.3s ease;
           display: inline-block;
+          // Touch target: minimum 44px height
+          padding: 0.5rem 0;
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+
+          @media (max-width: 768px) {
+            font-size: 1rem; // Minimum 16px
+            justify-content: center;
+          }
 
           &:hover {
             color: #4facfe;
             transform: translateX(5px);
+
+            @media (max-width: 768px) {
+              transform: none; // Disable transform on mobile
+            }
           }
         }
       }
@@ -167,6 +222,11 @@
         gap: 1rem;
         margin-bottom: 1.2rem;
 
+        @media (max-width: 768px) {
+          text-align: center;
+          justify-content: center;
+        }
+
         svg {
           width: 20px;
           height: 20px;
@@ -179,6 +239,10 @@
           color: rgba(255, 255, 255, 0.7);
           font-size: 0.95rem;
           line-height: 1.6;
+
+          @media (max-width: 768px) {
+            font-size: 1rem; // Minimum 16px
+          }
 
           a {
             color: rgba(255, 255, 255, 0.7);
@@ -214,6 +278,10 @@
         font-size: 0.9rem;
         margin: 0;
 
+        @media (max-width: 768px) {
+          font-size: 1rem; // Minimum 16px
+        }
+
         strong {
           color: #4facfe;
           font-weight: 700;
@@ -230,6 +298,15 @@
           text-decoration: none;
           font-size: 0.9rem;
           transition: color 0.3s ease;
+          // Touch target
+          padding: 0.5rem;
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+
+          @media (max-width: 768px) {
+            font-size: 1rem; // Minimum 16px
+          }
 
           &:hover {
             color: #4facfe;
@@ -238,295 +315,6 @@
 
         .separator {
           color: rgba(255, 255, 255, 0.3);
-        }
-      }
-    }
-  }
-}
-
-// ============================================
-// CONTACT SECTION
-// ============================================
-
-.contact-premium {
-  position: relative;
-  background: #0f172a;
-  background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-  padding: clamp(4rem, 8vh, 8rem) 0;
-  overflow: hidden;
-  color: #fff;
-
-  // Centralna poświata
-  .glow-bg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(
-      circle,
-      rgba(79, 172, 254, 0.15) 0%,
-      transparent 70%
-    );
-    border-radius: 50%;
-    filter: blur(80px);
-    z-index: 0;
-    pointer-events: none;
-  }
-
-  .container {
-    position: relative;
-    z-index: 2;
-    max-width: 1200px; // Trochę węższy kontener dla lepszego skupienia
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  // --- 1. NAGŁÓWEK (CENTRUM) ---
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-
-    .badge {
-      display: inline-block;
-      padding: 6px 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 50px;
-      color: #4facfe;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 1.5rem;
-    }
-
-    .title {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 800;
-      color: #fff;
-      margin-bottom: 1rem;
-      line-height: 1.1;
-    }
-
-    .desc {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 1.1rem;
-    }
-  }
-
-  // --- 2. GRID (RÓWNY PODZIAŁ) ---
-  .contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr; // IDEALNIE RÓWNE KOLUMNY
-    gap: 3rem;
-    align-items: stretch; // Rozciągnij oba panele do tej samej wysokości
-
-    @media (max-width: 992px) {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-  }
-
-  // WSPÓLNY STYL DLA PANELI (Szkło)
-  .glass-panel {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    height: 100%; // Ważne dla równości
-    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-
-    &:hover {
-      border-color: rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    .panel-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-      color: #fff;
-    }
-
-    .panel-desc {
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 2.5rem;
-      font-size: 1rem;
-    }
-
-    @media (max-width: 576px) {
-      padding: 2rem;
-    }
-  }
-
-  // STYL LEWEGO PANELU (Info)
-  .info-panel {
-    .contact-list {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
-
-    .contact-row {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.5rem;
-
-      .icon-circle {
-        width: 48px;
-        height: 48px;
-        flex-shrink: 0;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-          width: 22px;
-          height: 22px;
-          color: white;
-        }
-
-        &.blue {
-          background: linear-gradient(135deg, #4facfe, #00f2fe);
-          box-shadow: 0 4px 12px rgba(79, 172, 254, 0.3);
-        }
-        &.purple {
-          background: linear-gradient(135deg, #a855f7, #d946ef);
-          box-shadow: 0 4px 12px rgba(168, 85, 247, 0.3);
-        }
-        &.orange {
-          background: linear-gradient(135deg, #fb923c, #f97316);
-          box-shadow: 0 4px 12px rgba(251, 146, 60, 0.3);
-        }
-      }
-
-      .row-content {
-        .label {
-          display: block;
-          font-size: 0.75rem;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          color: rgba(255, 255, 255, 0.4);
-          margin-bottom: 5px;
-          font-weight: 600;
-        }
-
-        .value {
-          display: block;
-          font-size: 1.1rem;
-          color: white;
-          font-weight: 500;
-          line-height: 1.4;
-
-          &.link {
-            transition: color 0.2s;
-            &:hover {
-              color: #4facfe;
-            }
-          }
-        }
-      }
-    }
-
-    .panel-footer {
-      margin-top: auto; // Dopycha do dołu
-      padding-top: 2rem;
-      opacity: 0.3;
-      // Tutaj można dodać np. małą mapkę w tle lub ozdobnik
-    }
-  }
-
-  // STYL PRAWEGO PANELU (Formularz)
-  .form-panel {
-    .form-inputs-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-    }
-
-    .input-group {
-      position: relative;
-
-      input,
-      textarea {
-        width: 100%;
-        background: rgba(15, 23, 42, 0.6);
-        border: 2px solid rgba(255, 255, 255, 0.08);
-        border-radius: 12px;
-        padding: 1rem 1.2rem;
-        font-size: 1rem;
-        color: white;
-        outline: none;
-        transition: all 0.3s ease;
-        font-family: inherit;
-
-        &:focus,
-        &:not(:placeholder-shown) {
-          border-color: #4facfe;
-          background: rgba(15, 23, 42, 0.9);
-
-          + label {
-            transform: translateY(-24px) scale(0.85);
-            background: #0f172a;
-            color: #4facfe;
-            padding: 0 5px;
-          }
-        }
-      }
-
-      textarea {
-        min-height: 120px;
-        resize: vertical;
-      }
-
-      label {
-        position: absolute;
-        left: 1rem;
-        top: 1rem;
-        color: rgba(255, 255, 255, 0.5);
-        pointer-events: none;
-        transform-origin: left top;
-        transition: all 0.3s ease;
-      }
-    }
-
-    .submit-btn {
-      margin-top: 1rem;
-      width: 100%;
-      padding: 1rem;
-      background: #4facfe;
-      background: linear-gradient(90deg, #4facfe, #00f2fe);
-      border: none;
-      border-radius: 12px;
-      color: white;
-      font-weight: 700;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      transition: all 0.3s ease;
-      box-shadow: 0 10px 20px rgba(79, 172, 254, 0.3);
-
-      svg {
-        width: 20px;
-        height: 20px;
-        transition: transform 0.3s;
-      }
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 15px 30px rgba(79, 172, 254, 0.5);
-        svg {
-          transform: translate(3px, -3px);
         }
       }
     }

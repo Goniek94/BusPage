@@ -1,17 +1,23 @@
 // ============================================
-// TIMELINE - "PODRÓŻ W CZASIE" - Płynne przejście
+// TIMELINE - "PODRÓŻ W CZASIE"
+// Mobile-First Refactored Version
+// Senior Developer Standards: No !important, proper specificity
 // ============================================
 
 @use "../variables" as *;
 @use "sass:color";
 
 .timeline-section {
-  padding: 6rem 0;
+  padding: 1.5rem 0 2rem;
   background: #0b0f19;
   position: relative;
   overflow: hidden;
 
-  // Subtelna poświata
+  @media (min-width: 769px) {
+    padding: 4rem 0;
+  }
+
+  // Subtle glow
   &::before {
     content: "";
     position: absolute;
@@ -30,17 +36,27 @@
 
   .section-heading {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 0.5rem;
     position: relative;
     z-index: 2;
 
+    @media (min-width: 769px) {
+      margin-bottom: 2rem;
+    }
+
     h2 {
       color: white;
-      font-size: clamp(2rem, 5vw, 3rem);
+      font-size: 1.5rem;
       font-weight: 800;
-      margin-bottom: 1rem;
+      margin-bottom: 0.2rem;
       text-transform: uppercase;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
+
+      @media (min-width: 769px) {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+      }
 
       span {
         background: linear-gradient(120deg, #4facfe 0%, #00f2fe 100%);
@@ -52,9 +68,17 @@
 
     p {
       color: rgba(255, 255, 255, 0.7);
-      font-size: 1.1rem;
+      font-size: 0.85rem;
       max-width: 600px;
       margin: 0 auto;
+      padding: 0 1rem;
+      line-height: 1.3;
+
+      @media (min-width: 769px) {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        padding: 0;
+        line-height: 1.4;
+      }
     }
   }
 }
@@ -64,130 +88,62 @@
   position: relative;
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 0.75rem;
   z-index: 2;
-}
 
-// Navigation Arrows - WITH PULSE ANIMATION
-.timeline-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid rgba(79, 172, 254, 0.3);
-  color: white;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-
-  // Pulsing animation to attract attention - VERY SLOW for better UX
-  animation: arrowPulse 5s ease-in-out infinite;
-
-  svg {
-    width: 28px;
-    height: 28px;
-    transition: transform 0.3s ease;
-  }
-
-  &:hover:not(:disabled) {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    border-color: transparent;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 8px 30px rgba(79, 172, 254, 0.5);
-    animation: none; // Stop pulsing on hover
-
-    svg {
-      transform: scale(1.2);
-    }
-  }
-
-  &:active:not(:disabled) {
-    transform: translateY(-50%) scale(0.95);
-  }
-
-  &:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-    border-color: rgba(255, 255, 255, 0.1);
-    animation: none; // Stop pulsing when disabled
-  }
-
-  &.timeline-arrow-left {
-    left: 0;
-  }
-
-  &.timeline-arrow-right {
-    right: 0;
-  }
-
-  @media (max-width: 768px) {
-    width: 50px;
-    height: 50px;
-
-    svg {
-      width: 24px;
-      height: 24px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    width: 45px;
-    height: 45px;
-
-    svg {
-      width: 20px;
-      height: 20px;
-    }
+  @media (min-width: 769px) {
+    padding: 0 2rem;
   }
 }
 
-// Timeline Wrapper (horizontal scroll)
+// Timeline Wrapper - horizontal scroll on mobile
 .timeline-wrapper {
   position: relative;
   overflow-x: auto;
-  overflow-y: hidden;
-  padding: 4rem 0;
-  scroll-behavior: smooth;
+  overflow-y: visible;
+  padding: 2rem 0 0.5rem;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: auto;
+
+  @media (min-width: 769px) {
+    padding: 3rem 0 1rem;
+    scroll-behavior: smooth;
+  }
 
   // Custom scrollbar
   &::-webkit-scrollbar {
-    height: 8px;
+    height: 4px;
   }
 
   &::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
+    background: rgba(79, 172, 254, 0.1);
+    border-radius: 2px;
   }
 
   &::-webkit-scrollbar-thumb {
     background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-    border-radius: 10px;
-    transition: all 0.3s;
-
-    &:hover {
-      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
-    }
+    border-radius: 2px;
   }
 }
 
-// Timeline Track (the line)
+// Timeline Track (the line with years)
 .timeline-track {
   position: relative;
   display: flex;
   align-items: center;
   min-width: max-content;
-  padding: 0 2rem;
+  padding: 0 15px;
+  gap: 50px;
 
-  // Główna linia - bez paska postępu
+  @media (min-width: 769px) {
+    justify-content: space-between;
+    min-width: 100%;
+    gap: 0;
+    padding: 0;
+  }
+
+  // Main line
   &::before {
     content: "";
     position: absolute;
@@ -197,12 +153,34 @@
     height: 3px;
     background: linear-gradient(
       90deg,
-      rgba(79, 172, 254, 0.1) 0%,
-      rgba(79, 172, 254, 0.3) 50%,
-      rgba(79, 172, 254, 0.1) 100%
+      rgba(79, 172, 254, 0.3) 0%,
+      rgba(79, 172, 254, 0.5) 50%,
+      rgba(79, 172, 254, 0.3) 100%
     );
     transform: translateY(-50%);
     z-index: 1;
+  }
+}
+
+// Progress bar under timeline
+.timeline-progress {
+  width: 100%;
+  height: 3px;
+  background: rgba(79, 172, 254, 0.1);
+  border-radius: 2px;
+  margin-top: 0.3rem;
+  overflow: hidden;
+
+  @media (min-width: 769px) {
+    margin-top: 0.5rem;
+  }
+
+  .timeline-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 2px;
   }
 }
 
@@ -212,217 +190,214 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 2.5rem;
   z-index: 3;
+  flex-shrink: 0;
   opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 0.6s ease-out forwards;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s ease-out forwards;
 
-  @for $i from 1 through 35 {
+  @media (min-width: 769px) {
+    flex: 1;
+  }
+
+  @for $i from 1 through 15 {
     &:nth-child(#{$i + 1}) {
-      animation-delay: #{$i * 0.1}s;
+      animation-delay: #{$i * 0.08}s;
     }
   }
 
-  // Marker na linii
+  // Marker on the line - IMPROVED FOR MOBILE
   .timeline-marker {
-    width: 18px;
-    height: 18px;
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    border: 3px solid rgba(255, 255, 255, 0.2);
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
     border-radius: 50%;
     position: relative;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 0 0 0 rgba(79, 172, 254, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    &:hover {
-      transform: scale(1.3);
-      box-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
-      border-color: rgba(255, 255, 255, 0.5);
+    // Inner dot - the visible marker
+    &::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(79, 172, 254, 0.5);
+      transition: all 0.3s ease;
     }
 
-    // Pulse animation when active
-    &.pulse {
-      animation: markerPulse 0.6s ease-out;
+    @media (min-width: 769px) {
+      &::before {
+        width: 16px;
+        height: 16px;
+        border-width: 2px;
+      }
+    }
+
+    &:hover {
+      &::before {
+        transform: scale(1.2);
+        box-shadow: 0 0 20px rgba(79, 172, 254, 0.8);
+        border-color: rgba(255, 255, 255, 0.6);
+      }
     }
   }
 
   // Active state for timeline item
   &.active {
     .timeline-marker {
-      transform: scale(1.4);
-      box-shadow: 0 0 25px rgba(79, 172, 254, 0.8),
-        0 0 0 8px rgba(79, 172, 254, 0.2);
-      border-color: rgba(255, 255, 255, 0.8);
+      &::before {
+        transform: scale(1.3);
+        box-shadow: 0 0 25px rgba(79, 172, 254, 0.9),
+          0 0 0 8px rgba(79, 172, 254, 0.2);
+        border-color: rgba(255, 255, 255, 0.9);
+      }
     }
 
     .timeline-year {
       color: #4facfe;
-      text-shadow: 0 0 20px rgba(79, 172, 254, 0.6);
-      transform: scale(1.1);
+      transform: scale(1.15);
+      font-weight: 800;
     }
   }
 
-  // Rok
+  // Year label - BIGGER ON MOBILE
   .timeline-year {
     position: absolute;
-    top: -50px;
-    font-size: 1.5rem;
-    font-weight: 800;
+    top: -28px;
+    font-size: 1.1rem;
+    font-weight: 700;
     color: white;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     white-space: nowrap;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+
+    @media (min-width: 769px) {
+      font-size: 1rem;
+      top: -35px;
+    }
   }
 
-  // Karta z treścią - UKRYTA (ciekawostki tylko w panelu na dole)
+  // Hide content cards (shown in story display)
   .timeline-content {
-    display: none; // Całkowicie ukrywamy dymki
+    display: none;
   }
 }
 
-// Animowany autobus - porusza się między latami
+// Animated bus - moves between years
 .timeline-bus {
   position: absolute;
   top: 50%;
-  left: 0; // Initial position only
-  transform: translateX(0) translateY(-50%) translateZ(0); // GPU-accelerated
-  width: 100px;
-  height: 60px;
+  left: 0;
+  transform: translateY(-50%);
+  width: 70px;
+  height: 45px;
   z-index: 10;
-  filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.3));
-  will-change: transform; // Only transform, not left
-  transition: filter 0.3s ease;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  perspective: 1000px;
+  filter: drop-shadow(0 4px 12px rgba(79, 172, 254, 0.4));
+  pointer-events: none;
+  transition: left 1s ease;
+
+  @media (min-width: 769px) {
+    width: 80px;
+    height: 50px;
+  }
 
   svg {
     width: 100%;
     height: 100%;
+  }
+}
+
+// ============================================
+// STORY CARD WRAPPER - with navigation arrows
+// ============================================
+
+.story-card-wrapper {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  position: relative;
+  padding: 0 0.25rem;
+  width: 100%;
+
+  @media (min-width: 769px) {
+    gap: 1.2rem;
+    margin-top: 2rem;
+    padding: 0;
+    align-items: center;
+  }
+}
+
+// Navigation Arrows - Compact on mobile for wider cards
+.timeline-arrow {
+  position: relative;
+  z-index: 10;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  background: rgba(79, 172, 254, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid rgba(79, 172, 254, 0.5);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  flex-shrink: 0;
+
+  // Pulsing animation to attract attention
+  animation: arrowPulse 2s ease-in-out infinite;
+
+  svg {
+    width: 18px;
+    height: 18px;
     transition: transform 0.3s ease;
   }
 
-  // Animacja jazdy - kołysze się podczas ruchu
-  &.driving {
-    animation: busRide 0.3s ease-in-out infinite;
-    filter: drop-shadow(0 8px 20px rgba(79, 172, 254, 0.5))
-      drop-shadow(0 0 30px rgba(79, 172, 254, 0.3));
+  @media (min-width: 769px) {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
 
     svg {
-      animation: busWheels 0.15s linear infinite;
-    }
-
-    // Efekt "dymu" za autobusem
-    &::after {
-      content: "";
-      position: absolute;
-      left: -20px;
-      top: 50%;
-      width: 30px;
-      height: 20px;
-      background: radial-gradient(
-        ellipse at center,
-        rgba(79, 172, 254, 0.2) 0%,
-        transparent 70%
-      );
-      border-radius: 50%;
-      animation: exhaustSmoke 0.6s ease-out infinite;
-      pointer-events: none;
+      width: 24px;
+      height: 24px;
     }
   }
 
-  // Efekt przyspieszenia
-  &.accelerating {
-    animation: busAccelerate 0.3s ease-out forwards;
-  }
-
-  // Efekt hamowania
-  &.decelerating {
-    animation: busDecelerate 0.3s ease-in forwards;
-  }
-
-  // Hover effect when not driving
-  &:not(.driving):hover {
-    filter: drop-shadow(0 8px 25px rgba(79, 172, 254, 0.6));
-    transform: translateY(-50%) scale(1.05);
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    border-color: transparent;
+    transform: scale(1.1);
+    box-shadow: 0 6px 25px rgba(79, 172, 254, 0.5);
+    animation: none;
 
     svg {
-      transform: scale(1.05);
+      transform: scale(1.15);
     }
   }
-}
 
-// Animacja kołysania autobusu podczas jazdy - bardziej dynamiczna
-@keyframes busRide {
-  0%,
-  100% {
-    transform: translateY(-50%) rotate(0deg) translateX(0);
+  &:active:not(:disabled) {
+    transform: scale(0.95);
   }
-  25% {
-    transform: translateY(-48%) rotate(-1deg) translateX(1px);
-  }
-  50% {
-    transform: translateY(-50%) rotate(0deg) translateX(0);
-  }
-  75% {
-    transform: translateY(-52%) rotate(1deg) translateX(-1px);
-  }
-}
 
-// Animacja kręcących się kół - bardziej widoczna
-@keyframes busWheels {
-  0% {
-    filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.3));
-  }
-  50% {
-    filter: drop-shadow(0 7px 20px rgba(79, 172, 254, 0.5));
-  }
-  100% {
-    filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.3));
-  }
-}
-
-// Animacja przyspieszenia
-@keyframes busAccelerate {
-  0% {
-    transform: translateY(-50%) scale(1);
-  }
-  50% {
-    transform: translateY(-50%) scale(1.05) rotate(-2deg);
-  }
-  100% {
-    transform: translateY(-50%) scale(1) rotate(0deg);
-  }
-}
-
-// Animacja hamowania
-@keyframes busDecelerate {
-  0% {
-    transform: translateY(-50%) scale(1);
-  }
-  50% {
-    transform: translateY(-50%) scale(0.98) rotate(2deg);
-  }
-  100% {
-    transform: translateY(-50%) scale(1) rotate(0deg);
-  }
-}
-
-// Animacja dymu/spalin
-@keyframes exhaustSmoke {
-  0% {
-    opacity: 0.6;
-    transform: translateX(0) scale(0.8);
-  }
-  50% {
+  &:disabled {
     opacity: 0.3;
-    transform: translateX(-15px) scale(1.2);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-30px) scale(1.5);
+    cursor: not-allowed;
+    border-color: rgba(255, 255, 255, 0.1);
+    animation: none;
   }
 }
 
@@ -437,114 +412,47 @@
   }
 }
 
-// Marker pulse animation
-@keyframes markerPulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(79, 172, 254, 0.7);
-  }
-  50% {
-    transform: scale(1.5);
-    box-shadow: 0 0 0 15px rgba(79, 172, 254, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(79, 172, 254, 0);
-  }
-}
-
 // Arrow pulse animation - to attract user attention
 @keyframes arrowPulse {
   0%,
   100% {
-    transform: translateY(-50%) scale(1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+    border-color: rgba(79, 172, 254, 0.4);
   }
   50% {
-    transform: translateY(-50%) scale(1.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(79, 172, 254, 0.2);
+    transform: scale(1.08);
+    box-shadow: 0 3px 20px rgba(79, 172, 254, 0.5),
+      0 0 0 6px rgba(79, 172, 254, 0.15);
+    border-color: rgba(79, 172, 254, 0.6);
   }
 }
 
 // ============================================
-// RESPONSIVE
-// ============================================
-
-@media (max-width: 768px) {
-  .timeline-section {
-    padding: 4rem 0;
-
-    .section-heading {
-      h2 {
-        font-size: 2rem;
-      }
-
-      p {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-    }
-  }
-
-  .timeline-item {
-    margin: 0 2rem;
-
-    .timeline-year {
-      font-size: 1.3rem;
-      top: -40px;
-    }
-
-    .timeline-content {
-      width: 250px;
-      padding: 1.2rem;
-
-      h3 {
-        font-size: 1.1rem;
-      }
-
-      p {
-        font-size: 0.9rem;
-      }
-
-      .timeline-icon {
-        font-size: 2rem;
-      }
-    }
-  }
-
-  .timeline-bus {
-    width: 70px;
-    height: 45px;
-  }
-}
-
-@media (max-width: 480px) {
-  .timeline-item {
-    margin: 0 1.5rem;
-
-    .timeline-content {
-      width: 220px;
-      padding: 1rem;
-    }
-  }
-}
-
-// ============================================
-// STORY DISPLAY PANEL - Dynamic History Panel
+// STORY DISPLAY PANEL - BIGGER AND BETTER ON MOBILE
 // ============================================
 
 .story-display {
-  margin-top: 4rem;
-  background: $glass-bg;
+  flex: 1;
+  max-width: 700px;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: $glass-border;
-  border-radius: $border-radius-card;
-  padding: 3rem;
+  border: 1px solid rgba(79, 172, 254, 0.25);
+  border-radius: 16px;
+  padding: 1.25rem;
   position: relative;
   overflow: hidden;
-  box-shadow: $shadow-xl;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 172, 254, 0.1);
   transition: all 0.4s $transition-smooth;
+  min-height: 200px;
+
+  @media (min-width: 769px) {
+    padding: 2rem;
+    border-radius: 20px;
+    min-height: auto;
+  }
 
   // Gradient overlay for depth
   &::before {
@@ -556,7 +464,7 @@
     bottom: 0;
     background: linear-gradient(
       135deg,
-      rgba(79, 172, 254, 0.05) 0%,
+      rgba(79, 172, 254, 0.08) 0%,
       rgba(168, 85, 247, 0.05) 100%
     );
     opacity: 1;
@@ -566,8 +474,8 @@
   }
 
   &:hover {
-    border-color: rgba(79, 172, 254, 0.3);
-    box-shadow: $shadow-xl, $shadow-glow;
+    border-color: rgba(79, 172, 254, 0.4);
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(79, 172, 254, 0.2);
   }
 
   .story-content {
@@ -579,24 +487,29 @@
   .story-year-bg {
     position: absolute;
     top: 50%;
-    right: 2rem;
+    right: 0.8rem;
     transform: translateY(-50%);
-    font-size: clamp(8rem, 15vw, 12rem);
+    font-size: 4rem;
     font-weight: 900;
     color: $text-main;
-    opacity: 0.03;
+    opacity: 0.04;
     line-height: 1;
     pointer-events: none;
     font-family: "Montserrat", sans-serif;
     z-index: 0;
     transition: all 0.5s ease;
+
+    @media (min-width: 769px) {
+      font-size: clamp(4rem, 8vw, 8rem);
+      right: 1.5rem;
+    }
   }
 
   .story-title {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-size: 1.3rem;
     font-weight: 800;
     color: $text-main;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.75rem;
     letter-spacing: -0.02em;
     background: $primary-gradient;
     -webkit-background-clip: text;
@@ -604,81 +517,64 @@
     background-clip: text;
     position: relative;
     z-index: 1;
+    line-height: 1.3;
+
+    @media (min-width: 769px) {
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      margin-bottom: 1rem;
+    }
   }
 
   .story-description {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: $text-muted;
-    margin-bottom: 2rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1rem;
     position: relative;
     z-index: 1;
+
+    @media (min-width: 769px) {
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
   }
 
   .story-fact {
     display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.2rem 1.5rem;
-    background: rgba(79, 172, 254, 0.08);
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: rgba(79, 172, 254, 0.12);
     border-left: 4px solid $primary;
     border-radius: 12px;
     position: relative;
     z-index: 1;
 
+    @media (min-width: 769px) {
+      align-items: center;
+      gap: 0.8rem;
+      padding: 1rem 1.2rem;
+    }
+
     .fact-icon {
-      font-size: 1.8rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
+
+      @media (min-width: 769px) {
+        font-size: 1.4rem;
+      }
     }
 
     .fact-text {
-      color: rgba(255, 255, 255, 0.85);
-      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.9rem;
       font-style: italic;
-      line-height: 1.6;
-    }
-  }
+      line-height: 1.5;
 
-  // Fade animation classes
-  &.fade-out {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  &.fade-in {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (max-width: 768px) {
-    padding: 2rem;
-    margin-top: 3rem;
-
-    .story-year-bg {
-      font-size: 6rem;
-      right: 1rem;
-    }
-
-    .story-title {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .story-description {
-      font-size: 1rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .story-fact {
-      padding: 1rem;
-      gap: 0.8rem;
-
-      .fact-icon {
-        font-size: 1.5rem;
-      }
-
-      .fact-text {
+      @media (min-width: 769px) {
         font-size: 0.95rem;
+        line-height: 1.6;
       }
     }
   }

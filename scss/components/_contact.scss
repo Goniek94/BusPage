@@ -1,6 +1,7 @@
 // ============================================
-// CONTACT SECTION - AWWWARDS STYLE 🔥
-// Advanced animations, 3D effects, parallax, micro-interactions
+// CONTACT SECTION - AWWWARDS STYLE
+// Mobile-First Refactored Version
+// Senior Developer Standards: No !important, proper specificity
 // ============================================
 
 @use "../variables" as *;
@@ -16,6 +17,10 @@
   );
   padding: 5rem 0;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+  }
 
   // Animated background particles
   &::before {
@@ -64,6 +69,10 @@
     padding: 0 2rem;
     position: relative;
     z-index: 2;
+
+    @media (max-width: 768px) {
+      padding: 0 1.25rem; // Standardized mobile padding
+    }
   }
 
   // ============================================

@@ -1,3 +1,5 @@
+// _header.scss - Mobile-First Refactored Version
+// Senior Developer Standards: Fixed 60px header, 40px logo, 44px touch targets
 @use "../variables" as *;
 @use "../mixins" as *;
 
@@ -10,10 +12,7 @@ header {
   width: 100%;
   z-index: 1000;
   box-shadow: $shadow-lg;
-
-  // KLUCZOWA POPRAWKA: overflow musi być visible, aby menu mogło wyjść poza nagłówek
   overflow: visible;
-
   backdrop-filter: blur(10px);
 
   .header-container {
@@ -22,31 +21,30 @@ header {
     align-items: center;
     padding: 0 2%;
     max-width: 100%;
-    height: 60px;
+    height: 60px; // Standard desktop header height
 
-    // Mobile - wszystkie rozdzielczości do 991px (Bootstrap breakpoint)
+    // Mobile: Fixed 60px header height (industry standard)
     @media (max-width: 991px) {
-      padding: 0.3rem 2%;
-      height: 50px;
+      padding: 0 1.25rem; // Standardized mobile padding
+      height: 60px; // Keep consistent height
       position: relative;
       z-index: 10003;
     }
-
-    // Bardzo małe ekrany
-    @media (max-width: 576px) {
-      height: 45px;
-    }
   }
 
-  // LOGO
+  // LOGO - Properly scaled for mobile
   .logo {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     position: relative;
     height: 100%;
     overflow: visible;
-    z-index: 10000; // Pod menu
+    z-index: 10000;
+
+    @media (max-width: 991px) {
+      margin-left: -0.5rem; // Move logo more to the left on mobile
+    }
 
     &-img {
       height: 250px;
@@ -56,20 +54,22 @@ header {
       filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
       transform: translateY(2px);
 
-      // Mobile - wszystkie rozdzielczości do 991px
+      // Mobile: BIGGER LOGO - 80px height
       @media (max-width: 991px) {
-        height: 100px;
-        transform: translateY(1px);
+        height: 180px;
+        max-height: 80px;
+        transform: translateY(0);
       }
 
-      // Bardzo małe ekrany
+      // Very small screens - still bigger
       @media (max-width: 576px) {
-        height: 85px;
+        height: 160px;
+        max-height: 70px;
       }
     }
   }
 
-  // PRZYCISK HAMBURGER / ZAMKNIJ (X)
+  // HAMBURGER BUTTON - 44x44px touch target
   .hamburger {
     display: none;
     flex-direction: column;
@@ -77,12 +77,22 @@ header {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 10px; // Większe pole dotyku
+    // Touch target: minimum 44x44px
+    padding: 10px;
+    min-width: 44px;
+    min-height: 44px;
     z-index: 10003;
     position: relative;
     pointer-events: auto;
+    // Center the spans within the touch target
+    justify-content: center;
+    align-items: center;
 
     @include mobile {
+      display: flex;
+    }
+
+    @media (max-width: 991px) {
       display: flex;
     }
 
@@ -94,17 +104,16 @@ header {
       border-radius: 2px;
     }
 
-    // --- STYL DLA AKTYWNEGO PRZYCISKU (X) ---
+    // Active state (X button)
     &.active {
-      // To sprawia, że X jest zawsze w rogu ekranu, niezależnie od przewijania
       position: fixed;
-      top: 15px;
-      right: 5%; // Margines od prawej krawędzi
-      z-index: 10005; // Najwyższa warstwa, nad menu
+      top: 8px; // Centered in 60px header
+      right: 1.25rem;
+      z-index: 10005;
 
       span:nth-child(1) {
         transform: rotate(45deg) translate(8px, 8px);
-        background-color: #ffffff; // Biały X dla kontrastu na ciemnym tle
+        background-color: #ffffff;
       }
 
       span:nth-child(2) {
@@ -118,7 +127,7 @@ header {
     }
   }
 
-  // MENU MOBILNE - FULLSCREEN OVERLAY
+  // MOBILE NAVIGATION - Fullscreen overlay
   nav {
     flex: 1;
     display: flex;
@@ -131,29 +140,48 @@ header {
       left: 0;
       width: 100vw;
       height: 100vh;
-      height: 100dvh; // Dynamic height dla iOS (pasek adresu)
-
-      // --- JEDNOLITY KOLOR TŁA ---
-      background-color: #0f1528; // Głęboki granat
-      // Jeśli wolisz minimalną przezroczystość: background-color: rgba(15, 21, 40, 0.98);
-
-      backdrop-filter: none; // Wyłączamy rozmycie tła pod spodem dla lepszej wydajności
-
+      height: 100dvh;
+      background-color: #0f1528;
+      backdrop-filter: none;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transform: scale(0.95);
-
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
       padding: 0;
-      z-index: 10002; // Nad logo, pod X
-
+      z-index: 10002;
       display: flex;
       justify-content: center;
       align-items: center;
 
-      // Stan otwarty
+      &.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: scale(1);
+      }
+    }
+
+    @media (max-width: 991px) {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background-color: #0f1528;
+      backdrop-filter: none;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(0.95);
+      transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+      padding: 0;
+      z-index: 10002;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       &.active {
         opacity: 1;
         visibility: visible;
@@ -177,13 +205,33 @@ header {
         margin: 0;
       }
 
+      @media (max-width: 991px) {
+        flex-direction: column;
+        gap: 0;
+        padding: 0;
+        width: 100%;
+        max-width: 100vw;
+        margin: 0;
+      }
+
       li {
         @include mobile {
           width: 100%;
           opacity: 0;
           transform: translateY(20px);
           animation: none;
-          // Delikatna linia oddzielająca elementy
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+
+        @media (max-width: 991px) {
+          width: 100%;
+          opacity: 0;
+          transform: translateY(20px);
+          animation: none;
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
           &:last-child {
@@ -203,7 +251,27 @@ header {
 
           @include mobile {
             display: block;
+            // Touch target: minimum 44px height
             padding: 1.2rem 1.5rem;
+            min-height: 44px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 1.5px;
+            border-radius: 0;
+            position: relative;
+            overflow: hidden;
+
+            &:hover {
+              color: #4facfe;
+              background-color: rgba(255, 255, 255, 0.03);
+            }
+          }
+
+          @media (max-width: 991px) {
+            display: block;
+            padding: 1.2rem 1.5rem;
+            min-height: 44px;
             font-size: 1.1rem;
             font-weight: 600;
             text-align: center;
@@ -222,7 +290,7 @@ header {
             color: $primary;
           }
 
-          // Desktopowy efekt podkreślenia
+          // Desktop underline effect
           &::after {
             content: "";
             position: absolute;
@@ -236,6 +304,10 @@ header {
             @include mobile {
               display: none;
             }
+
+            @media (max-width: 991px) {
+              display: none;
+            }
           }
 
           &:hover::after {
@@ -247,8 +319,20 @@ header {
   }
 }
 
-// Animacja wjazdu elementów listy
+// Menu item animation
 @include mobile {
+  nav.active ul li {
+    animation: slideInFromTop 0.4s ease forwards;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{0.1 + ($i * 0.06)}s;
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
   nav.active ul li {
     animation: slideInFromTop 0.4s ease forwards;
 
@@ -271,12 +355,19 @@ header {
   }
 }
 
-// Blokada przewijania strony pod spodem
+// Body scroll lock when menu is open
 body.menu-open {
   @include mobile {
-    overflow: hidden !important;
-    position: fixed !important; // Zapobiega "gumowaniu" na iOS
-    width: 100% !important;
-    height: 100% !important;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (max-width: 991px) {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
   }
 }

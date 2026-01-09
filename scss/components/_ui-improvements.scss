@@ -2,9 +2,9 @@
 // UI IMPROVEMENTS - Better animations and hamburger menu
 // ============================================
 
-// Fix 1: Smooth scroll arrow animation (no jank)
+// Fix 1: Smooth scroll arrow animation - VERY SLOW
 .hero .scroll-arrow {
-  animation: smoothBounce 2.5s ease-in-out infinite;
+  animation: smoothBounce 6s ease-in-out infinite;
 
   .arrow-icon {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -17,7 +17,7 @@
     transform: translateX(-50%) translateY(0);
   }
   50% {
-    transform: translateX(-50%) translateY(-12px);
+    transform: translateX(-50%) translateY(-8px);
   }
 }
 
@@ -249,17 +249,4 @@ body.menu-open {
   }
 }
 
-// Additional improvements for header
-header {
-  @media (max-width: 768px) {
-    .header-container {
-      padding: 0.8rem 1.5rem;
-      height: 70px;
-    }
-
-    .logo-img {
-      height: 120px !important;
-      transition: height 0.3s ease;
-    }
-  }
-}
+// Additional improvements for header - Logo styles moved to _header.scss
