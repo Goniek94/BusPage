@@ -2,6 +2,7 @@
 // TIMELINE - "PODRÓŻ W CZASIE" - Z NAWIGACJĄ STRZAŁKAMI
 // Interactive timeline with arrow navigation
 // Bus moves smoothly between years with animations
+// OPTIMIZED: No autoplay, manual navigation only
 // ============================================
 
 // Extended history data with all key years
@@ -133,9 +134,6 @@ class Timeline {
 
     this.currentIndex = 0; // Start at first key year
     this.isAnimating = false;
-    this.autoPlayInterval = null;
-    this.autoPlayEnabled = true;
-    this.autoPlayDelay = 4000; // 4 seconds between transitions
 
     if (!this.wrapper || !this.track) return;
 
@@ -146,55 +144,10 @@ class Timeline {
     // Setup arrow navigation
     this.setupArrowNavigation();
 
-    // Initial position
+    // Initial position - show first year without animation
     this.goToYear(keyYears[0], false);
 
-    // Start automatic animation after a short delay
-    setTimeout(() => {
-      this.startAutoPlay();
-    }, 2000);
-
-    // Pause autoplay on hover
-    if (this.wrapper) {
-      this.wrapper.addEventListener("mouseenter", () => this.pauseAutoPlay());
-      this.wrapper.addEventListener("mouseleave", () => this.resumeAutoPlay());
-    }
-  }
-
-  startAutoPlay() {
-    if (!this.autoPlayEnabled) return;
-
-    this.autoPlayInterval = setInterval(() => {
-      if (!this.isAnimating) {
-        // Move to next year
-        if (this.currentIndex < keyYears.length - 1) {
-          this.currentIndex++;
-        } else {
-          // Loop back to start
-          this.currentIndex = 0;
-        }
-        this.goToYear(keyYears[this.currentIndex], true);
-        this.updateButtonStates();
-      }
-    }, this.autoPlayDelay);
-  }
-
-  pauseAutoPlay() {
-    if (this.autoPlayInterval) {
-      clearInterval(this.autoPlayInterval);
-      this.autoPlayInterval = null;
-    }
-  }
-
-  resumeAutoPlay() {
-    if (this.autoPlayEnabled && !this.autoPlayInterval) {
-      this.startAutoPlay();
-    }
-  }
-
-  stopAutoPlay() {
-    this.autoPlayEnabled = false;
-    this.pauseAutoPlay();
+    // NO AUTOPLAY - user must click arrows to navigate
   }
 
   setupArrowNavigation() {
@@ -222,9 +175,6 @@ class Timeline {
   navigatePrev() {
     if (this.isAnimating || this.currentIndex <= 0) return;
 
-    // Stop autoplay when user manually navigates
-    this.stopAutoPlay();
-
     this.currentIndex--;
     this.goToYear(keyYears[this.currentIndex], true);
     this.updateButtonStates();
@@ -232,9 +182,6 @@ class Timeline {
 
   navigateNext() {
     if (this.isAnimating || this.currentIndex >= keyYears.length - 1) return;
-
-    // Stop autoplay when user manually navigates
-    this.stopAutoPlay();
 
     this.currentIndex++;
     this.goToYear(keyYears[this.currentIndex], true);
@@ -288,52 +235,28 @@ class Timeline {
     const itemOffsetLeft = targetItem.offsetLeft;
     const busPosition = itemOffsetLeft - 40; // Center bus on marker
 
-    // Debug logging
-    console.log("🚌 Moving bus to year:", year);
-    console.log("📍 Target item offsetLeft:", itemOffsetLeft);
-    console.log("🎯 Bus position:", busPosition);
-
     if (animate) {
       // Add driving animation class
       this.bus.classList.add("driving");
 
-      // Add acceleration effect at start
-      this.bus.classList.add("accelerating");
-      setTimeout(() => {
-        this.bus.classList.remove("accelerating");
-      }, 400);
-
       // GPU-accelerated animation using TRANSFORM
       this.bus.style.transition =
-        "transform 1.8s cubic-bezier(0.42, 0, 0.58, 1)";
+        "transform 1.5s cubic-bezier(0.42, 0, 0.58, 1)";
       this.bus.style.transform = `translateX(${busPosition}px) translateY(-50%) translateZ(0)`;
-
-      console.log("✅ Bus transform set to:", this.bus.style.transform);
-
-      // Add deceleration effect near end
-      setTimeout(() => {
-        this.bus.classList.add("decelerating");
-      }, 1400);
 
       // Remove driving class after animation
       setTimeout(() => {
         this.bus.classList.remove("driving");
-        this.bus.classList.remove("decelerating");
         this.isAnimating = false;
-      }, 1800);
+      }, 1500);
     } else {
       this.bus.style.transition = "none";
       this.bus.style.transform = `translateX(${busPosition}px) translateY(-50%) translateZ(0)`;
     }
 
-    // Update story display with delay for better sync
+    // Update story display
     if (historyData[year]) {
-      if (animate) {
-        // Start fading out immediately
-        this.updateStoryDisplay(year);
-      } else {
-        this.updateStoryDisplay(year);
-      }
+      this.updateStoryDisplay(year);
     }
 
     // Highlight active item with pulse effect

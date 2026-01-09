@@ -68,7 +68,7 @@
   z-index: 2;
 }
 
-// Navigation Arrows
+// Navigation Arrows - WITH PULSE ANIMATION
 .timeline-arrow {
   position: absolute;
   top: 50%;
@@ -89,6 +89,9 @@
   justify-content: center;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 
+  // Pulsing animation to attract attention - VERY SLOW for better UX
+  animation: arrowPulse 5s ease-in-out infinite;
+
   svg {
     width: 28px;
     height: 28px;
@@ -100,6 +103,7 @@
     border-color: transparent;
     transform: translateY(-50%) scale(1.1);
     box-shadow: 0 8px 30px rgba(79, 172, 254, 0.5);
+    animation: none; // Stop pulsing on hover
 
     svg {
       transform: scale(1.2);
@@ -114,6 +118,7 @@
     opacity: 0.3;
     cursor: not-allowed;
     border-color: rgba(255, 255, 255, 0.1);
+    animation: none; // Stop pulsing when disabled
   }
 
   &.timeline-arrow-left {
@@ -445,6 +450,19 @@
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(79, 172, 254, 0);
+  }
+}
+
+// Arrow pulse animation - to attract user attention
+@keyframes arrowPulse {
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(79, 172, 254, 0.2);
   }
 }
 

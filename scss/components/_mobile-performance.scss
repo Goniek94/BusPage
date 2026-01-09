@@ -1,0 +1,136 @@
+// ============================================
+// MOBILE PERFORMANCE OPTIMIZATIONS
+// Disable heavy animations and effects on mobile devices
+// ============================================
+
+// Disable AOS animations on mobile - MAJOR PERFORMANCE BOOST
+@media (max-width: 768px) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+  // Reduce backdrop-filter blur on mobile
+  .glass-panel,
+  .story-display,
+  header,
+  .timeline-arrow {
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+  }
+
+  // Simplify box-shadows on mobile
+  .flip-card,
+  .glass-panel,
+  .timeline-arrow,
+  .cta-button {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  // Disable bus animations on mobile - CRITICAL FOR PERFORMANCE
+  .timeline-bus {
+    &.driving {
+      animation: none !important;
+
+      svg {
+        animation: none !important;
+      }
+
+      &::after {
+        display: none !important; // Remove smoke effect
+      }
+    }
+
+    &.accelerating,
+    &.decelerating {
+      animation: none !important;
+    }
+
+    // Simplify hover effects
+    &:hover {
+      transform: translateY(-50%) !important;
+      filter: drop-shadow(0 5px 15px rgba(79, 172, 254, 0.3)) !important;
+    }
+  }
+
+  // Reduce timeline item animations
+  .timeline-item {
+    animation-duration: 0.3s !important;
+  }
+
+  // Simplify arrow pulse animation on mobile - VERY SLOW
+  .timeline-arrow {
+    animation: arrowPulseMobile 6s ease-in-out infinite !important;
+  }
+}
+
+// Simplified arrow pulse for mobile - VERY SLOW and subtle
+@keyframes arrowPulseMobile {
+  0%,
+  100% {
+    transform: translateY(-50%) scale(1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.015);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2),
+      0 0 0 4px rgba(79, 172, 254, 0.12);
+  }
+}
+
+// Disable animations on low-end devices (prefers-reduced-motion)
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .timeline-bus {
+    animation: none !important;
+
+    &.driving {
+      animation: none !important;
+
+      svg {
+        animation: none !important;
+      }
+
+      &::after {
+        display: none !important;
+      }
+    }
+  }
+}
+
+// Optimize for very small screens (phones in portrait)
+@media (max-width: 480px) {
+  // Further reduce blur
+  .glass-panel,
+  .story-display,
+  header {
+    backdrop-filter: blur(3px) !important;
+    -webkit-backdrop-filter: blur(3px) !important;
+  }
+
+  // Simplify gradients
+  .hero::before,
+  .timeline-section::before {
+    opacity: 0.5 !important;
+  }
+
+  // Reduce timeline bus size for better performance
+  .timeline-bus {
+    width: 60px !important;
+    height: 40px !important;
+  }
+}

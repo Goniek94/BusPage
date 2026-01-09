@@ -30,5 +30,8 @@
 // 6. UI Improvements - Better animations and menu
 @use "components/ui-improvements";
 
-// 7. Performance Fixes - Critical optimizations (MUST BE LAST)
+// 7. Performance Fixes - Critical optimizations
 @use "components/performance-fixes";
+
+// 8. Mobile Performance - Disable heavy animations on mobile (MUST BE LAST)
+@use "components/mobile-performance";

@@ -31,29 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // Hamburger menu toggle
-  const hamburger = document.getElementById("hamburger");
-  const navMenu = document.getElementById("nav-menu");
-
-  if (hamburger && navMenu) {
-    hamburger.addEventListener("click", function () {
-      hamburger.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener("click", function (event) {
-      const isClickInsideMenu = navMenu.contains(event.target);
-      const isClickOnHamburger = hamburger.contains(event.target);
-
-      if (
-        !isClickInsideMenu &&
-        !isClickOnHamburger &&
-        navMenu.classList.contains("active")
-      ) {
-        navMenu.classList.remove("active");
-        hamburger.classList.remove("active");
-      }
-    });
-  }
+  // Hamburger menu toggle - REMOVED
+  // This is now handled by menu.js to avoid conflicts
+  // menu.js has more advanced logic (scroll blocking, ESC key, etc.)
 });
